@@ -10,7 +10,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import * as firebase from 'firebase';
 
@@ -96,6 +96,7 @@ export default class Home extends React.PureComponent {
     }
     else {
       console.log('good');
+      browserHistory.push('/Dashboard');
     }
      })
    .catch ( () =>{
