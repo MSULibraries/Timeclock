@@ -23,7 +23,7 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/HomePage'),
-        ]);
+        ]); //async stuff
 
         const renderRoute = loadModule(cb);
 
@@ -33,7 +33,26 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
-    }, {
+    },
+      {
+      path: '/cheese',
+      name: 'cheese',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/HomePage2'),
+        ]); //async stuff
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component]) => {
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    
+     {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

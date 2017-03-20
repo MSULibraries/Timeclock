@@ -1,0 +1,10 @@
+Server started ! ✓
+
+Access URLs:
+-----------------------------------
+Localhost: http://localhost:\\.\pipe\c812f291-c39b-404a-b144-b03326050962
+      LAN: http://192.168.1.101:\\.\pipe\c812f291-c39b-404a-b144-b03326050962
+-----------------------------------
+Press CTRL-C to stop
+    
+webpack built 768585f74a2a0c42fe83 in 22566ms
