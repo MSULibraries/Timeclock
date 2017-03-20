@@ -49,8 +49,13 @@ var myChart = new Chart(ctx, {
     
   render() {
     return (
-      <div>
-        <h1>Test of graph </h1>
+        <div>
+        <h3>Budget Started: 10,250.00</h3>
+        <h3>Budget Used: 5596.04</h3>
+        <h3>Budget Remaining: 4653.96</h3>
+          <div style = {{ width: '20%'}}>
+            <canvas id="graph" width="100" height="100"></canvas>
+          </div>
       </div>
     );
   }

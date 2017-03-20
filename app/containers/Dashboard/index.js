@@ -17,7 +17,7 @@ export default class HomePageSecond extends React.PureComponent { // eslint-disa
     return (
       <div>
         <h1>Hello Justin, today is { date.getMonth() }/{ date.getDate() }/{ date.getFullYear() }</h1>
-        {/* <Graph /> */}
+         <Graph /> 
         {/* <StudentHours /> */}
         <Supervisor />
         <Link to = "/Logout">Click to logout</Link> 
