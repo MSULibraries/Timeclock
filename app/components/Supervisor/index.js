@@ -12,13 +12,15 @@ export default class Supervisor extends React.PureComponent { // eslint-disable-
     //console.log(e.target.innerHTML );
     let menuSelect = e.target.innerHTML;
     var menu = {
-      'Add Student': 'Add Student'
-    }
-    return 'The drink I chose was ' + (drinks[type] || drinks['default']);
+      'Add Student': () =>  //Redux Action Create 
+      'Remove Student': () => //Redux Action Create
+      'Clock Student In': () => //Redux Action Create
+      'Clock Student Out': () => //Redux Action Create
+      'Print Timesheet': () => //Redux Action Create
+     }
+     return ( menu[menuSelect] || menu['default'] ) () ; 
  }
 
-  }
-   
   render() {
     return (
       <div onClick = { this.menu } >
