@@ -1,6 +1,14 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import StudentControl from '../AddStudent';
+import ViewStudents from '../ViewStudent';
+
+var myStudents = { 
+  studentNames: [
+     {name: 'Justin Samuels'},
+     {name: 'Matt Motes' }
+    ]
+};
 
 export default class Supervisor extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
@@ -14,10 +22,8 @@ export default class Supervisor extends React.PureComponent { // eslint-disable-
     let menuSelect = e.target.innerHTML;
     var menu = {
       'Add Student': () =>  this.setState({ option: <StudentControl option = "Add" /> }),
-      'View Students': () => this.setState({ option: <StudentControl option = "Remove" /> }),
+      'View Students': () => this.setState({ option: <ViewStudents students = {myStudents} /> }),
       /*
-      'Clock Student In': () => this.setState({ option: <Clock option = "in" /> }),
-      'Clock Student Out': () => this.setState({ option: <Clock option = "out"/> }),
       'Print Timesheet': () => this.setState({ option: <Print /> }),
       */
       'default': () => console.log('def')
