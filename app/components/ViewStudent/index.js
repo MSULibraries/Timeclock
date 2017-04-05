@@ -6,12 +6,12 @@ export default class ViewStudent extends React.PureComponent { // eslint-disable
       super(props);
       //this.x = this.x.bind(this);
       //this.state = {x: '' };
-      this.state = {students: { }, flag: false };
+      this.state = {students: { } };
   }
   
   render() {
     return (
-      <div>
+      <div style = {{marginLeft: '30%' }}>
        {this.props.students.studentNames.map( (currentValue,index) => 
          <Student key = {index} name = {currentValue.name} />
        )} {/* end map */}

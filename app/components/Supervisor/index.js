@@ -1,46 +1,42 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import StudentControl from '../AddStudent';
-import ViewStudents from '../ViewStudent';
+import ViewHours from '../ViewHours';
+import UpdateInfo from '../UpdateInfo';
+import RemoveStudent from '../RemoveStudent';
 
 var myStudents = { 
   studentNames: [
-     {name: 'Justin Samuels'},
-     {name: 'Matt Motes' }
+     {name: 'Bob Dickinson', id: '903-544-349', hoursUsed: 100, hoursRemain: 10 },
+     {name: 'Eugine Smith', id: '905-808-119', hoursUsed: 40, hoursRemain: 20 }
     ]
 };
 
 export default class Supervisor extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
       super(props);
-      this.menu = this.menu.bind(this);
-      this.state = { option: '' };
+      this.open = this.open.bind(this);
+      this.state = { student: '', hoursUsed: 0, hoursRemain: 0, flag: false };
   }
   
-  menu(e){
-    //console.log(e.target.innerHTML );
-    let menuSelect = e.target.innerHTML;
-    var menu = {
-      'Add Student': () =>  this.setState({ option: <StudentControl option = "Add" /> }),
-      'View Students': () => this.setState({ option: <ViewStudents students = {myStudents} /> }),
-      /*
-      'Print Timesheet': () => this.setState({ option: <Print /> }),
-      */
-      'default': () => console.log('def')
-     }
-     return ( menu[menuSelect] || menu['default'] ) () ; 
+  open(id, used, remain){
+    this.setState({ student: id });
+    this.setState({ hoursUsed: used });
+    this.setState({ hoursRemain: remain });
+    this.setState({ flag: true });
   }
 
   render() {
     return (
-      <div>
-        <div onClick = { this.menu } >
-          <h2>Add Student</h2>
-          <h2>View Students</h2>
-          <h2>Print Timesheet</h2>
+        <div>
+        {myStudents.studentNames.map( (current, index) =>
+          <div key = {index} > 
+            <h1 onClick = { () => this.open(current.id, current.hoursUsed, current.hoursRemain) } >Name: {current.name}</h1> 
+          </div>
+          )}
+         <ViewHours hoursUsed = {this.state.hoursUsed} hoursRemain = {this.state.hoursRemain} />
+          <UpdateInfo student ={this.state.student} />
+          <RemoveStudent student ={this.state.student} />
         </div>
-        {this.state.option}
-      </div>
     );
   }
 }

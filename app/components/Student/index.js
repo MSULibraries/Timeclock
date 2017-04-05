@@ -6,13 +6,14 @@ export default class Student extends React.PureComponent { // eslint-disable-lin
       //this.x = this.x.bind(this);
       this.showOptions = this.showOptions.bind(this);
       //this.state = {x: '' };
-      this.state = {options: '', flag: false };
+      this.state = {options: '', flag: false, optionsFlag: false, innerOptions: '' };
   }
   
   showOptions(){
-    var option =  <div onClick = { () => console.log('hello world') }>
-                    <h1>Hello World</h1>
-                    <h2>Testing</h2>
+    var option =  <div>  
+                    <h1 onClick = { () => this.showTime() }>View Time</h1>
+                    <h1 onClick = { () => this.updateInfo() }>Update Information</h1>
+                    <h1>Remove from timeclock</h1>
                   </div>;
     this.setState({options: option});
     this.setState({flag: !this.state.flag});
@@ -20,9 +21,10 @@ export default class Student extends React.PureComponent { // eslint-disable-lin
     
   render() {
     return (
-      <div onClick = { this.showOptions }>
+      <div>
         {this.props.name}
         {this.state.flag == true ? this.state.options : ''}
+        {this.state.optionsFlag == true ? <div>{this.state.innerOptions}</div> : ''}
       </div>
     );
   }
