@@ -3,6 +3,9 @@
 const express = require('express');
 const logger = require('./logger');
 const mac = require('getmac');
+var mysql = require('mysql2');
+var bodyParser = require('body-parser');
+var textParser = bodyParser.text();
 
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./server/middlewares/frontendMiddleware');
@@ -16,11 +19,21 @@ const getMac = (req,res) => {
     res.json(macAddress);
    })
 }
-
+ 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 app.use('/ap', (req,res) => {
   getMac(req,res)
 });
+
+app.use('/api', textParser, (req,res) =>{
+  var connection = mysql.createConnection({host:'130.18.123.15', user: 'web_dev', password: '123456', database: 'test'});
+  var query = "SELECT * FROM students WHERE NetID="+ "'"+req.body+"'";
+  connection.query(query, function (err, results) {
+  res.json(results); // results contains rows returned by server 
+  connection.end();
+  res.end();
+  });
+})
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

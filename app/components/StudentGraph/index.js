@@ -9,7 +9,7 @@ export default class StudentGraph extends React.PureComponent { // eslint-disabl
       this.plot = this.plot.bind(this);
   }
   plot(){
-   var ctx = document.getElementById("graph2");
+   var ctx = this.refs.graph2;
 var data = {
     labels: [
         "Budget Used",
@@ -46,7 +46,7 @@ var myChart = new Chart(ctx, {
         <h3>Budget Used: {this.props.budgetUsed}</h3>
         <h3>Budget Remaining: {this.props.budgetRemain}</h3>
           <div style = {{ width: '20%'}}>
-            <canvas id="graph2" width="100" height="100"></canvas>
+            <canvas ref="graph2" width="100" height="100"></canvas>
           </div>
       </div>
     );

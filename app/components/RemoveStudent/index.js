@@ -4,13 +4,18 @@ export default class RemoveStudent extends React.PureComponent { // eslint-disab
      constructor(props) {
       super(props);
       //this.x = this.x.bind(this);
+      this.remove = this.remove.bind(this);
       //this.state = {x: '' };
+  }
+  
+  remove(){
+    
   }
     
   render() {
     return (
       <div>
-        <h1>This is a test of the Remove Student component: {this.props.student}</h1>
+       <h1 onClick = {this.remove}>Remove Student: {this.props.student}</h1>
       </div>
     );
   }

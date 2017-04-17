@@ -2,6 +2,7 @@
 
 const express = require('express');
 const logger = require('./logger');
+const mac = require('getmac');
 
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
@@ -9,9 +10,21 @@ const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
 const app = express();
-
+const getMac = (req,res) => {
+    mac.getMac((err,macAddress) => {
+      err = err == true ? res.json(err) : false;
+    res.json(macAddress);
+   })
+}
+ 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+app.use('/ap', (req,res) => {
+  getMac(req,res)
+});
+
+app.use('/api', (req,res) =>{
+res.json({ user: 'tobi' });
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

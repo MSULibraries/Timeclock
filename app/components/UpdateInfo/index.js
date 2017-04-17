@@ -1,4 +1,5 @@
 import React from 'react';
+import AddStudent from '../AddStudent';
 
 export default class UpdateInfo extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
@@ -10,7 +11,7 @@ export default class UpdateInfo extends React.PureComponent { // eslint-disable-
   render() {
     return (
       <div>
-        <h1>Update the students info {this.props.student}</h1>
+        <AddStudent option = "Add" />
       </div>
     );
   }

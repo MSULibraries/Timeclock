@@ -22,7 +22,6 @@ export default class Supervisor extends React.PureComponent { // eslint-disable-
     this.setState({ student: id });
     this.setState({ hoursUsed: used });
     this.setState({ hoursRemain: remain });
-    this.setState({ flag: true });
   }
 
   render() {
@@ -33,7 +32,7 @@ export default class Supervisor extends React.PureComponent { // eslint-disable-
             <h1 onClick = { () => this.open(current.id, current.hoursUsed, current.hoursRemain) } >Name: {current.name}</h1> 
           </div>
           )}
-         <ViewHours hoursUsed = {this.state.hoursUsed} hoursRemain = {this.state.hoursRemain} />
+          <ViewHours hoursUsed = {this.state.hoursUsed} hoursRemain = {this.state.hoursRemain} />
           <UpdateInfo student ={this.state.student} />
           <RemoveStudent student ={this.state.student} />
         </div>
