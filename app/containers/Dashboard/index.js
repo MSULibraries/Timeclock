@@ -15,9 +15,21 @@ export default class HomePageSecond extends React.PureComponent { // eslint-disa
 	componentWillMount() {
        var url = window.location.search;
        url = url.replace("?", ''); // remove the ?
-       alert(url); //alerts ProjectID=462 is your case
-       
-    }
+      fetch('/verify',{
+        method: "POST",
+        body: url
+      })
+      .then((result) => {
+         return result.json();
+       })
+      .then((response) => {
+        console.log(response)  ;
+      })
+      .catch(function(error){
+        console.log(error);
+      });
+    }  
+    
   
   render() {
     return (

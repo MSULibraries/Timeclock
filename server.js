@@ -15,6 +15,9 @@ const setup = require('./server/middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
+var jwt = require('jsonwebtoken');
+var jwt2 = require('express-jwt');
+var textParser = bodyParser.text()
 const app = express();
 
 const getMac = (req,res) => {
@@ -68,10 +71,15 @@ app.use("/login",(req,res) => {
     var userIndex1 = user.search("<cas:user>") + 10;
     var userIndex2 = user.search("</cas:user>");
     var currentUser = user.slice(userIndex1, userIndex2);
-    res.redirect('/dashboard?'+ currentUser);
-  })
-  
+    var token = jwt.sign({ user: currentUser }, 'shhhhhhared-secret');
+    res.redirect('/dashboard?'+token);
+  }) 
 });
+app.use('/verify',textParser,function(req, res) {
+    var decoded = jwt.verify(req.body, 'shhhhhhared-secret');
+    res.json(decoded);
+});
+  
 app.use("/cas",casClient.core());
 app.get('/logout', casClient.logout());
  
