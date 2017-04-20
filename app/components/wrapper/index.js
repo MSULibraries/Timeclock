@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
-  background: pink;
+  background: black;
 `;
 
 export default Wrapper;

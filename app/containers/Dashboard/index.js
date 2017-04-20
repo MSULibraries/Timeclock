@@ -13,16 +13,10 @@ export default class HomePageSecond extends React.PureComponent { // eslint-disa
   }
 
 	componentWillMount() {
-      fetch('/api')
-      .then((result) => {
-         return result.json();
-       })
-      .then((re) => {
-	      console.log(re);
-      })
-      .catch(function(error){
-        console.log(error);
-      });
+       var url = window.location.search;
+       url = url.replace("?", ''); // remove the ?
+       alert(url); //alerts ProjectID=462 is your case
+       
     }
   
   render() {

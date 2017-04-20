@@ -79,9 +79,9 @@ import { createStructuredSelector } from 'reselect';
   render() {
     return (
       <div>
-        <Wrapper>
+     
          <H1>Your computer's MAC address is: {this.state.mac}</H1> 
-        </Wrapper>
+       
          <select ref = 'options'>
           <option value= {this.state.mac}>Systems</option>
          </select><br />
