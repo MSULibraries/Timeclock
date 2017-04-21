@@ -35,11 +35,11 @@ export default function createRoutes(store) {
       },
     },
       {
-      path: '/cheese',
-      name: 'cheese',
+      path: '/Dashboard',
+      name: 'Dashboard Home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          import('containers/HomePage2'),
+          import('containers/Dashboard'),
         ]); //async stuff
 
         const renderRoute = loadModule(cb);
@@ -50,8 +50,25 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
-    },
-    
+    },      
+    {
+      path: '/Logout',
+      name: 'Logout Exit',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/Logout'),
+        ]); //async stuff
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component]) => {
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },   
+     
      {
       path: '*',
       name: 'notfound',
