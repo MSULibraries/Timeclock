@@ -111,8 +111,8 @@ import { createStructuredSelector } from 'reselect';
          <br />
          <br />
         
-        <LoginButton>
-          <button onClick={this.login} className="btn btn-danger">Login</button>
+        <LoginButton onClick={this.login}>
+          Login
         </LoginButton>
 
         {/* <h1> {this.props.user} </h1>
