@@ -13,9 +13,14 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import Body from '../../components/body';
 import H1 from '../../components/h1';
+import H2 from '../../components/h2';
 import Wrapper from '../../components/wrapper';
+import LoginButton from '../../components/loginButton';
+import ClickMe from '../../components/clickme';
+import Department from '../../components/department';
 
 //Import Actions for dispatch
 import { LogAction } from './actions';
@@ -78,19 +83,47 @@ import { createStructuredSelector } from 'reselect';
   
   render() {
     return (
+   
       <div>
-     
-         <H1>Your computer's MAC address is: {this.state.mac}</H1> 
-       
-         <select ref = 'options'>
-          <option value= {this.state.mac}>Systems</option>
-         </select><br />
-         <label>User Name: <input type = "text" onChange = { (event) => this.setState({userName: event.target.value}) }/></label><br />
-         <label>Password:  <input  type = "password" onChange = { (event) => this.setState({password: event.target.value}) } /></label><br />
-         <button onClick = {this.login} className = "btn btn-danger">Login</button> 
-        <h1> {this.props.user} </h1>
-        <button onClick = { () => this.props.onChangeUser('LOGGED-IN',this.state.userName) }>Click Me</button>
-      </div>
+
+        
+         <H1>Your computer is for Systems</H1> 
+        
+<Wrapper>
+      <Department>      
+        <div>  
+          <H2>Department</H2>
+          <select ref='options'>
+           <option value={this.state.mac}>Select a Department</option>     
+          <option value={this.state.mac}>Systems</option>
+          <option value={this.state.mac}>Access Services</option>
+          <option value= {this.state.mac}>Research Services</option>      
+         </select>
+        </div><br />
+      </Department> 
+          
+          <H2>Username</H2>
+          <select ref = 'options'>
+          <option value={this.state.mac}>jed31</option>
+          <option value={this.state.mac}>mcc235</option>
+          <option value={this.state.mac}>pch1</option> 
+          <option value= {this.state.mac}>shc1</option>   
+         </select>
+         <br />
+         <br />
+        
+        <LoginButton onClick={this.login}>
+          Login
+        </LoginButton>
+
+        {/* <h1> {this.props.user} </h1>
+
+        <ClickMe>
+          <button onClick={() => this.props.onChangeUser('LOGGED-IN', this.state.userName)}>Click Me</button>
+        </ClickMe> */} 
+</Wrapper>
+        </div>
+        
     );
   }
 }
