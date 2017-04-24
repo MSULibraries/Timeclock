@@ -13,17 +13,23 @@ export default class HomePageSecond extends React.PureComponent { // eslint-disa
   }
 
 	componentWillMount() {
-      fetch('/api')
+       var url = window.location.search;
+       url = url.replace("?", ''); // remove the ?
+      fetch('/verify',{
+        method: "POST",
+        body: url
+      })
       .then((result) => {
          return result.json();
        })
-      .then((re) => {
-	      console.log(re);
+      .then((response) => {
+        console.log(response)  ;
       })
       .catch(function(error){
         console.log(error);
       });
-    }
+    }  
+    
   
   render() {
     return (

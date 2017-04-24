@@ -85,6 +85,7 @@ import { createStructuredSelector } from 'reselect';
     return (
    
       <div>
+
         
          <H1>Your computer is for Systems</H1> 
         

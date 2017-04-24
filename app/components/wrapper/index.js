@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
+
   height:100%;
   width:20em;
   padding:1em;
