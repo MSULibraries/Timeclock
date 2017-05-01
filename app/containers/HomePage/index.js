@@ -1,32 +1,18 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a necessity for you then you can refactor it and remove
- * the linting exception.
- */
 
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import { FormattedMessage } from 'react-intl';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import Body from '../../components/body';
-import H1 from '../../components/h1';
-import H2 from '../../components/h2';
 import Wrapper from '../../components/wrapper';
 import LoginButton from '../../components/loginButton';
-import ClickMe from '../../components/clickme';
-import Department from '../../components/department';
 
 //Import Actions for dispatch
 import { LogAction } from './actions';
 
 //Import selectors for use in getting minimal state from Redux global store
 import { getUser } from '../App/selectors.js';
+import { getRes } from '../App/selectors.js';
+import { getStatusOnUser } from '../App/selectors.js';
 
 //Import method from Reselect library to map properties to selector methods
 import { createStructuredSelector } from 'reselect';
@@ -35,94 +21,69 @@ import { createStructuredSelector } from 'reselect';
  class Home extends React.PureComponent {
     constructor(props) {
     super(props);
-    this.login = this.login.bind(this);
-    this.state = {userName: '', password: '',  mac: ''};
+    this.state = {mac: '', user:''};
+    this.success = this.success.bind(this);
   }
   
    componentWillMount(){
-    fetch('/ap')
-      .then((result) => {
-         return result.json();
-       })
-      .then((response) => {
-        this.setState({ mac: response})  ;
-      })
-      .catch(function(error){
-        console.log(error);
-      });
-    }
-    
-  login(){
-    fetch('/api',{method: 'POST', body: this.state.userName})
-      .then((result) => {
-         return result.json();
-       })
-      .then((response) => {
-        var userFound = response.length < 1 ?  false : true;
-        if(userFound){
-          switch(response[0].Status){
-            case 'Admin':
-             this.props.onChangeUser('LOGGED-IN',this.state.userName);
-             break;
-            case 'Student':
-             break;
-            default:
-             break;
-          }
-        }
-        else{
-          console.log('No user Found');
-        }
+    var url = window.location.search;
+    url = url.replace("?", '');
+    if(url != ''){
+      this.setState({ token: url }) 
+       fetch('/verify',{
+          method: 'POST',
+          body: url
+        })
+        .then((result) => {
+          return result.json();
+        })
+        .then((response) => {
+          this.props.onChangeUser( 'CHECK-USER', response.user );
+          this.setState({ user: response.user })  ;
+        })
+        .catch(function(error){
+          window.location = "./logout";
+         // console.log(error);
+        });
          
-      
-      })
-      .catch(function(error){
-        console.log(error);
-      });
+      fetch('/ap')
+        .then((result) => {
+          return result.json();
+        })
+        .then((response) => {
+          this.setState({ mac: response })  ;
+        })
+        .catch(function(error){
+          console.log(error);
+        });
     }
+    else{
+      window.location = './logout';
+    }   
+       
+  } 
+  success(){
+    //setTimeout( () => window.location = './logout', 5000 )
+    
+  }
   
   render() {
-    return (
-   
-      <div>
+    return (   
+    <Wrapper>
+        <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > 
+          Login To Dashboard
+        </LoginButton><br/>
         
-         <H1>Your computer is for Systems</H1> 
+        <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGIN', this.state.user, this.state.mac ) } > 
+          Clock In
+        </LoginButton><br />
         
-<Wrapper>
-      <Department>      
-        <div>  
-          <H2>Department</H2>
-          <select ref='options'>
-           <option value={this.state.mac}>Select a Department</option>     
-          <option value={this.state.mac}>Systems</option>
-          <option value={this.state.mac}>Access Services</option>
-          <option value= {this.state.mac}>Research Services</option>      
-         </select>
-        </div><br />
-      </Department> 
-          
-          <H2>Username</H2>
-          <select ref = 'options'>
-          <option value={this.state.mac}>jed31</option>
-          <option value={this.state.mac}>mcc235</option>
-          <option value={this.state.mac}>pch1</option> 
-          <option value= {this.state.mac}>shc1</option>   
-         </select>
-         <br />
-         <br />
-        
-        <LoginButton onClick={this.login}>
-          Login
-        </LoginButton>
-
-        {/* <h1> {this.props.user} </h1>
-
-        <ClickMe>
-          <button onClick={() => this.props.onChangeUser('LOGGED-IN', this.state.userName)}>Click Me</button>
-        </ClickMe> */} 
-</Wrapper>
-        </div>
-        
+        <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, null ) } > 
+          Clock Out
+        </LoginButton><br />
+        { this.props.response ? this.success() : <h1>SELECT A ACTION</h1> }
+        { this.props.response ? <h1>CONGRATS, YOUR REQUEST WAS ACCEPTED ! </h1> : '' }
+   </Wrapper>     
     );
   }
 }
@@ -131,13 +92,15 @@ import { createStructuredSelector } from 'reselect';
 //Redux method to allow the props to have access to the Redux global store
 //With the least minimal state representation possible through Reselect library
 const mapStateToProps = createStructuredSelector({
-	  user: getUser() 
+	  user: getUser(),
+    response: getRes(),
+    userStatus: getStatusOnUser()
   });
  
  //Redux method to bind the actions created in the component to a dispatch
  export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUser: (evt,name) => dispatch(LogAction(evt,name))
+    onChangeUser: (evt,name, mac) => dispatch(LogAction(evt, name, mac))
   };
 }
 

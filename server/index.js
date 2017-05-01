@@ -3,7 +3,8 @@
 const express = require('express');
 const logger = require('./logger');
 const mac = require('getmac');
-
+const CAS = require('cas');
+var cas = new CAS({base_url: 'https://cas.its.msstate.edu/cas/', service: 'https://cas.its.msstate.edu/cas/serviceValidate'});
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -20,6 +21,23 @@ const getMac = (req,res) => {
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 app.use('/ap', (req,res) => {
   getMac(req,res)
+});
+
+app.use('/cas', (req,res) => {
+   var ticket = req.param('ticket');
+  if (ticket) {
+    cas.validate(ticket, function(err, status, username) {
+      if (err) {
+        // Handle the error
+        res.send({error: err});
+      } else {
+        // Log the user in
+        res.send({status: status, username: username});
+      }
+    });
+  } else {
+    res.redirect('/');
+  }
 });
 
 app.use('/api', (req,res) =>{

@@ -25,7 +25,19 @@ const getUser = () => createSelector(
    (state) => state.get('user')
 );
 
+const getRes = () => createSelector(
+   userSelector,
+   (state) => state.get('userStatus')
+);
+
+const getStatusOnUser = () => createSelector(
+   userSelector,
+   (state) => state.get('userOnPage')
+);
+
 export {
   makeSelectLocationState,
-  getUser
+  getUser,
+  getRes,
+  getStatusOnUser
 };
