@@ -16,8 +16,9 @@ const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
 var jwt = require('jsonwebtoken');
-var jwt2 = require('express-jwt');
+var mysql = require('mysql2');
 var textParser = bodyParser.text()
+var jsonParser = bodyParser.json()
 const app = express();
 
 const getMac = (req,res) => {
@@ -65,6 +66,7 @@ var casClient = new ConnectCas({
     }
 });
 
+
 app.use("/login",(req,res) => {
   request('https://testcas.its.msstate.edu/cas/serviceValidate?service=http://130.18.249.246:3000/login&ticket='+req.param('ticket'), function (error, response, body) {
     var user = response.body;
@@ -72,14 +74,14 @@ app.use("/login",(req,res) => {
     var userIndex2 = user.search("</cas:user>");
     var currentUser = user.slice(userIndex1, userIndex2);
     var token = jwt.sign({ user: currentUser }, 'shhhhhhared-secret');
-    res.redirect('/dashboard?'+token);
+    res.redirect('/?'+token);
   }) 
 });
 app.use('/verify',textParser,function(req, res) {
     var decoded = jwt.verify(req.body, 'shhhhhhared-secret');
     res.json(decoded);
 });
-  
+ 
 app.use("/cas",casClient.core());
 app.get('/logout', casClient.logout());
  
@@ -93,8 +95,23 @@ app.use('/ap', (req,res) => {
   getMac(req,res)
 });
 
-
-
+ 
+ app.use('/db', textParser, (req,res) =>{		
+  var connection = mysql.createConnection({host:'130.18.123.15', user: 'web_dev', password: '123456', database: 'test'});		 		
+  connection.query(req.body, function (err, results) {
+    console.log(results);
+    console.log(results.affectedRows);
+    console.log(err);		 
+    if(results.affectedRows > 0 || results.length > 0){
+  res.json(true); // results contains rows returned by server		
+    }
+    else{
+      res.json(false);
+    }	
+   });
+   connection.end();		
+ });
+ 
 app.use('/api', (req,res) =>{
  res.json({ user: req.query.NetID });
 });
