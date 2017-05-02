@@ -15,6 +15,18 @@ else if (action == 'USER-FOUND'){
     user: ''
 	}
 }
+else if (action == 'POPULATE-DASHBOARD'){
+    return{
+		type: "POPULATE-DASHBOARD",
+    user: userName,
+    query: "SELECT * FROM students WHERE NetID='" +userName+ "'"
+	}
+}
+else if (action == 'DASHBOARD-DATA'){
+    return{
+		type: "DASHBOARD-DATA",
+	}
+}
 else if (action == 'USER-404'){
     return{
 		type: "USER-404",

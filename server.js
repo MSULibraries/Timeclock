@@ -103,7 +103,7 @@ app.use('/ap', (req,res) => {
     console.log(results.affectedRows);
     console.log(err);		 
     if(results.affectedRows > 0 || results.length > 0){
-  res.json(true); // results contains rows returned by server		
+  res.json({status: true, data: results}); // results contains rows returned by server		
     }
     else{
       res.json(false);

@@ -28,6 +28,9 @@ function userReducer(state = initialState, action ){
      case 'LOGGED-OUT':
        return state
       .set('user', 'OUT');
+      case 'DASHBOARD-DATA':
+       return state
+       .set('user', action.user);
      default:
       return state
   }

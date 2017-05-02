@@ -13,7 +13,7 @@ export function* loginUserAsync(action){
   try{ 
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();     
-       res == true ? yield put({type: 'USER-FOUND', user: action.user, query: "INSERT INTO student_hours_elapsed (NetID, TimeStamp) VALUES ( " + "'" + action.user + "'," + "'" + n + "')" }) : yield put({type: 'USER-NOT-APPROVED', user: action.user })
+       res.status == true ? yield put({type: 'USER-FOUND', user: action.user, query: "INSERT INTO student_hours_elapsed (NetID, TimeStamp) VALUES ( " + "'" + action.user + "'," + "'" + n + "')" }) : yield put({type: 'USER-NOT-APPROVED', user: action.user })
    }
    catch(error){
      console.log(error);
@@ -25,7 +25,7 @@ export function* logoutUserAsync(action){
   try{
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
-       res == true ? yield put({type: 'USER-FOUND', user: action.user }) : yield put({type: 'USER-NOT-APPROVED', user: action.user })
+       res.status == true ? yield put({type: 'USER-FOUND', user: action.user, query: "INSERT INTO student_hours_elapsed (NetID, TimeStamp) VALUES ( " + "'" + action.user + "'," + "'" + n + "')" }) : yield put({type: 'USER-NOT-APPROVED', user: action.user })
  
    }
    catch(error){
@@ -37,7 +37,7 @@ export function* checkUserAsync(action){
   try{
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
-       res == true ? yield put({type: 'USER-ALLOWED-ON-PAGE', user: action.user }) : window.location = "./logout"
+       res.status == true ? yield put({type: 'USER-ALLOWED-ON-PAGE', user: action.user }) : window.location = "./logout"
  
    }
    catch(error){
@@ -53,6 +53,16 @@ export function* transactionAsync(action){
    }
 }
 
+export function* dashboardAsync(action){
+  try{
+       const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
+       const res = yield response.json();
+       res.status == true ? yield put({type: 'DASHBOARD-DATA', user: res.data[0] }) : window.location = "./logout"
+   }
+   catch(error){
+      yield put({type: 'USER-404', status: 'Not Found', user: res[0].NetID  })
+   }
+}
 //Watcher saga
 export function* loginUser(){
   console.log('login Saga is running user');
@@ -74,12 +84,18 @@ export function* transactionUser(){
   yield takeEvery('USER-FOUND',transactionAsync);
 }
 
+export function* dashboardPopulate(){
+  console.log('dashboard Saga is running user');
+  yield takeEvery('POPULATE-DASHBOARD',dashboardAsync);
+}
+
 //Starts all sagas - Entry Point
 export default function* rootSaga(){
    yield[
      loginUser(),
      logoutUser(),
      checkUser(),
-     transactionUser()
+     transactionUser(),
+     dashboardPopulate()
    ]
 }
