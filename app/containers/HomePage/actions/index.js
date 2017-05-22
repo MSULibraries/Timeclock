@@ -7,14 +7,14 @@ if (action == 'USER-REQUEST-LOGIN'){
 		type: "USER-REQUEST-LOGIN",
     user: userName,
 		dept: department,
-		query: "UPDATE student_hours SET ClockIn ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'" +  " AND  ( Department1=" + "'"+department+"' OR  Department2=" + "'"+department+"' OR Department3=" + "'"+department+"')"
+		query: "UPDATE student_hours SET UserLoggedIn=TRUE, ClockIn ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'" +  " AND  ( Department1=" + "'"+department+"' OR  Department2=" + "'"+department+"' OR Department3=" + "'"+department+"')"
 	}
 }
 else if (action == 'USER-REQUEST-LOGOUT'){
     return{
 		type: "USER-REQUEST-LOGOUT",
 		user: userName,
-		query:  "UPDATE student_hours SET ClockOut ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'"
+		query:  "UPDATE student_hours SET UserLoggedIn=FALSE, ClockOut ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'"
 	}
 }
 else if (action == 'USER-FOUND'){
@@ -38,6 +38,12 @@ else if (action == 'USER-404'){
 		type: "USER-404",
     status: false,
     user: ''
+	}
+}
+else if (action == 'SET-MAC'){
+    return{
+		type: "SET-MAC",
+    dept: department
 	}
 }
 else{
