@@ -6,7 +6,13 @@ const initialState = fromJS({
   user: '',
   query: '',
   userStatus: null,
-  userOnPage: false
+  userOnPage: false,
+  students: { },
+  studentsOnClock: [ {"name" : "justin"} ],
+  studentHoursInToday: [],
+  studentHoursToday: [],
+  studentReviewHours: [],
+  timesheetData: ''
 });
 
 //Reducer for handling users logging in and out of the app, initialized above
@@ -31,6 +37,28 @@ function userReducer(state = initialState, action ){
       case 'DASHBOARD-DATA':
        return state
        .set('user', action.user);
+      case 'STUDENTS-LOADED':
+       return state
+       .set('students', action.students);
+      case 'SET-MAC':
+       return state
+       .set('mac', action.department);
+      case 'STUDENTS-LOADED-ON-CLOCK':
+       return state
+       .set('studentsOnClock', action.students);
+      case 'STUDENT-LOADED-HOURS-TODAY':
+       return state
+       .set('studentHoursInToday', action.studentIn)
+       .set('studentHoursOutToday', action.studentOut);
+      case 'STUDENT-LOADED-SPECIFIC-HOURS':
+       return state
+       .set('studentHoursToday', action.studentHoursToday);
+      case 'STUDENT-REVIEW-TIME-READY':
+       return state
+       .set('studentReviewHours', action.studentReviewHours);
+      case 'TIMESHEET-READY':
+       return state
+       .set('sheetDownload', action.timesheetData);
      default:
       return state
   }

@@ -34,10 +34,49 @@ const getStatusOnUser = () => createSelector(
    userSelector,
    (state) => state.get('userOnPage')
 );
-
+const getStudents = () => createSelector(
+   userSelector,
+   (state) => state.get('students')
+);
+const getMAC = () => createSelector(
+   userSelector,
+   (state) => state.get('mac')
+);
+const getStudentsOnClock = () => createSelector(
+   userSelector,
+   (state) => state.get('studentsOnClock')
+);
+const getStudentHoursInToday = () => createSelector(
+   userSelector,
+   (state) => state.get('studentHoursInToday')
+);
+const getStudentHoursOutToday = () => createSelector(
+   userSelector,
+   (state) => state.get('studentHoursOutToday')
+);
+const getSpecificHours = () => createSelector(
+   userSelector,
+   (state) => state.get('studentHoursToday')
+);
+const getStudentReviewHours = () => createSelector(
+   userSelector,
+   (state) => state.get('studentReviewHours')
+);
+const getStudentTimesheet = () => createSelector(
+   userSelector,
+   (state) => state.get('sheetDownload')
+);
 export {
   makeSelectLocationState,
   getUser,
   getRes,
-  getStatusOnUser
+  getStatusOnUser,
+  getStudents,
+  getMAC,
+  getStudentsOnClock,
+  getStudentHoursInToday,
+  getStudentHoursOutToday,
+  getSpecificHours,
+  getStudentReviewHours,
+  getStudentTimesheet
 };

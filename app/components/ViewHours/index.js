@@ -12,7 +12,7 @@ export default class ViewHours extends React.PureComponent { // eslint-disable-l
   render() {
     return (
       <div>
-        <StudentGraph budgetUsed = {this.props.hoursUsed} budgetRemain = {this.props.hoursRemain} />
+        <StudentGraph student = {this.props.student} budgetUsed = {this.props.hoursUsed} budgetRemain = {this.props.hoursRemain} />
       </div>
     );
   }

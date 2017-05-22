@@ -51,7 +51,8 @@ import { createStructuredSelector } from 'reselect';
           return result.json();
         })
         .then((response) => {
-          this.setState({ mac: response })  ;
+           this.props.onChangeUser( 'SET-MAC', this.state.user, response )
+          this.setState({ mac: response }) ;
         })
         .catch(function(error){
           console.log(error);
