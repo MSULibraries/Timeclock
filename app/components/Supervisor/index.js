@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import WrapMe from './styles';
+import WrapMe, {
+  InfoGroup, StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle, } from './styles';
 import ViewHours from '../ViewHours';
 import UpdateInfo from '../UpdateInfo';
 import RemoveStudent from '../RemoveStudent';
@@ -58,17 +59,53 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
 
   render() {
     return (
-        <WrapMe>
-         {this.props.student.map( (current, index) =>
-          <div key = {index} > 
-            <h1 onClick = { () => this.open(current.ID, current.HoursWorked, current.HoursRemain, current.NetID) } >Name: {current.FirstName} {current.LastName} </h1> 
-          </div>
+      <WrapMe id="wrapper">
+
+                
+        {/*Students Currently Clocked in*/}
+        <CurrentStudentsStyle id="CurrentStudentsStyle">
+          <CurrentStudents />
+        </CurrentStudentsStyle>
+
+        <PrintTime />
+          
+          {/*Remove Student Button*/}
+        <RemoveStudent student={this.state.NetID} />   
+
+
+        <InfoGroup id="InfoGroup"> 
+
+          {/*Hours and Information for Each Student*/}
+        <ViewHoursStyle id="ViewHoursStyle"> <ViewHours student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> </ViewHoursStyle>  
+
+         {/*Update Student Information*/}
+        <UpdateInfoStyle id="UpdateInfoStyle">
+          <UpdateInfo student={this.state.student} />
+        </UpdateInfoStyle > 
+
+         
+
+        {/*Students that Belong to Each Department*/}
+        <StuNames id="StuNamesStyle">
+          <h2>Student Names:</h2>
+        {this.props.student.map((current, index) =>
+            <div key={index} > 
+            
+           <h3> <input type="radio" name="student" onClick = { () => this.open(current.ID, current.HoursWorked, current.HoursRemain, current.NetID) } /> {current.FirstName} {current.LastName} </h3>
+            </div>
           )}
-          <ViewHours student ={this.state.NetID} hoursUsed = {this.state.hoursUsed} hoursRemain = {this.state.hoursRemain} />
-          <UpdateInfo student ={this.state.student} />
-          <RemoveStudent student ={this.state.NetID} />
-          <CurrentStudents   />
-          <PrintTime />
+        </StuNames> 
+
+        
+        
+          
+        </InfoGroup> 
+        
+         
+        
+
+        {/*<Link to = "/Logout">Click to logout</Link>*/}
+
         </WrapMe>
     );
   }

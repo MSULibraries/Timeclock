@@ -1,22 +1,21 @@
 import styled from 'styled-components';
 
-const PrintTime = styled.div`
+const RemoveStudentStyle = styled.div`
     float: right;
-    margin-top:31.25em;
-    margin-right:-18.75em;
-    width: 18.75em;
-    height: 4.6875em;
+    margin-top: 25em;
+    margin-right:-15.625em;
+    width: 12.5em;
+    height: auto;
     display: block;
-    background: #00aadc;
-    border-color: #0087be;
+    background: red;
+    border-color: darkred;
     color: white;
-    text-align:center;
     border-style: solid;
+    text-align:center;
     vertical-align: top;
     border-width: 0.0625em 0.0625em 0.125em;
     cursor: pointer;
     border-radius: 0.25em;
-
 `;
+export default RemoveStudentStyle;
 
-export default PrintTime;

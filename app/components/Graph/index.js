@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import chart from 'chart.js';
+import WrapMe, { BudgetInfo } from './styles';
+import { PieChart } from './styles';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 //Import Actions for dispatch
@@ -11,7 +13,6 @@ import { getUser, getSupervisorBudgets, getDepartmentDNS } from '../../container
 //Import method from Reselect library to map properties to selector methods
 import { createStructuredSelector } from 'reselect';
 var budget = "Overall";
-
 
 var ctx = document.getElementById('graph');
 
@@ -66,6 +67,7 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
  
     
   render() {
+
     return (
         <div>
         <select onChange = {this.getBudget}>
@@ -80,13 +82,19 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
                 <option key = {index} value = {current.Department}>{current.Department}</option>
               )}
         </select>
+  <WrapMe id="BudgetInfo"> 
+     <BudgetInfo> 
         <h3>Budget Started: {this.state.budgetStarted}</h3>
         <h3>Budget Used: {this.state.budgetUsed} </h3>
         <h3>Budget Remaining: {this.state.budgetStarted - this.state.budgetUsed} </h3>
-          <div style = {{ width: '20%'}}>
+      </BudgetInfo>   
+         <PieChart> 
+           <div style = {{ width: '20%'}}>
             <canvas id="graph" width="100" height="100"></canvas>
-          </div>
-      </div>
+            </div>          
+          </PieChart>
+        
+      </WrapMe>        
     );
   }
 }

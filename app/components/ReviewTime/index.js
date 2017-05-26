@@ -1,6 +1,7 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+import ReviewHours from './styles';
 //Import Actions for dispatch
 import { ReviewTime, StudentTimeComputed  } from './actions' ;
 
@@ -26,10 +27,11 @@ class ReviewTimeClass extends React.PureComponent { // eslint-disable-line react
 
   render() {
     return (
-      <div>
+      <ReviewHours>
+      <h4>Date Range: &nbsp;
       <select onChange = {this.selectTime}>
       <option  value = "">
-          SELECT A DATE
+          Select a Date Range
         </option>
         <option  value = "'5/16/2017' AND '5/17/2017'">
           5/3/2017 - 5/15/2017
@@ -40,11 +42,12 @@ class ReviewTimeClass extends React.PureComponent { // eslint-disable-line react
       </select>
          <ul>
          {this.props.ReviewHours != null ? this.props.ReviewHours.map( (current, index) =>   
-           <li key = {index}> {current.Date} : {current.HoursWorked} </li>
-           ) : <h4>Monies Not computed for this pay periord yet</h4>}
+           <h4 key = {index}> {current.Date} : {current.HoursWorked} </h4>
+           ) : <h4>Monies Not computed for this pay period yet</h4>}
             
-         </ul>
-      </div>
+          </ul>
+         </h4> 
+      </ReviewHours>
     );
   }
 }

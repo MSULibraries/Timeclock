@@ -1,4 +1,5 @@
 import React from 'react';
+import H3 from './styles';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 //Import Actions for dispatch
@@ -44,22 +45,20 @@ import { createStructuredSelector } from 'reselect';
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
-       <label>Net ID: <input type = "text" name = "NetID"onChange = {this.update} /> </label><br /> 
+        <H3>Net ID: <input type = "text" name="NetID" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br /> 
        <label>9-Digit: <input type = "text" name = "NINEdigit" onChange = {this.handleChange} onFocus = {this.check}/> </label><br /> 
-       <label>First Name: <input name = "firstName" type = "text"  onChange = {this.handleChange} /> </label><br />
-       <label>Last Name: <input name = "lastName" type = "text" onChange = {this.handleChange} /> </label><br />
-       <label>Employee Type: <select name = "employeeType" onChange = {this.handleChange}>
-                    <option value="UG">UnderGrad</option>
-                    <option value="G">Grad</option>
-                  </select>
-       </label><br/>
-       <label>Sex: <select name = "sex" onChange = {this.handleChange}>
-                    <option value="AA">Select Gender</option>
+       <H3>First Name: <input type = "text" name="firstName" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br />
+       <H3>Last Name: <input type = "text" name="lastName" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br />
+        <H3>Type: <select onChange = {this.handleChange} id="SelectOption">
+                             <option value="UG" >Undergrad &nbsp;</option>
+                             <option value="GR" >Grad</option>
+                          </select></H3> <br />  
+       <H3>Sex: <select onChange = {this.handleChange} id="SelectOption">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
-      </label><br />
-      <label>Race: <select name = "race" onChange = {this.handleChange}>
+      </H3><br />
+      <H3>Race: <select id="SelectOption" name = "race" onChange = {this.handleChange}>
                     <option value="AA">Select Race</option>
                     <option value="AA">African American</option>
                     <option value="Cauc">Caucsian</option>
@@ -67,16 +66,24 @@ import { createStructuredSelector } from 'reselect';
                     <option value="Hisp">Hispanic</option>
                     <option value="Oth">Other</option>
                   </select>
-      </label><br/>
-      <label>Dept1: <select name = "dept1" onChange = {this.handleChange}>
+      </H3><br/>
+      <H3>Dept1: <select id="SelectOption" name = "dept1" onChange = {this.handleChange}>
                     <option value="AA">Select Department</option>
                     <option value="4C-72-B9-55-CD-C3">Systems</option>
                     <option value="Asn">Asian</option>
                     <option value="Hisp">Hispanic</option>
                     <option value="Oth">Other</option>
                   </select>
-      </label><br/>
-      <label>Dept2: <select name = "dept2" onChange = {this.handleChange}>
+      </H3><br/>
+      <H3>Dept2: <select id="SelectOption" name = "dept2" onChange = {this.handleChange}>
+                    <option value="AA">Select Department</option>
+                    <option value="Cauc">Caucsian</option>
+                    <option value="Asn">Asian</option>
+                    <option value="Hisp">Hispanic</option>
+                    <option value="Oth">Other</option>
+                  </select>
+      </H3><br/>
+      <H3>Dept3: <select id="SelectOption" name = "dept3" onChange = {this.handleChange}>
                     <option value="AA">Select Department</option>
                     <option value="Cauc">Caucsian</option>
                     <option value="Asn">Asian</option>
@@ -84,15 +91,7 @@ import { createStructuredSelector } from 'reselect';
                     <option value="Oth">Other</option>
                   </select>
       </label><br/>
-      <label>Dept3: <select name = "dept3" onChange = {this.handleChange}>
-                    <option value="AA">Select Department</option>
-                    <option value="Cauc">Caucsian</option>
-                    <option value="Asn">Asian</option>
-                    <option value="Hisp">Hispanic</option>
-                    <option value="Oth">Other</option>
-                  </select>
-      </label><br/>
-      <label>Dept4: <select name = "dept4" onChange = {this.handleChange}>
+      <H3>Dept4: <select id="SelectOption" name = "dept4" onChange = {this.handleChange}>
                     <option value="AA">Select Department</option>
                     <option value="AA">African American</option>
                     <option value="Cauc">Caucsian</option>
@@ -100,12 +99,11 @@ import { createStructuredSelector } from 'reselect';
                     <option value="Hisp">Hispanic</option>
                     <option value="Oth">Other</option>
                   </select>
-      </label><br/>
+      </H3><br/>
        {this.props.StudentStatus ? <button name = "status" value = {false} onClick = {this.handleChange} >Update Student</button> : <button value = {true} name = "status" onClick = {this.handleChange}>Submit New Student</button>}
        </form>
-     </div>
-    );
-   
+     </div>      
+    ); 
   }
 }
 

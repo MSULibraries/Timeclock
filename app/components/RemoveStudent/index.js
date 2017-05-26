@@ -1,4 +1,5 @@
 import React from 'react';
+import RemoveStudentStyle from './styles';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 //Import Actions for dispatch
@@ -22,9 +23,10 @@ class RemoveStudent extends React.PureComponent { // eslint-disable-line react/p
     
   render() {
     return (
-      <div>
-       <button onClick = {this.remove}>Remove Student: {this.props.student}</button>
-      </div>
+      <RemoveStudentStyle id="RemoveStudentStyle">  
+       <h3 onClick = {this.remove}>Deactivate Student</h3>
+      </RemoveStudentStyle>
+
     );
   }
 }
