@@ -90,7 +90,7 @@ import { createStructuredSelector } from 'reselect';
                     <option value="Hisp">Hispanic</option>
                     <option value="Oth">Other</option>
                   </select>
-      </label><br/>
+      </H3><br/>
       <H3>Dept4: <select id="SelectOption" name = "dept4" onChange = {this.handleChange}>
                     <option value="AA">Select Department</option>
                     <option value="AA">African American</option>

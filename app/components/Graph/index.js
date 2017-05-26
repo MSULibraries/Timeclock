@@ -70,6 +70,8 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
 
     return (
         <div>
+          <WrapMe id="BudgetInfo"> 
+     <BudgetInfo> 
         <select onChange = {this.getBudget}>
           <option value = "Overall">Overall</option>
           <option value = "Fall">Fall</option>
@@ -82,19 +84,18 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
                 <option key = {index} value = {current.Department}>{current.Department}</option>
               )}
         </select>
-  <WrapMe id="BudgetInfo"> 
-     <BudgetInfo> 
         <h3>Budget Started: {this.state.budgetStarted}</h3>
         <h3>Budget Used: {this.state.budgetUsed} </h3>
         <h3>Budget Remaining: {this.state.budgetStarted - this.state.budgetUsed} </h3>
       </BudgetInfo>   
          <PieChart> 
-           <div style = {{ width: '20%'}}>
+           <div style = {{ width: '100%'}}>
             <canvas id="graph" width="100" height="100"></canvas>
             </div>          
           </PieChart>
         
-      </WrapMe>        
+      </WrapMe>   
+      </div>     
     );
   }
 }

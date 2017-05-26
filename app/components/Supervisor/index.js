@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import WrapMe, {
-  InfoGroup, StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle, } from './styles';
+  InfoGroup, StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle } from './styles';
 import ViewHours from '../ViewHours';
 import UpdateInfo from '../UpdateInfo';
 import RemoveStudent from '../RemoveStudent';
