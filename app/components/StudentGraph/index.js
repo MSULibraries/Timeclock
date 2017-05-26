@@ -8,11 +8,11 @@ import ReviewTime from '../ReviewTime';
 import DateButton from './styles';
 
 
+
 export default class StudentGraph extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
       super(props);
       this.plot = this.plot.bind(this);
-      this.state = {flag1: false, flag2: false, flag3: false };
   }
   plot(){
    var ctx = this.refs.graph2;
@@ -46,6 +46,7 @@ var myChart = new Chart(ctx, {
  
     
   render() {
+
       return (
         
         <div>
@@ -67,6 +68,12 @@ var myChart = new Chart(ctx, {
           </div>
               </div>
              
+
+    return (
+          <div style = {{ width: '20%'}}>
+            <canvas ref="graph2" width="100" height="100"></canvas>
+          </div>
+
     );
   }
 }

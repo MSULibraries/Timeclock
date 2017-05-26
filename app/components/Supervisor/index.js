@@ -70,7 +70,7 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
         <PrintTime />
           
           {/*Remove Student Button*/}
-        <RemoveStudent student={this.state.student} />   
+        <RemoveStudent student={this.state.NetID} />   
 
 
         <InfoGroup id="InfoGroup"> 
@@ -105,6 +105,7 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
         
 
         {/*<Link to = "/Logout">Click to logout</Link>*/}
+
         </WrapMe>
     );
   }
