@@ -1,5 +1,5 @@
 import React from 'react';
-import H3 from './styles';
+import H3, {DateButton, DeptList} from './styles';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 //Import Actions for dispatch
@@ -46,7 +46,7 @@ import { createStructuredSelector } from 'reselect';
       <div>
       <form onSubmit={this.handleSubmit}>
         <H3>Net ID: <input type = "text" name="NetID" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br /> 
-       <label>9-Digit: <input type = "text" name = "NINEdigit" onChange = {this.handleChange} onFocus = {this.check}/> </label><br /> 
+       <H3>9-Digit: <input type = "text" name = "NINEdigit" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = {this.handleChange} onFocus = {this.check}/> </H3><br /> 
        <H3>First Name: <input type = "text" name="firstName" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br />
        <H3>Last Name: <input type = "text" name="lastName" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br />
         <H3>Type: <select onChange = {this.handleChange} id="SelectOption">
@@ -66,7 +66,8 @@ import { createStructuredSelector } from 'reselect';
                     <option value="Hisp">Hispanic</option>
                     <option value="Oth">Other</option>
                   </select>
-      </H3><br/>
+      </H3><br />
+      <DeptList>    
       <H3>Dept1: <select id="SelectOption" name = "dept1" onChange = {this.handleChange}>
                     <option value="AA">Select Department</option>
                     <option value="4C-72-B9-55-CD-C3">Systems</option>
@@ -99,8 +100,11 @@ import { createStructuredSelector } from 'reselect';
                     <option value="Hisp">Hispanic</option>
                     <option value="Oth">Other</option>
                   </select>
-      </H3><br/>
-       {this.props.StudentStatus ? <button name = "status" value = {false} onClick = {this.handleChange} >Update Student</button> : <button value = {true} name = "status" onClick = {this.handleChange}>Submit New Student</button>}
+      </H3><br />
+      </DeptList>      
+      <DateButton>    
+            {this.props.StudentStatus ? <button name="status" value={false} onClick={this.handleChange} >Update Student</button> : <button value={true} name="status" onClick={this.handleChange}>Submit New Student</button>}
+       </DateButton>     
        </form>
      </div>      
     ); 
