@@ -24,12 +24,12 @@ class CurrentStudents extends React.PureComponent { // eslint-disable-line react
   render() {
     return (
       <div>
-      {this.props.studentsOnClock.map( (current, index) => 
-        <h1 key = {index}>Current Students clocked in: {current.NetID}</h1>
-    
-      )
-    }  
-    </div>
+        <h2>Students clocked in:</h2>
+        {this.props.studentsOnClock.map((current, index) =>
+          <h3 key={index}> {current.NetID}</h3>
+        )}
+      </div>
+  
     );
   }
 }

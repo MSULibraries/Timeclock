@@ -34,13 +34,16 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
 
   render() {
     return (
-        <div>
+      <div>
+        <h4> Select Specific Day: &nbsp;
          <input type="date" onChange = {this.getDate} />
          <div>
          {this.props.specificHours.map( (current,index) =>
-           <h1 key = {index}>{current.TimeStamp}</h1>
+           <h4 key = {index}>{current.TimeStamp}</h4>
              )}
-         </div>
+          </div>
+        </h4> 
+         
         </div>
     );
   }

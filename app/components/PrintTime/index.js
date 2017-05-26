@@ -1,6 +1,7 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+import LoginButton from './styles';
 //Import Actions for dispatch
 import { PrintTime } from './actions' ;
 
@@ -19,12 +20,13 @@ class Print extends React.PureComponent { // eslint-disable-line react/prefer-st
     
   render() {
     return (
-      <div>
-      <h1 onClick ={ () => this.props.PrintTimeAction('PRINT-TIME',this.props.ReviewHours) }>Print Time</h1>
-      <a target = "_blank" href = {  "/Capture?id="+this.props.Time+".xlsx"} download>Confirm</a>
-      </div>
+      <LoginButton id="PrintTimeStyle">
+        {/*} <h3 onClick ={ () => this.props.PrintTimeAction('PRINT-TIME',this.props.ReviewHours) }>Confirm Time</h3>*/}
+      <h3 target = "_blank" href = {  "/Capture?id="+this.props.Time+".xlsx"} download>Download Time</h3>
+      </LoginButton>
     );
-  }
+     
+  } 
 }
 
 //Redux method to allow the props to have access to the Redux global store

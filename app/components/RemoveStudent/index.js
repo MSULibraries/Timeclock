@@ -1,4 +1,5 @@
 import React from 'react';
+import RemoveStudentStyle from './styles';
 
 export default class RemoveStudent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
@@ -14,9 +15,9 @@ export default class RemoveStudent extends React.PureComponent { // eslint-disab
     
   render() {
     return (
-      <div>
-       <h1 onClick = {this.remove}>Remove Student: {this.props.student}</h1>
-      </div>
+      <RemoveStudentStyle id="RemoveStudentStyle">  
+       <h3 onClick = {this.remove}>Deactivate Student</h3>
+      </RemoveStudentStyle>
     );
   }
 }

@@ -34,11 +34,11 @@ class HomePageSecond extends React.PureComponent { // eslint-disable-line react/
   render() {
     return (
       <div>
-        <h1>Hello {this.props.user.FirstName}, today is { date.toLocaleDateString() } </h1>
+        <h1 style = {{ marginLeft: '15px' }}>Hello {this.props.user.FirstName}, today is { date.toLocaleDateString() } </h1>
         { (this.props.user.Status == 'Admin' || this.props.user.Status == 'SU') ? <Graph />  : '' }
         { this.props.user.Status == 'Student' ?  <StudentHours /> : ''}
          <Supervisor  />
-        <Link to = "/Logout">Click to logout</Link> 
+         
       </div>
     );  
   }

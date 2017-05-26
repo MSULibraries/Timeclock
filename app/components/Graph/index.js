@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import chart from 'chart.js';
-
+import WrapMe, { BudgetInfo } from './styles';
+import { PieChart } from './styles';
 var ctx = document.getElementById('graph');
 
 export default class Graph extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -48,15 +49,20 @@ var myChart = new Chart(ctx, {
 
     
   render() {
-    return (
-        <div>
+      return (
+        <WrapMe id="BudgetInfo">
+        <BudgetInfo>      
         <h3>Budget Started: 10,250.00</h3>
         <h3>Budget Used: 5596.04</h3>
         <h3>Budget Remaining: 4653.96</h3>
-          <div style = {{ width: '20%'}}>
+        </BudgetInfo>           
+        <PieChart>          
+          <div>
             <canvas id="graph" width="100" height="100"></canvas>
-          </div>
-      </div>
+            </div>          
+          </PieChart>
+        
+      </WrapMe>        
     );
   }
 }
