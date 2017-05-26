@@ -16,7 +16,7 @@ export function* loginUserAsync(action){
   try{ 
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();   
-       let clockQuery = "INSERT INTO student_hours_elapsed (NetID, TimeStamp, ClockIn, ShortDate, msTime) VALUES ( " + "'" + action.user + "'," + "'" + n + "', '1', '" +shortDate+"', '" + msTime + "')";  
+       let clockQuery = "INSERT INTO student_hours_elapsed (NetID, TimeStamp, ClockIn, ShortDate, msTime, Dept) VALUES ( " + "'" + action.user + "'," + "'" + n + "', '1', '" +shortDate+"', '" + msTime + "','" +action.dept+"')";  
        res.status == true ? yield put({type: 'USER-FOUND', user: action.user, query: clockQuery }) : yield put({type: 'USER-NOT-APPROVED', user: action.user })
    }
    catch(error){
@@ -29,7 +29,7 @@ export function* logoutUserAsync(action){
   try{
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
-       let clockQuery = "INSERT INTO student_hours_elapsed (NetID, TimeStamp, ClockOut, ShortDate, msTime) VALUES ( " + "'" + action.user + "'," + "'" + n + "', '1', '" +shortDate+"', '" + msTime + "')"; 
+       let clockQuery = "INSERT INTO student_hours_elapsed (NetID, TimeStamp, ClockOut, ShortDate, msTime, Dept) VALUES ( " + "'" + action.user + "'," + "'" + n + "', '1', '" +shortDate+"', '" + msTime + "','" +action.dept+"')"; 
        res.status == true ? yield put({type: 'USER-FOUND', user: action.user, query: clockQuery }) : yield put({type: 'USER-NOT-APPROVED', user: action.user })
        let updateTimeQuery = "SELECT msTimeIn, msTimeOut, DepartmentIn FROM student_hours WHERE NetID ='"+action.user+"'";
        const TimeDataResponse = yield call(fetch, '/db', { method: 'POST', body: updateTimeQuery } )
@@ -41,7 +41,7 @@ export function* logoutUserAsync(action){
        const departmentLookup = yield call(fetch, '/db', { method: 'POST', body: departmentLookupQuery } )
        const departmentLookupRes = yield departmentLookup.json();
        const timeOfYear = month <= 3 ? 'Spring' : (month > 3 && month <= 6) ? 'Summer' : 'Fall'; 
-       const updateBudgetQuery = "UPDATE department_budgets SET OverallBudgetUsed = "+moniesOwed+",OverallBudgetRemaining = OverallBudgetRemaining - "+moniesOwed+","+ timeOfYear + "BudgetUsed = "+moniesOwed+"," +timeOfYear + "BudgetRemaining = "+ timeOfYear + "BudgetRemaining - "+moniesOwed+" WHERE Department ='"+departmentLookupRes.data[0].Department + "'";
+       const updateBudgetQuery = "UPDATE department_budgets SET OverallBudgetUsed = OverallBudgetUsed + "+moniesOwed+",OverallBudgetRemaining = OverallBudgetRemaining - "+moniesOwed+","+ timeOfYear + "BudgetUsed = "+moniesOwed+"," +timeOfYear + "BudgetRemaining = "+ timeOfYear + "BudgetRemaining - "+moniesOwed+" WHERE Department ='"+departmentLookupRes.data[0].Department + "'";
        console.log(updateBudgetQuery);
        const budgetQuery = yield call(fetch, '/db', { method: 'POST', body: updateBudgetQuery } )
    }
@@ -175,6 +175,7 @@ export function* retriveStudentHoursToReviewAsync(action){
         var Time;
         var j = 0;
         var k = 0;
+        if(res.data != null){
         res.data.map( (current, index) =>
           TimeArray[index] = {"name": current.NetID, "Date":current.ShortDate, "milliTime": current.msTime}
         );
@@ -189,7 +190,8 @@ export function* retriveStudentHoursToReviewAsync(action){
                 finalizedTime[k] = {"NetID": name, "HoursWorked": Time, "Date": TimeArray[i].Date, "AmountOwed": finalPay};
                 k++;
           }
-      res.data != false && res.data != '' ? yield put({type: 'STUDENT-REVIEW-TIME-READY', studentReviewHours: finalizedTime  }) : yield put({type: 'STUDENT-REVIEW-TIME-READY', studentReviewHours: null  }) 
+        }
+      res.data != false && res.data != null ? yield put({type: 'STUDENT-REVIEW-TIME-READY', studentReviewHours: finalizedTime  }) : yield put({type: 'STUDENT-REVIEW-TIME-READY', studentReviewHours: null  }) 
 }
    catch(error){
       console.log(error);

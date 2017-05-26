@@ -16,6 +16,7 @@ import { getStatusOnUser } from '../App/selectors.js';
 
 //Import method from Reselect library to map properties to selector methods
 import { createStructuredSelector } from 'reselect';
+var DSF = "00-00-00-00-00-00";
 
 
  class Home extends React.PureComponent {
@@ -52,7 +53,7 @@ import { createStructuredSelector } from 'reselect';
         })
         .then((response) => {
            this.props.onChangeUser( 'SET-MAC', this.state.user, response )
-          this.setState({ mac: response }) ;
+           this.props.userStatus.DSF ==  response ? this.setState({ mac: DSF }) : this.setState({ mac: response }) ;
         })
         .catch(function(error){
           console.log(error);
@@ -79,7 +80,7 @@ import { createStructuredSelector } from 'reselect';
           Clock In
         </LoginButton> : '' }
         
-        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ? <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, null ) } > 
+        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ? <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, this.state.mac ) } > 
           Clock Out
         </LoginButton> : '' }
         <br />

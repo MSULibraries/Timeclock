@@ -21,7 +21,7 @@ class ReviewTimeClass extends React.PureComponent { // eslint-disable-line react
   }
   
  selectTime(e){
-   this.props.reviewTimeAction("RETRIVE-STUDENT-TIME-TO-REVIEW", this.props.student, e.target.value);
+   this.props.reviewTimeAction("RETRIVE-STUDENT-TIME-TO-REVIEW", this.props.student, e.target.value, this.props.dept);
    this.setState({flag: true});
  }
 
@@ -33,10 +33,10 @@ class ReviewTimeClass extends React.PureComponent { // eslint-disable-line react
       <option  value = "">
           Select a Date Range
         </option>
-        <option  value = "'5/16/2017' AND '5/17/2017'">
+        <option  value = "'5/16/2017' AND '5/26/2017'">
           5/3/2017 - 5/15/2017
         </option>
-        <option  value = "'6/3/2017' AND '6/15/2017'">
+        <option  value = "'6/03/2017' AND '6/15/2017'">
           6/3/2017 - 6/15/2017
         </option>
       </select>
@@ -61,7 +61,7 @@ const mapStateToProps = createStructuredSelector({
  //Redux method to bind the actions created in the component to a dispatch
  export function mapDispatchToProps(dispatch) {
   return {
-    reviewTimeAction: (evt,name,time) => dispatch(ReviewTime(evt,name,time))
+    reviewTimeAction: (evt,name,time,dept) => dispatch(ReviewTime(evt,name,time,dept))
   };
 }
  //Exports class to be used, wrapped in the Redux Higher Order Component (HOC) connect()
