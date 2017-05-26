@@ -5,14 +5,18 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
   user: '',
   query: '',
+  supervisorBudgets: [],
   userStatus: null,
-  userOnPage: false,
+  userOnPage: '',
   students: { },
   studentsOnClock: [ {"name" : "justin"} ],
   studentHoursInToday: [],
+  studentHoursOutToday: [],
   studentHoursToday: [],
   studentReviewHours: [],
-  timesheetData: ''
+  timesheetData: '',
+  studentStatus: false,
+  departmentDNS: []
 });
 
 //Reducer for handling users logging in and out of the app, initialized above
@@ -30,7 +34,7 @@ function userReducer(state = initialState, action ){
       .set('userStatus', false);
     case 'USER-ALLOWED-ON-PAGE':
       return state
-      .set('userOnPage', true);
+      .set('userOnPage', action.user[0]);
      case 'LOGGED-OUT':
        return state
       .set('user', 'OUT');
@@ -43,12 +47,17 @@ function userReducer(state = initialState, action ){
       case 'SET-MAC':
        return state
        .set('mac', action.department);
+      case 'SUPERVISOR-BUDGET-LOADED':
+       return state
+       .set('supervisorBudgets', action.budgets);
       case 'STUDENTS-LOADED-ON-CLOCK':
        return state
        .set('studentsOnClock', action.students);
-      case 'STUDENT-LOADED-HOURS-TODAY':
+      case 'LOAD-CLOCKOUT-HOURS':
        return state
        .set('studentHoursInToday', action.studentIn)
+      case 'STUDENT-LOADED-HOURS-TODAY':
+       return state
        .set('studentHoursOutToday', action.studentOut);
       case 'STUDENT-LOADED-SPECIFIC-HOURS':
        return state
@@ -59,6 +68,12 @@ function userReducer(state = initialState, action ){
       case 'TIMESHEET-READY':
        return state
        .set('sheetDownload', action.timesheetData);
+      case 'STUDENT-VALIDATION':
+       return state
+       .set('studentStatus', action.studentStatus);
+      case 'DEPARTMENTS-FOUND':
+       return state
+       .set('departmentDNS', action.userDept);
      default:
       return state
   }

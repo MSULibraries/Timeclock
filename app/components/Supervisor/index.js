@@ -66,7 +66,7 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
           )}
           <ViewHours student ={this.state.NetID} hoursUsed = {this.state.hoursUsed} hoursRemain = {this.state.hoursRemain} />
           <UpdateInfo student ={this.state.student} />
-          <RemoveStudent student ={this.state.student} />
+          <RemoveStudent student ={this.state.NetID} />
           <CurrentStudents   />
           <PrintTime />
         </WrapMe>

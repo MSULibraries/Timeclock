@@ -222,11 +222,11 @@ app.use('/ap', (req,res) => {
   connection.query(req.body, function (err, results) {
    console.log(results);
    console.log(err);		 
-    if(results){
+    if(results.affectedRows > 0 || results.length > 0){
   res.json({status: true, data: results}); // results contains rows returned by server		
     }
     else{
-      res.json(false);
+      res.json({status: false, data: null});
     }	
    });
    connection.end();		

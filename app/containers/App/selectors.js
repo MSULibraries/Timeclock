@@ -42,6 +42,10 @@ const getMAC = () => createSelector(
    userSelector,
    (state) => state.get('mac')
 );
+const getSupervisorBudgets = () => createSelector(
+   userSelector,
+   (state) => state.get('supervisorBudgets')
+);
 const getStudentsOnClock = () => createSelector(
    userSelector,
    (state) => state.get('studentsOnClock')
@@ -66,6 +70,14 @@ const getStudentTimesheet = () => createSelector(
    userSelector,
    (state) => state.get('sheetDownload')
 );
+const getStudentStatus = () => createSelector(
+   userSelector,
+   (state) => state.get('studentStatus')
+);
+const getDepartmentDNS = () => createSelector(
+   userSelector,
+   (state) => state.get('departmentDNS')
+);
 export {
   makeSelectLocationState,
   getUser,
@@ -73,10 +85,13 @@ export {
   getStatusOnUser,
   getStudents,
   getMAC,
+  getSupervisorBudgets,
   getStudentsOnClock,
   getStudentHoursInToday,
   getStudentHoursOutToday,
   getSpecificHours,
   getStudentReviewHours,
-  getStudentTimesheet
+  getStudentTimesheet,
+  getStudentStatus,
+  getDepartmentDNS
 };

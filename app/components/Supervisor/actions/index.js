@@ -10,9 +10,14 @@ if (action == 'RETRIVE-STUDENTS'){
     query: "SELECT * FROM students WHERE Status= 'Student' AND Department = '" + dept + "'"
 	}
 }
-else{
-	return{
-		type: "LOGGED-OUT"
+};
+export function BudgetAction (action,userName,dept){ 
+if (action == 'LOAD-SUPERVISOR-BUDGET'){
+    return{
+		type: "LOAD-SUPERVISOR-BUDGET",
+    user: userName,
+		dept: dept,
+    query: "SELECT * FROM department_budgets WHERE Department='"+dept+"' AND Admin = '" + userName + "'"
 	}
 }
 };

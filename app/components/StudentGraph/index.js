@@ -2,15 +2,12 @@ import React from 'react';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import chart from 'chart.js';
-import HoursToday from '../HoursToday';
-import SpecificHours from '../SpecificHours';
-import ReviewTime from '../ReviewTime';
+
 
 export default class StudentGraph extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
       super(props);
       this.plot = this.plot.bind(this);
-      this.state = {flag1: false, flag2: false, flag3: false };
   }
   plot(){
    var ctx = this.refs.graph2;
@@ -45,24 +42,9 @@ var myChart = new Chart(ctx, {
     
   render() {
     return (
-        <div>
-        <h3>Budget Started: 10,250.00</h3>
-        <h3>Budget Used: {this.props.budgetUsed}</h3>
-        <h3>Budget Remaining: {this.props.budgetRemain}</h3>
-        
-        <h3 onClick = { () => this.setState({ flag1: !this.state.flag1 }) }>View Hours Worked Today</h3>
-        {(this.state.flag1 && this.props.student != '') ? <HoursToday student = {this.props.student} /> : ''}
-        
-        <h3 onClick = { () => this.setState({ flag2: !this.state.flag2 }) }>View A Specific Day</h3>
-        {(this.state.flag2 && this.props.student != '') ? <SpecificHours student = {this.props.student} /> : ''}
-        
-        <h3 onClick = { () => this.setState({ flag3: !this.state.flag3 }) }>Review Hours For Pay Periord</h3>
-        {(this.state.flag3 && this.props.student != '') ? <ReviewTime student = {this.props.student} /> : ''}
-        
           <div style = {{ width: '20%'}}>
             <canvas ref="graph2" width="100" height="100"></canvas>
           </div>
-      </div>
     );
   }
 }

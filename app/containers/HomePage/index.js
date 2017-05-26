@@ -59,7 +59,7 @@ import { createStructuredSelector } from 'reselect';
         });
     }
     else{
-      window.location = './logout';
+      //window.location = './logout';
     }   
        
   } 
@@ -71,17 +71,21 @@ import { createStructuredSelector } from 'reselect';
   render() {
     return (   
     <Wrapper>
-        <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > 
-          Login To Dashboard
-        </LoginButton><br/>
+        {this.props.userStatus.Role != "student" ? <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > 
+          Dashboard
+        </LoginButton> : '' }
         
-        <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGIN', this.state.user, this.state.mac ) } > 
+        {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.Role == "student") ? <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGIN', this.state.user, this.state.mac ) } > 
           Clock In
-        </LoginButton><br />
+        </LoginButton> : '' }
         
-        <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, null ) } > 
+        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ? <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, null ) } > 
           Clock Out
-        </LoginButton><br />
+        </LoginButton> : '' }
+        <br />
+        <LoginButton onClick = {  () => window.location = "/logout" } > 
+          Logout
+        </LoginButton>
         { this.props.response ? this.success() : <h1>SELECT A ACTION</h1> }
         { this.props.response ? <h1>CONGRATS, YOUR REQUEST WAS ACCEPTED ! </h1> : '' }
    </Wrapper>     
