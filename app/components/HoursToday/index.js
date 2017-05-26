@@ -26,7 +26,7 @@ class HoursToday extends React.PureComponent { // eslint-disable-line react/pref
   render() {
     return (
       <div>
-      {this.props.studentHoursInToday.length > 0 ? this.props.studentHoursInToday.map( (current, index) => 
+      {this.props.studentHoursInToday != null ? this.props.studentHoursInToday.map( (current, index) => 
          <div key = {index}>
           <h4>In:  {current.TimeStamp} &nbsp; &nbsp; Out: {this.props.studentHoursOutToday[index] != null ?  this.props.studentHoursOutToday[index].TimeStamp : 'Currently Clocked In'}</h4>
           
