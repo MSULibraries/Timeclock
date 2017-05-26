@@ -7,7 +7,7 @@ if (action == 'RETRIVE-SPECIFIC-HOURS'){
     user: userName,
 		dept: dept,
 		time: time,
-    query: "SELECT TimeStamp FROM student_hours_elapsed WHERE NetID = '" + userName + "' AND ShortDate = '" + time + "'"
+    query: "SELECT TimeStamp FROM student_hours_elapsed WHERE NetID = '" + userName + "' AND ShortDate = '" + time + "' AND (Dept= '00-00-00-00-00-00' OR Dept='"+dept+"')"
 	}
 }
 else{

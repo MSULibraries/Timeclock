@@ -8,7 +8,7 @@ if (action == 'USER-REQUEST-LOGIN'){
 		type: "USER-REQUEST-LOGIN",
     user: userName,
 		dept: department,
-		query: "UPDATE student_hours SET UserLoggedIn=TRUE, DepartmentIn='"+department+"', msTimeIn='"+msTime+"', ClockIn ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'" +  " AND  ( Department1=" + "'"+department+"' OR  Department2=" + "'"+department+"' OR Department3=" + "'"+department+"')"
+		query: "UPDATE student_hours SET UserLoggedIn=TRUE, DepartmentIn='"+department+"', msTimeIn='"+msTime+"', ClockIn ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'" +  " AND  ( DSF!='0' OR Department1=" + "'"+department+"' OR  Department2=" + "'"+department+"' OR Department3=" + "'"+department+"')"
 	}
 }
 else if (action == 'USER-REQUEST-LOGOUT'){

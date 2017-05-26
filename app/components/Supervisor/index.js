@@ -74,9 +74,10 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
 
 
         <InfoGroup id="InfoGroup"> 
-
           {/*Hours and Information for Each Student*/}
-        <ViewHoursStyle id="ViewHoursStyle"> <ViewHours student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> </ViewHoursStyle>  
+         <ViewHoursStyle id="ViewHoursStyle"> 
+          <ViewHours dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
+         </ViewHoursStyle>  
 
          {/*Update Student Information*/}
         <UpdateInfoStyle id="UpdateInfoStyle">

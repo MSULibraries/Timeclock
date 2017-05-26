@@ -9,7 +9,7 @@ if (action == 'RETRIVE-HOURS-TODAY'){
     user: userName,
     status: 'Admin',
 		dept: dept,
-    query: "SELECT TimeStamp FROM student_hours_elapsed WHERE ShortDate ='" + shortDate + "' AND NetID='" + userName  + "'" + "AND ClockIn = TRUE"
+    query: "SELECT TimeStamp FROM student_hours_elapsed WHERE ShortDate ='" + shortDate + "' AND NetID='" + userName  + "'" + "AND ClockIn = TRUE AND (Dept= '00-00-00-00-00-00' OR Dept='"+dept+"')"
 	}
 }
 else{
