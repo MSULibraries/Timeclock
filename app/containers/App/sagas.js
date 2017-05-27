@@ -42,7 +42,6 @@ export function* logoutUserAsync(action){
        const departmentLookupRes = yield departmentLookup.json();
        const timeOfYear = month <= 3 ? 'Spring' : (month > 3 && month <= 6) ? 'Summer' : 'Fall'; 
        const updateBudgetQuery = "UPDATE department_budgets SET OverallBudgetUsed = OverallBudgetUsed + "+moniesOwed+",OverallBudgetRemaining = OverallBudgetRemaining - "+moniesOwed+","+ timeOfYear + "BudgetUsed = "+moniesOwed+"," +timeOfYear + "BudgetRemaining = "+ timeOfYear + "BudgetRemaining - "+moniesOwed+" WHERE Department ='"+departmentLookupRes.data[0].Department + "'";
-       console.log(updateBudgetQuery);
        const budgetQuery = yield call(fetch, '/db', { method: 'POST', body: updateBudgetQuery } )
    }
    catch(error){
@@ -75,7 +74,6 @@ export function* dashboardAsync(action){
        let response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        let res = yield response.json();
        res.status == true ? yield put({type: 'DASHBOARD-DATA', user: res.data[0] }) : window.location = "./logout";
-       console.log("LOOK",res.data[0].Department);
        response = yield call(fetch, '/db', { method: 'POST', body: "SELECT Department from department_admins WHERE Admin='"+res.data[0].NetID+"'" } );
        res = yield response.json();
        res.status == true ? yield put({type: 'DEPARTMENTS-FOUND', userDept: res.data }) : ''
@@ -88,10 +86,8 @@ export function* dashboardAsync(action){
 
 export function* AdminSupervisorStudentsAsync(action){
   try{
-    console.log(action.dept);
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
-       console.log(res.data);
        res.status == true ? yield put({type: 'STUDENTS-LOADED', students: res.data }) : window.location = "./logout"
        yield put({type: 'CURRENT-STUDENTS-ON-CLOCK',  query: "SELECT FirstName, LastName FROM student_hours WHERE UserLoggedIn=TRUE  AND  ( Department1=" + "'"+action.dept+"' OR  Department2=" + "'"+action.dept+"' OR Department3=" + "'"+action.dept+"')" })
    }
@@ -112,8 +108,6 @@ export function* getSupervisorBudgetAsync(action){
 }
 export function* CurrentStudentsOnClockAsync(action){
   try{
-    console.log(action);
-
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
        res.status == true ? yield put({type: 'STUDENTS-LOADED-ON-CLOCK', students: res.data }) : ''
@@ -125,10 +119,8 @@ export function* CurrentStudentsOnClockAsync(action){
 }
 export function* retriveCurrentHoursInTodayAsync(action){
   try{
-    console.log(action);
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
-       console.log(res);
        let clockOutQuery = "SELECT TimeStamp FROM student_hours_elapsed WHERE ShortDate ='" + shortDate + "' AND NetID='" + action.user  + "'" + "AND ClockOut = TRUE";
        yield put({type: 'LOAD-CLOCKOUT-HOURS', studentIn: res.data, query: clockOutQuery  }) ;
       
@@ -139,7 +131,6 @@ export function* retriveCurrentHoursInTodayAsync(action){
 }
 export function* retriveCurrentHoursOutTodayAsync(action){
   try{
-    console.log(action);
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
        console.log(res);
@@ -152,10 +143,9 @@ export function* retriveCurrentHoursOutTodayAsync(action){
 }
 export function* retriveSpecificHoursAsync(action){
   try{
-    console.log(action);
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
-       res.data.length == 0 ? res.data = [{"TimeStamp": "Student Did Not Work This Day"}] : null;
+       res.status == false ? res.data = [{"TimeStamp": "Student Did Not Work This Day"}] : null;
        res.status == true ? yield put({type: 'STUDENT-LOADED-SPECIFIC-HOURS', studentHoursToday: res.data  }) : yield put({type: 'STUDENT-LOADED-SPECIFIC-HOURS', studentHoursToday: res.data  }) 
    }
    catch(error){
@@ -210,7 +200,6 @@ export function* checkStudentStatusAsync(action){
   try{
       const response = yield call(fetch, '/db', { method: 'POST', body: action.query });
       const res =yield  response.json();
-      console.log(res.status);
       res.status == true ? yield put({type: 'STUDENT-VALIDATION', studentStatus: true  }) : yield put({type: 'STUDENT-VALIDATION', studentStatus: false  })      
 }
    catch(error){
@@ -241,72 +230,56 @@ export function* deleteStudentAsync(action){
 
 //Watcher saga
 export function* loginUser(){
-  console.log('login Saga is running user');
   yield takeEvery('USER-REQUEST-LOGIN',loginUserAsync);
 }
 
 export function* logoutUser(){
-  console.log('logout Saga is running user');
   yield takeEvery('USER-REQUEST-LOGOUT',logoutUserAsync);
 }
 
 export function* checkUser(){
-  console.log('check Saga is running user');
   yield takeEvery('CHECK-USER',checkUserAsync);
 }
 
 export function* transactionUser(){
-  console.log('transaction Saga is running user');
   yield takeEvery('USER-FOUND',transactionAsync);
 }
 
 export function* dashboardPopulate(){
-  console.log('dashboard Saga is running user');
   yield takeEvery('POPULATE-DASHBOARD',dashboardAsync);
 }
 
 export function* adminSupervisorStudentsPopulate(){
-  console.log('Admin Supervisor Students Populate Saga is running user');
   yield takeEvery('RETRIVE-STUDENTS',AdminSupervisorStudentsAsync);
 }
 export function* getSupervisorBudget(){
-  console.log('LOAD-SUPERVISOR-BUDGET Saga is running user');
   yield takeEvery('LOAD-SUPERVISOR-BUDGET',getSupervisorBudgetAsync);
 }
 export function* retriveCurrentLoggedInStudents(){
-  console.log('CURRENT-STUDENTS-ON-CLOCK Saga is running user');
   yield takeEvery('CURRENT-STUDENTS-ON-CLOCK',CurrentStudentsOnClockAsync);
 }
 export function* retriveCurrentHoursInToday(){
-  console.log('RETRIVE-HOURS-IN-TODAY Saga is running user');
   yield takeEvery('RETRIVE-HOURS-TODAY',retriveCurrentHoursInTodayAsync);
 }
 export function* retriveCurrentHoursOutToday(){
-  console.log('RETRIVE-OUT-HOURS-TODAY Saga is running user');
   yield takeEvery('LOAD-CLOCKOUT-HOURS',retriveCurrentHoursOutTodayAsync);
 }
 export function* retriveSpecificHours(){
-  console.log('RETRIVE-SPECIFIC-HOURS Saga is running user');
   yield takeEvery('RETRIVE-SPECIFIC-HOURS',retriveSpecificHoursAsync);
 }
 export function* retriveStudentHoursToReview(){
-  console.log('RETRIVE-STUDENT-TIME-TO-REVIEW Saga is running user');
   yield takeEvery('RETRIVE-STUDENT-TIME-TO-REVIEW',retriveStudentHoursToReviewAsync);
 }
 export function* printStudentPayroll(){
-  console.log('PRINT-TIME Saga is running user');
   yield takeEvery('PRINT-TIME',printStudentPayrollAsync);
 }
 export function* checkStudentStatus(){
-  console.log('CHECK-STUDENT-STATUS Saga is running user');
   yield takeEvery('CHECK-STUDENT-STATUS',checkStudentStatusAsync);
 }
 export function* submitStudent(){
-  console.log('SUBMIT-STUDENT Saga is running user');
   yield takeEvery('SUBMIT-STUDENT',submitStudentAsync);
 }
 export function* deleteStudent(){
-  console.log('SUBMIT-STUDENT Saga is running user');
   yield takeEvery('DELETE-STUDENT',deleteStudentAsync);
 }
 //Starts all sagas - Entry Point

@@ -14,19 +14,18 @@ import { getUser, getSupervisorBudgets, getDepartmentDNS } from '../../container
 import { createStructuredSelector } from 'reselect';
 var budget = "Overall";
 
-var ctx = document.getElementById('graph');
 
 class Graph extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
       super(props);
       this.plot = this.plot.bind(this);
       this.getBudget = this.getBudget.bind(this);
-      this.state = {budgetStarted: 0, budgetUsed: 0, department: this.props.user.Primary};
+      this.deptUpdated = this.deptUpdated.bind(this);
+      this.state = {budgetStarted: 0, budgetUsed: 0, department: this.props.user.Primary, budget: budget};
   }
   plot(data){
+        var ctx = this.refs.graph;
       var res = this.props.budget[0];
-      console.log();
-   var ctx = document.getElementById("graph");
 var data = {
     labels: [
         "Budget Used",
@@ -56,12 +55,17 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
   getBudget(event){
       budget = event.target.value;
       this.props.BudgetAction('LOAD-SUPERVISOR-BUDGET', this.props.user.NetID, this.state.department, budget);
+      this.setState({budget: budget});
   }
-  componentDidMount(){
+  deptUpdated(event){
+      var dept = event.target.value;
+      this.props.BudgetAction('LOAD-SUPERVISOR-BUDGET', this.props.user.NetID, dept, this.state.budget);
+      this.setState({department: dept});
+  }
+  componentWillMount(){
       this.props.BudgetAction('LOAD-SUPERVISOR-BUDGET', this.props.user.NetID, this.state.department, "Overall");
   }
   componentDidUpdate(){
-      console.log(this.props.deptDNS);
    this.plot();
   }
  
@@ -69,7 +73,6 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
   render() {
 
     return (
-        <div>
           <WrapMe id="BudgetInfo"> 
      <BudgetInfo> 
         <select onChange = {this.getBudget}>
@@ -78,8 +81,7 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
           <option value = "Spring">Spring</option>
           <option value = "Summer">Summer</option>
         </select>
-        <select onChange = { (event) => this.setState({department: event.target.value})}>
-          <option value = "Overall">Select A Department</option>
+        <select onChange = { this.deptUpdated }>
           {this.props.deptDNS.map( (current, index) =>
                 <option key = {index} value = {current.Department}>{current.Department}</option>
               )}
@@ -90,12 +92,10 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
       </BudgetInfo>   
          <PieChart> 
            <div style = {{ width: '100%'}}>
-            <canvas id="graph" width="100" height="100"></canvas>
+            <canvas ref="graph" width="100" height="100"></canvas>
             </div>          
           </PieChart>
-        
-      </WrapMe>   
-      </div>     
+      </WrapMe>      
     );
   }
 }

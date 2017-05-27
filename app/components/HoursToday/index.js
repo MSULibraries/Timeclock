@@ -18,7 +18,6 @@ class HoursToday extends React.PureComponent { // eslint-disable-line react/pref
       //this.state = {x: '' };
   }
   componentWillMount(){
-    console.log('Student is', this.props.student);
     this.props.onChangeUser( 'RETRIVE-HOURS-TODAY', this.props.student, this.props.user.Department );
   }
 

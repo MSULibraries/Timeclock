@@ -24,6 +24,10 @@ class ReviewTimeClass extends React.PureComponent { // eslint-disable-line react
    this.props.reviewTimeAction("RETRIVE-STUDENT-TIME-TO-REVIEW", this.props.student, e.target.value, this.props.dept);
    this.setState({flag: true});
  }
+ 
+ componentWillUnmount(){
+   console.log('unmounted');
+ }
 
   render() {
     return (

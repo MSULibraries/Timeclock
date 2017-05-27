@@ -16,9 +16,6 @@ class CurrentStudents extends React.PureComponent { // eslint-disable-line react
       //this.x = this.x.bind(this);
       //this.state = {x: '' };
   }
-  componentWillMount(){
-    console.log(this.props.studentsOnClock)
-  }
     
   render() {
     return (

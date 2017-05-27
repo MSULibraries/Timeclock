@@ -49,9 +49,8 @@ var myChart = new Chart(ctx, {
 
     return (
           <div style = {{ width: '100%'}}>
-            <canvas ref="graph2" width="100" height="100"></canvas>
-          </div>
-
+            {this.props.ws!="1" ? <canvas ref="graph2" width="100" height="100"></canvas> : '' }
+          </div>  
     );
   }
 }

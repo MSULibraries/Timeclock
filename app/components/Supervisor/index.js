@@ -23,38 +23,19 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
      constructor(props) {
       super(props);
       this.open = this.open.bind(this);
-      this.print = this.print.bind(this);
-      this.state = { student: '', hoursUsed: 0, hoursRemain: 0, flag: false, NetID: '' };
+      this.state = { student: '', hoursUsed: 0, hoursRemain: 0, flag: false, NetID: '', WorkStudy: 1 };
   }
   
   componentWillMount(){
     this.props.onChangeUser( 'RETRIVE-STUDENTS', this.props.user.NetID, this.props.user.Department );
   }
   
-  open(id, used, remain, NetID){
+  open(id, used, remain, NetID, ws){
     this.setState({ student: id });
     this.setState({ hoursUsed: used });
     this.setState({ hoursRemain: remain });
     this.setState({ NetID: NetID});
-  }
-  print(){
-    fetch('./test',{
-      method: 'POST',
-      body: JSON.stringify([{name: 'Justin'}, {name: 'Tim'}]),
-      headers: new Headers({
-          'Content-Type': 'application/json; charset=utf-8'
-         })
-    })
-    .then((result) => {
-          return result.json();
-        })
-    .then((response) => {
-          console.log(response);
-        })
-    .catch(function(error){
-          //window.location = "./logout";
-         console.log(error);
-        });
+    this.setState({ WorkStudy: ws});
   }
 
   render() {
@@ -76,7 +57,7 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
         <InfoGroup id="InfoGroup"> 
           {/*Hours and Information for Each Student*/}
          <ViewHoursStyle id="ViewHoursStyle"> 
-          <ViewHours dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
+          <ViewHours ws = {this.state.WorkStudy} dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
          </ViewHoursStyle>  
 
          {/*Update Student Information*/}
@@ -90,9 +71,8 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
         <StuNames id="StuNamesStyle">
           <h2>Student Names:</h2>
         {this.props.student.map((current, index) =>
-            <div key={index} > 
-            
-           <h3> <input type="radio" name="student" onClick = { () => this.open(current.ID, current.HoursWorked, current.HoursRemain, current.NetID) } /> {current.FirstName} {current.LastName} </h3>
+            <div key={index} >   
+           <h3> <input type="radio" name="student" onClick = { () => this.open(current.ID, current.HoursWorked, current.HoursRemain, current.NetID, current.WS) } /> {current.FirstName} {current.LastName} </h3>
             </div>
           )}
         </StuNames> 
