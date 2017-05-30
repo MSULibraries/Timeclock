@@ -75,13 +75,13 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
     return (
           <WrapMe id="BudgetInfo"> 
      <BudgetInfo> 
-        <select onChange = {this.getBudget}>
+        <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px', marginRight:'10px'}} onChange = {this.getBudget}>
           <option value = "Overall">Overall</option>
           <option value = "Fall">Fall</option>
           <option value = "Spring">Spring</option>
           <option value = "Summer">Summer</option>
         </select>
-        <select onChange = { this.deptUpdated }>
+        <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = { this.deptUpdated }>
           {this.props.deptDNS.map( (current, index) =>
                 <option key = {index} value = {current.Department}>{current.Department}</option>
               )}

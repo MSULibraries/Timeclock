@@ -9,12 +9,14 @@ const InfoGroup = styled.div`
   height: 54em;
   margin-left:1.5em;
   max-width: 50em;
+  
 `;
 const StuNames = styled.div`
-  float:left;
+  float:right;
   margin-top:2.25em;
   margin-right: 1.875em;
   padding-left:20px;
+  padding-bottom:10px;
   width: 23.125em;
   height: auto;
   overflow-y:scroll;
@@ -24,11 +26,13 @@ const StuNames = styled.div`
 const ViewHoursStyle = styled.div`
   float:right;
   width: 25em;
-  height:auto;
+  height:53.5em;
   padding-left:0.9375em;
+  padding-bottom:10px;
   background-color: #f1f1f1;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
 `;
+
 const UpdateInfoStyle = styled.div`
   float:right;
   padding-left:20px;
@@ -63,3 +67,4 @@ export { RemoveStudentStyle };
 export { CurrentStudentsStyle };
 export { PrintTimeStyle };
 export { InfoGroup };
+export { StudentGraphDiv };
