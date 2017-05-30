@@ -53,7 +53,7 @@ injectGlobal`
 
 @media only screen and (max-width: 1800px) {
     #BudgetInfo, #ViewHoursStyle, #CurrentStudentsStyle, #UpdateInfoStyle, #PrintTimeStyle, #RemoveStudentStyle, #StuNamesStyle {
-        font-size:82%;
+        font-size:83%;
 
     }
 } 
@@ -66,20 +66,32 @@ injectGlobal`
 
 @media only screen and (max-width: 1700px) {
     #BudgetInfo, #ViewHoursStyle, #CurrentStudentsStyle, #UpdateInfoStyle, #PrintTimeStyle, #RemoveStudentStyle, #StuNamesStyle {
-        font-size:80%;
+        font-size:83%;
 
     }
 } 
 
 @media only screen and (max-width: 1600px) {
     #BudgetInfo, #ViewHoursStyle, #CurrentStudentsStyle, #UpdateInfoStyle, #PrintTimeStyle, #RemoveStudentStyle, #StuNamesStyle {
-        font-size:68%;
+        font-size:80%;
 
+    }
+}  
+@media only screen and (max-width: 1532px) {
+    #BudgetInfo, #ViewHoursStyle, #CurrentStudentsStyle, #UpdateInfoStyle, #PrintTimeStyle, #RemoveStudentStyle, #StuNamesStyle {
+        font-size:68%;
+ 
     }
 }  
 @media only screen and (max-width: 1460px) {
     #BudgetInfo, #ViewHoursStyle, #CurrentStudentsStyle, #UpdateInfoStyle, #PrintTimeStyle, #RemoveStudentStyle, #StuNamesStyle {
-        font-size:65%;
+        font-size:70%;
+ 
+    }
+}  
+@media only screen and (max-width: 1400px) {
+    #BudgetInfo, #ViewHoursStyle, #CurrentStudentsStyle, #UpdateInfoStyle, #PrintTimeStyle, #RemoveStudentStyle, #StuNamesStyle {
+        font-size:67%;
  
     }
 }  
@@ -103,7 +115,7 @@ injectGlobal`
 } 
 @media only screen and (max-width: 1075px) {
     #BudgetInfo, #ViewHoursStyle, #CurrentStudentsStyle, #UpdateInfoStyle, #PrintTimeStyle, #RemoveStudentStyle, #StuNamesStyle {
-        font-size:50%;
+        font-size:48%;
         overflow: hidden;
     }
 } 
