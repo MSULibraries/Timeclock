@@ -10,7 +10,6 @@ injectGlobal`
 
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    overflow-y: hidden;
   }
 
   body.fontLoaded {
@@ -37,7 +36,12 @@ injectGlobal`
     border: 1px solid #ccc; 
     border-radius: 3px; 
   }
-
+#container {
+  margin-left:0 !important;
+  margin-right:0 !important;
+  max-width: 67% !important;
+ 
+}
 
 
 
@@ -119,42 +123,7 @@ injectGlobal`
         overflow: hidden;
     }
 } 
-  @media only screen and (max-width: 1700px) {
-    #InfoGroup {
-        width: 44%;
-        margin-left:-50px;
-    }
-}
-  @media only screen and (max-width: 1700px) {
-    #CurrentStudentsStyle {
-      margin-right:4%;
-    }
-}
 
-@media only screen and (max-width: 1600px) {
-    #BudgetInfo { 
-        width: 35%;
-    }
-}  
-  @media only screen and (max-width: 1600px) {
-    #InfoGroup {
-        width: 44%;
-    }
-}
-  @media only screen and (max-width: 1600px) {
-    #UpdateInfoStyle {
-        margin-right:40px;
-    }
-}
-  @media only screen and (max-width: 1600px) {
-    #StuNamesStyle {
-      margin-right:40px;
-    }
-}
-  @media only screen and (max-width: 1600px) {
-    #wrapper {
-      margin-left:2.625em;
-    }
-}
+
 
 `;

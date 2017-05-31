@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 const RemoveStudentStyle = styled.div`
-    float: right;
-    margin-top: 25em;
-    margin-right:-15.625em;
+    margin-left:5em;
+    margin-bottom:1.25em;
+    margin-top:1.25em;
     width: 12.5em;
     height: auto;
     display: block;
-    background: red;
-    border-color: darkred;
+    background: #C0C0C0;
+    border-color: #999999;
     color: white;
     border-style: solid;
     text-align:center;

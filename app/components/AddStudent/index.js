@@ -1,5 +1,5 @@
 import React from 'react';
-import H3, {DateButton, DeptList} from './styles';
+import H3, {DateButton} from './styles';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 //Import Actions for dispatch
@@ -44,12 +44,15 @@ import { createStructuredSelector } from 'reselect';
   render() {
     return (
       <div>
+        <h2>Add/Edit Student</h2> 
       <form onSubmit={this.handleSubmit}>
         <H3>Net ID: <input type = "text" name="NetID" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br /> 
-       <H3>9-Digit: <input type = "text" name = "NINEdigit" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = {this.handleChange} onFocus = {this.check}/> </H3><br /> 
+       <H3>MSU 9-Digit: <input type = "text" name = "NINEdigit" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = {this.handleChange} onFocus = {this.check}/> </H3><br /> 
        <H3>First Name: <input type = "text" name="firstName" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br />
-       <H3>Last Name: <input type = "text" name="lastName" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br />
-        <H3>Type: <select onChange = {this.handleChange} id="SelectOption">
+       <H3>Last Name: <input type="text" name="lastName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} /> </H3><br />
+       <H3>Phone: <input type="text" name="phoneNumber" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} /> </H3><br />
+       <H3>Address: <input type = "text" name="Address" style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} /> </H3><br />   
+        <H3>Employee Type: <select style={ {width:'8em'}} onChange = {this.handleChange} id="SelectOption">
                              <option value="UG" >Undergrad &nbsp;</option>
                              <option value="GR" >Grad</option>
                           </select></H3> <br />  
@@ -67,7 +70,7 @@ import { createStructuredSelector } from 'reselect';
                     <option value="Oth">Other</option>
                   </select>
       </H3><br />
-      <DeptList>    
+         
       <H3>Dept1: <select id="SelectOption" name = "dept1" onChange = {this.handleChange}>
                     <option value="AA">Select Department</option>
                     <option value="4C-72-B9-55-CD-C3">Systems</option>
@@ -101,9 +104,9 @@ import { createStructuredSelector } from 'reselect';
                     <option value="Oth">Other</option>
                   </select>
       </H3><br />
-      </DeptList>      
+           
       <DateButton>    
-            {this.props.StudentStatus ? <button name="status" value={false} onClick={this.handleChange} >Update Student</button> : <button value={true} name="status" onClick={this.handleChange}>Submit New Student</button>}
+            {this.props.StudentStatus ? <button style={ {fontWeight: '600'}} name="status" value={false} onClick={this.handleChange} >Update Student</button> : <button style={ {fontWeight: '600'}} value={true} name="status" onClick={this.handleChange}>Submit New Student</button>}
        </DateButton>     
        </form>
      </div>      

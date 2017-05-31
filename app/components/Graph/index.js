@@ -73,20 +73,23 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
   render() {
 
     return (
-          <WrapMe id="BudgetInfo"> 
-     <BudgetInfo> 
-        <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px', marginRight:'10px'}} onChange = {this.getBudget}>
+        <WrapMe id="BudgetInfo"> 
+       
+                            
+        <BudgetInfo> 
+         <h2>Departmental Budget Overview</h2>        
+       <h3>Semester: <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px', marginRight:'10px'}} onChange = {this.getBudget}>
           <option value = "Overall">Overall</option>
           <option value = "Fall">Fall</option>
           <option value = "Spring">Spring</option>
           <option value = "Summer">Summer</option>
-        </select>
-        <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = { this.deptUpdated }>
+        </select></h3>
+        <h3>Department:<select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = { this.deptUpdated }>
           {this.props.deptDNS.map( (current, index) =>
                 <option key = {index} value = {current.Department}>{current.Department}</option>
               )}
-        </select>
-        <h3>Budget Started: {this.state.budgetStarted}</h3>
+        </select></h3>
+        <h3>Total Budget: {this.state.budgetStarted}</h3>
         <h3>Budget Used: {this.state.budgetUsed} </h3>
         <h3>Budget Remaining: {this.state.budgetStarted - this.state.budgetUsed} </h3>
       </BudgetInfo>   
@@ -94,7 +97,8 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
            <div style = {{ width: '100%'}}>
             <canvas ref="graph" width="100" height="100"></canvas>
             </div>          
-          </PieChart>
+            </PieChart>
+             
       </WrapMe>      
     );
   }
