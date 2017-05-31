@@ -1,0 +1,26 @@
+Server started ! ✓
+
+Access URLs:
+-----------------------------------
+Localhost: http://localhost:\\.\pipe\fcb9e9ed-72ce-4b09-92e4-66c2d8e48d1c
+      LAN: http://130.18.123.31:\\.\pipe\fcb9e9ed-72ce-4b09-92e4-66c2d8e48d1c
+-----------------------------------
+Press CTRL-C to stop
+    
+webpack built 5d3c33a1f6ecd75656f2 in 9091ms
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\HoursToday\index.js -> app\components\StudentGraph\index.js -> app\components\HoursToday\index.js[39m[22m
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\StudentGraph\index.js -> app\components\HoursToday\index.js -> app\components\StudentGraph\index.js[39m[22m
+
+[1m[31mERROR in ./app/components/Supervisor/index.js
+Module not found: Error: Can't resolve 'react-grid-system' in 'C:\Timeclock-Root\app\components\Supervisor'
+ @ ./app/components/Supervisor/index.js 19:0-42
+ @ ./app/containers/Dashboard/index.js
+ @ ./app/routes.js
+ @ ./app/app.js
+ @ multi main[39m[22m
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+    

@@ -1,0 +1,9 @@
+Wed, 31 May 2017 20:18:46 GMT express-session deprecated undefined resave option; provide resave option at server.js:34:9
+Wed, 31 May 2017 20:18:46 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at server.js:34:9
+
+[31;1mWARNING!!
+options.debug is deprecated, please control the console output by a custom logger.
+[0m
+
+(node:5564) DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic, see https://github.com/webpack/loader-utils/issues/56
+parseQuery() will be replaced with getOptions() in the next major version of loader-utils.

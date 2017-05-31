@@ -1,0 +1,166 @@
+Server started ! ✓
+
+Access URLs:
+-----------------------------------
+Localhost: http://localhost:\\.\pipe\0e4cbdb0-7dd3-441a-8cae-2b9c1c9abd3d
+      LAN: http://130.18.123.31:\\.\pipe\0e4cbdb0-7dd3-441a-8cae-2b9c1c9abd3d
+-----------------------------------
+Press CTRL-C to stop
+    
+webpack built 7890994eb86bd58ffa24 in 9135ms
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\HoursToday\index.js -> app\components\StudentGraph\index.js -> app\components\HoursToday\index.js[39m[22m
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\StudentGraph\index.js -> app\components\HoursToday\index.js -> app\components\StudentGraph\index.js[39m[22m
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+    
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
+webpack building...
+webpack built 69132167fb26f611a20d in 4975ms
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\HoursToday\index.js -> app\components\StudentGraph\index.js -> app\components\HoursToday\index.js[39m[22m
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\StudentGraph\index.js -> app\components\HoursToday\index.js -> app\components\StudentGraph\index.js[39m[22m
+
+[1m[31mERROR in ./app/components/Supervisor/index.js
+Module not found: Error: Can't resolve 'react-grid-system' in 'C:\Timeclock-Root\app\components\Supervisor'
+ @ ./app/components/Supervisor/index.js 19:0-42
+ @ ./app/containers/Dashboard/index.js
+ @ ./app/routes.js
+ @ ./app/app.js
+ @ multi main[39m[22m
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+    
+webpack building...
+webpack built c801f818446467d10e7c in 1332ms
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\StudentGraph\index.js -> app\components\HoursToday\index.js -> app\components\StudentGraph\index.js[39m[22m
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\HoursToday\index.js -> app\components\StudentGraph\index.js -> app\components\HoursToday\index.js[39m[22m
+
+[1m[31mERROR in ./app/components/Supervisor/index.js
+Module not found: Error: Can't resolve 'react-grid-system' in 'C:\Timeclock-Root\app\components\Supervisor'
+ @ ./app/components/Supervisor/index.js 19:0-42
+ @ ./app/containers/Dashboard/index.js
+ @ ./app/routes.js
+ @ ./app/app.js
+ @ multi main[39m[22m
+
+[1m[31mERROR in ./app/routes.js
+Module not found: Error: Can't resolve 'containers/HomePae' in 'C:\Timeclock-Root\app'
+ @ ./app/routes.js 29:39-67
+ @ ./app/app.js
+ @ multi main[39m[22m
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+    
+webpack building...
+webpack built 69132167fb26f611a20d in 1332ms
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\HoursToday\index.js -> app\components\StudentGraph\index.js -> app\components\HoursToday\index.js[39m[22m
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\StudentGraph\index.js -> app\components\HoursToday\index.js -> app\components\StudentGraph\index.js[39m[22m
+
+[1m[31mERROR in ./app/components/Supervisor/index.js
+Module not found: Error: Can't resolve 'react-grid-system' in 'C:\Timeclock-Root\app\components\Supervisor'
+ @ ./app/components/Supervisor/index.js 19:0-42
+ @ ./app/containers/Dashboard/index.js
+ @ ./app/routes.js
+ @ ./app/app.js
+ @ multi main[39m[22m
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+    
+webpack building...
+webpack built 76d27a11308d012e8506 in 605ms
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\HoursToday\index.js -> app\components\StudentGraph\index.js -> app\components\HoursToday\index.js[39m[22m
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\StudentGraph\index.js -> app\components\HoursToday\index.js -> app\components\StudentGraph\index.js[39m[22m
+
+[1m[31mERROR in ./app/components/Supervisor/index.js
+Module not found: Error: Can't resolve 'react-grid-system' in 'C:\Timeclock-Root\app\components\Supervisor'
+ @ ./app/components/Supervisor/index.js 19:0-42
+ @ ./app/containers/Dashboard/index.js
+ @ ./app/routes.js
+ @ ./app/app.js
+ @ multi main[39m[22m
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+    
+webpack building...
+webpack built 69132167fb26f611a20d in 707ms
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\HoursToday\index.js -> app\components\StudentGraph\index.js -> app\components\HoursToday\index.js[39m[22m
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\StudentGraph\index.js -> app\components\HoursToday\index.js -> app\components\StudentGraph\index.js[39m[22m
+
+[1m[31mERROR in ./app/components/Supervisor/index.js
+Module not found: Error: Can't resolve 'react-grid-system' in 'C:\Timeclock-Root\app\components\Supervisor'
+ @ ./app/components/Supervisor/index.js 19:0-42
+ @ ./app/containers/Dashboard/index.js
+ @ ./app/routes.js
+ @ ./app/app.js
+ @ multi main[39m[22m
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+    

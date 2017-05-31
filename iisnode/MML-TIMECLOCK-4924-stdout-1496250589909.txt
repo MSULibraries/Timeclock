@@ -1,0 +1,456 @@
+Server started ! ✓
+
+Access URLs:
+-----------------------------------
+Localhost: http://localhost:\\.\pipe\8b97b7e7-b082-4569-aee6-b31e2326f1ef
+      LAN: http://130.18.123.31:\\.\pipe\8b97b7e7-b082-4569-aee6-b31e2326f1ef
+-----------------------------------
+Press CTRL-C to stop
+    
+webpack built 7890994eb86bd58ffa24 in 31718ms
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\HoursToday\index.js -> app\components\StudentGraph\index.js -> app\components\HoursToday\index.js[39m[22m
+
+[1m[33mWARNING in Circular dependency detected:
+app\components\StudentGraph\index.js -> app\components\HoursToday\index.js -> app\components\StudentGraph\index.js[39m[22m
+Child [1mhtml-webpack-plugin for "index.html"[39m[22m:
+    
+Doing authenticating...
+Can not find st in session Session {
+  cookie: 
+   { path: '/',
+     _expires: null,
+     originalMaxAge: null,
+     httpOnly: true,
+     serialize: [Function: serialize],
+     toJSON: [Function: toJSON] } }
+use default manner
+redirect to login page  https://testcas.its.msstate.edu/cas/login?service=http%3A%2F%2F130.18.249.246%3A3000%2Flogin&sn=undefined
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
+Doing authenticating...
+Can not find st in session Session {
+  cookie: 
+   { path: '/',
+     _expires: null,
+     originalMaxAge: null,
+     httpOnly: true,
+     serialize: [Function: serialize],
+     toJSON: [Function: toJSON] } }
+use default manner
+redirect to login page  https://testcas.its.msstate.edu/cas/login?service=http%3A%2F%2F130.18.249.246%3A3000%2Flogin&sn=undefined
+[ TextRow {
+    NetID: 'js1599',
+    FirstName: 'Justin',
+    LastName: 'Samuels',
+    Status: 'Admin',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '',
+    HoursRemain: '',
+    ID: '',
+    Primary: 'DMC',
+    WS: '0' } ]
+null
+[ TextRow {
+    NetID: 'jed31',
+    FirstName: 'Julie',
+    LastName: 'Shedd',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '100',
+    HoursRemain: '10',
+    ID: '909-232-345',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'jrj309',
+    FirstName: 'Jamari',
+    LastName: 'Johnson',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '50',
+    HoursRemain: '5',
+    ID: '902-834-287',
+    Primary: '',
+    WS: '0' },
+  TextRow {
+    NetID: 'kal294',
+    FirstName: 'Karissa',
+    LastName: 'Logan',
+    Status: 'Student',
+    Department: '4C-72-B9-55-CD-C3',
+    HoursWorked: '2000',
+    HoursRemain: '50',
+    ID: '906-454-645',
+    Primary: '',
+    WS: '1' } ]
+null
+[ TextRow { Department: 'DMC' }, TextRow { Department: 'ERC' } ]
+null
+[ TextRow { OverallBudgetStarting: '600', OverallBudgetUsed: '5.04' } ]
+null
+[ TextRow { FirstName: 'Timmy', LastName: 'Tonka' } ]
+null
