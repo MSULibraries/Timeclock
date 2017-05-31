@@ -20,12 +20,7 @@ const H3 = styled.h3`
     cursor: pointer;
     border-radius: 0.25em;
 `;
-const DeptList = styled.div`
-    height: 6em;
-    overflow-y: scroll;
-    
-`;
+
 
 export default H3;
 export { DateButton };
-export { DeptList };

@@ -241,6 +241,7 @@
     "pdfkit": "^0.8.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
+    "react-grid-system": "^2.9.1",
     "react-helmet": "3.2.2",
     "react-intl": "2.1.5",
     "react-redux": "4.4.6",

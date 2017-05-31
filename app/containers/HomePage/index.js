@@ -71,7 +71,8 @@ var DSF = "00-00-00-00-00-00";
   
   render() {
     return (   
-    <Wrapper>
+      <Wrapper style={{ marginTop: '20em' }}>
+      <h1>MSU Library <br /> Time Clock </h1>  
         {this.props.userStatus.Role != "student" ? <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > 
           Dashboard
         </LoginButton> : '' }
@@ -87,8 +88,8 @@ var DSF = "00-00-00-00-00-00";
         <LoginButton onClick = {  () => window.location = "/logout" } > 
           Logout
         </LoginButton>
-        { this.props.response ? this.success() : <h1>SELECT A ACTION</h1> }
-        { this.props.response ? <h1>CONGRATS, YOUR REQUEST WAS ACCEPTED ! </h1> : '' }
+        { this.props.response ? this.success() : '' }
+        { this.props.response ? <h2>Clocked in. Redirecting… </h2> : '' }
    </Wrapper>     
     );
   }

@@ -17,15 +17,15 @@ export default class ViewHours extends React.PureComponent { // eslint-disable-l
     return (
       <div>
         <DateButton id="DateButton">
-        <h3 onClick = { () => this.setState({ flag1: !this.state.flag1, flag2: false, flag3: false }) }>View Hours Worked Today</h3>
+        <button style={ {fontWeight: 'bold'}} onClick = { () => this.setState({ flag1: !this.state.flag1, flag2: false, flag3: false }) }>View Hours Worked Today</button>
         </DateButton>
         {(this.state.flag1 && this.props.student != '') ? <HoursToday dept = {this.props.dept} student = {this.props.student} /> : ''}
         <DateButton id="DateButton">
-        <h3 onClick = { () => this.setState({ flag2: !this.state.flag2, flag1: false, flag3: false }) }>View A Specific Day</h3>
+        <button style={ {fontWeight: 'bold'}} onClick = { () => this.setState({ flag2: !this.state.flag2, flag1: false, flag3: false }) }>View A Specific Day</button>
         </DateButton>
         {(this.state.flag2 && this.props.student != '') ? <SpecificHours dept = {this.props.dept} student = {this.props.student} /> : ''}
         <DateButton id="DateButton">
-        <h3 onClick = { () => this.setState({ flag3: !this.state.flag3, flag1: false, flag2: false }) }>Review Hours For Pay Periord</h3>
+        <button style={ {fontWeight: 'bold'}} onClick = { () => this.setState({ flag3: !this.state.flag3, flag1: false, flag2: false }) }>Review Hours For Pay Period</button>
         </DateButton>
         {(this.state.flag3 && this.props.student != '') ? <ReviewTime dept = {this.props.dept} student = {this.props.student} /> : ''}
         {this.props.ws != "1" ? <div>

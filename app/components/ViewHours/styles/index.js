@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 const DateButton = styled.div`
     width:20em;
-    margin-top:0.625em;
+    height:3em;
+    padding-top:0.625em;
     margin-left:1.5625em;
+    
     display: block;
     text-align:center;
     background: maroon;

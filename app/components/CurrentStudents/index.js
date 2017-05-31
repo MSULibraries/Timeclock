@@ -20,9 +20,9 @@ class CurrentStudents extends React.PureComponent { // eslint-disable-line react
   render() {
     return (
       <div>
-      <h1>Current Students Clocked In:</h1>
+      <h2>Clocked in now:</h2>
       {this.props.studentsOnClock.map( (current, index) => 
-        <h2 key = {index}> {current.FirstName} {current.LastName} </h2>
+        <h3 key = {index}> {current.FirstName} {current.LastName} </h3>
       )
     }  
     </div>
