@@ -1,6 +1,6 @@
 //Redux Action defines what will be the update to the state tree, based off the action creator.
 
-export function ogAction (action,userName,dept = "4C-72-B9-55-CD-C3 "){ 
+export function ogAction (action,userName,dept){ 
 if (action == 'RETRIVE-STUDENTS'){
     return{
 		type: "RETRIVE-STUDENTS",

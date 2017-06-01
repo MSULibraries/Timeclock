@@ -29,9 +29,9 @@ export default class ViewHours extends React.PureComponent { // eslint-disable-l
         </DateButton>
         {(this.state.flag3 && this.props.student != '') ? <ReviewTime dept = {this.props.dept} student = {this.props.student} /> : ''}
         {this.props.ws != "1" ? <div>
-        <h3>Budget Started: 10,250.00</h3>
-        <h3>Budget Used: {this.props.hoursUsed}</h3>
-        <h3>Budget Remaining: {this.props.hoursRemain}</h3>  </div>: '' }
+        <h3>Work-Study Started: $1,176</h3>
+        <h3>Work-Study Used: ${this.props.hoursUsed}</h3>
+        <h3>Work-Study Remaining: ${this.props.hoursRemain}</h3>  </div>: '' }
         <StudentGraph ws = {this.props.ws} student = {this.props.student} budgetUsed = {this.props.hoursUsed} budgetRemain = {this.props.hoursRemain} />
       </div>
     );

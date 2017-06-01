@@ -22,7 +22,7 @@ var DSF = "00-00-00-00-00-00";
  class Home extends React.PureComponent {
     constructor(props) {
     super(props);
-    this.state = {mac: '', user:''};
+    this.state = {mac: '', user:'', dept: ''};
     this.success = this.success.bind(this);
   }
   
@@ -60,12 +60,13 @@ var DSF = "00-00-00-00-00-00";
         });
     }
     else{
+      this.setState({user: null});
       //window.location = './logout';
     }   
        
   } 
   success(){
-    //setTimeout( () => window.location = './logout', 5000 )
+    //setTimeout( () => window.location = './logout', 2000 )
     
   }
   
@@ -73,21 +74,30 @@ var DSF = "00-00-00-00-00-00";
     return (   
       <Wrapper style={{ marginTop: '20em' }}>
       <h1>MSU Library <br /> Time Clock </h1>  
-        {this.props.userStatus.Role != "student" ? <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > 
+        {this.props.userStatus.Role != "student"  && this.state.user!= null ? <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > 
           Dashboard
         </LoginButton> : '' }
+        {(this.props.userStatus.Role == "student") ?<div> <select onChange = { (event) => this.setState({dept: event.target.value })}>
+           <option value = "22" >Select Your Department</option>
+           <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department1}</option>
+          {this.props.userStatus.Department2 != '' ?  <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department2}</option> : '' }
+          {this.props.userStatus.Department3 != '' ?  <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department3}</option> : ''}
+          {this.props.userStatus.Department4 != '' ? <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department4}</option> : ''}
+          </select> <br /><br /></div>: '' }
         
-        {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.Role == "student") ? <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGIN', this.state.user, this.state.mac ) } > 
+        {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.Role == "student") ? <LoginButton disabled={ !this.state.dept } onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGIN', this.state.user, this.state.dept ) } > 
           Clock In
         </LoginButton> : '' }
         
-        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ? <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, this.state.mac ) } > 
+        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ? <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, this.state.dept ) } > 
           Clock Out
         </LoginButton> : '' }
         <br />
-        <LoginButton onClick = {  () => window.location = "/logout" } > 
+        {this.state.user!= null ?< LoginButton onClick = {  () => window.location = "/logout" } > 
           Logout
-        </LoginButton>
+        </LoginButton> : < LoginButton onClick = {  () => window.location = "/cas" } > 
+          Login
+        </LoginButton> }
         { this.props.response ? this.success() : '' }
         { this.props.response ? <h2>Clocked in. Redirecting… </h2> : '' }
    </Wrapper>     

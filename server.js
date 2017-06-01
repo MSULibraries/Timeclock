@@ -44,14 +44,14 @@ var casClient = new ConnectCas({
       /\/ignore/
     ],
     match: [],
-    servicePrefix: 'http://130.18.249.246:3000',
-    serverPath: 'https://testcas.its.msstate.edu/cas',
+    servicePrefix: 'http://timeclock.library.msstate.edu',
+    serverPath: 'https://cas.its.msstate.edu/cas',
     paths: {
       validate: '/login',
-      serviceValidate: 'https://testcas.its.msstate.edu/cas/serviceValidate',
+      serviceValidate: 'https://cas.its.msstate.edu/cas/serviceValidate',
       login: '/login',
       logout: '/logout',
-      restletIntegration: 'https://testcas.its.msstate.edu/cas/serviceValidate'
+      restletIntegration: 'https://cas.its.msstate.edu/cas/serviceValidate'
     },
     redirect: false,
     gateway: false,
@@ -188,7 +188,7 @@ app.use("/Capture", (req,res) =>{
   res.download("excelFiles/"+link);
 })
 app.use("/login",(req,res) => {
-  request('https://testcas.its.msstate.edu/cas/serviceValidate?service=http://130.18.249.246:3000/login&ticket='+req.param('ticket'), function (error, response, body) {
+  request('https://cas.its.msstate.edu/cas/serviceValidate?service=http://timeclock.library.msstate.edu/login&ticket='+req.param('ticket'), function (error, response, body) {
     var user = response.body;
     var userIndex1 = user.search("<cas:user>") + 10;
     var userIndex2 = user.search("</cas:user>");
@@ -204,7 +204,9 @@ app.use('/verify',textParser,function(req, res) {
 });
  
 app.use("/cas",casClient.core());
-app.get('/logout', casClient.logout());
+app.use('/logout', (req,res) =>{
+   res.redirect('https://cas.its.msstate.edu/cas/logout?url=http://timeclock.library.msstate.edu');
+});
  
 // NOTICE: If you want to enable single sign logout, you must use casClient middleware before bodyParser. 
 app.use(bodyParser.json());

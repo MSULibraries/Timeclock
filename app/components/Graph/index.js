@@ -89,9 +89,9 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
                 <option key = {index} value = {current.Department}>{current.Department}</option>
               )}
         </select></h3>
-        <h3>Total Budget: {this.state.budgetStarted}</h3>
-        <h3>Budget Used: {this.state.budgetUsed} </h3>
-        <h3>Budget Remaining: {this.state.budgetStarted - this.state.budgetUsed} </h3>
+        <h3>Total Budget: ${this.state.budgetStarted}</h3>
+        <h3>Budget Used: ${this.state.budgetUsed} </h3>
+        <h3>Budget Remaining: ${this.state.budgetStarted - this.state.budgetUsed} </h3>
       </BudgetInfo>   
          <PieChart> 
            <div style = {{ width: '100%'}}>

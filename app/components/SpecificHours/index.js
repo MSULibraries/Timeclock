@@ -28,7 +28,7 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
    let day = e.target.value.substring(8,10);
    let year = e.target.value.substring(0,4);
    let fullDate = month + "/" + day + "/" + year;
-   this.props.onChangeUser('RETRIVE-SPECIFIC-HOURS', this.props.student, null, fullDate.replace(/^0+/, ''));
+   this.props.onChangeUser('RETRIVE-SPECIFIC-HOURS', this.props.student, this.props.dept, fullDate.replace(/^0+/, ''));
    
   }
 
