@@ -23,26 +23,46 @@ class HomePageSecond extends React.PureComponent { // eslint-disable-line react/
       this.state = {flag: false};
   }
 
-	componentWillMount() {
-
-          this.props.onChangeUser( 'POPULATE-DASHBOARD', 'js1599' );
+componentWillMount() {
+        var url = window.location.search;
+        url = url.replace("?", '');
+        fetch('/verify',{
+          method: 'POST',
+          body: url
+        })
+        .then((result) => {
+          return result.json();
+        })
+        .then((response) => {
+          this.props.onChangeUser( 'POPULATE-DASHBOARD', response.user );
           this.setState({ flag: true }) ;
+        })
+        .catch(function(error){
+          //window.location = "./logout";
+         // console.log(error);
+        });
     }  
     
   
-  render() {
+ render() {
+    if(this.state.flag){
     return (
       <div>
         <h1 style = {{ marginLeft: '15px' }}>Hello {this.props.user.FirstName}, today is { date.toLocaleDateString() } </h1>
         { (this.props.user.Status == 'Admin' || this.props.user.Status == 'SU') ? <Graph />  : '' }
         { this.props.user.Status == 'Student' ?  <StudentHours /> : ''}
-       { (this.props.user.Status == 'Admin' || this.props.user.Status == 'SU') ? <Supervisor  /> : ''}
-       {/* <Link to = "/Logout">Click to logout</Link> */}
+        { (this.props.user.Status == 'Admin' || this.props.user.Status == 'SU') ? <Supervisor /> : ''}
+        <Link to = "/Logout">Click to logout</Link> 
       </div>
     );  
     }
+    else{
+      return(
+        <div><h1>.................Loading</h1></div>
+      )
+    }
   }
-
+}
 
 //Redux method to allow the props to have access to the Redux global store
 //With the least minimal state representation possible through Reselect library
