@@ -23,6 +23,9 @@ const initialState = fromJS({
 //sets current state of application 
 function userReducer(state = initialState, action ){
   switch(action.type){
+    case 'BOILER':
+      return state
+      .set('boiler', action.status);
     case 'USER-REQUEST-LOGIN':
       return state
       .set('user', action.user);

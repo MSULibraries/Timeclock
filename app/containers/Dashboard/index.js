@@ -11,6 +11,7 @@ Import Individual Dashboard components
 import Graph from '../../components/Graph';
 import StudentHours from '../../components/StudentHours';
 import Supervisor from '../../components/Supervisor';
+import Boiler from '../../components/Boiler';
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -63,6 +64,7 @@ componentWillMount() {
         { (this.props.user.Status == 'Admin' || this.props.user.Status == 'SU') ? <Graph />  : '' }
         { this.props.user.Status == 'Student' ?  <StudentHours /> : ''}
         { (this.props.user.Status == 'Admin' || this.props.user.Status == 'SU') ? <Supervisor /> : ''}
+        <Boiler />
         <Link to = "/Logout">Click to logout</Link> 
       </div>
     );  

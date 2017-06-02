@@ -17,6 +17,10 @@ const makeSelectLocationState = () => {
 };
 
 //Selects current state of user
+const getBoiler = () => createSelector(
+   userSelector,
+   (state) => state.get('boilerStatus')
+);
 const userSelector = state => state.get('user');
 
 //Creates the selector and updates based off the current state from userSelector
@@ -79,6 +83,7 @@ const getDepartmentDNS = () => createSelector(
    (state) => state.get('departmentDNS')
 );
 export {
+  getBoiler,
   makeSelectLocationState,
   getUser,
   getRes,

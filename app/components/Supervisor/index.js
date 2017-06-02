@@ -6,8 +6,7 @@
  * */
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import WrapMe, {
-  StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle,TodaysActivityStyle } from './styles';
+import WrapMe, { StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle,TodaysActivityStyle } from './styles';
 import ViewHours from '../ViewHours';
 import AddStudent from '../AddStudent';
 import RemoveStudent from '../RemoveStudent';
@@ -49,31 +48,28 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
   render() {
     return (
       <WrapMe id="wrapper">
-       <Grid.Container id="container">
-        <Grid.Row>
-         <Grid.Col md={12}>
+        
+        <Grid.Container id="container">
           <Grid.Row>
             <Grid.Col md={12}>
               <Grid.Row>
-
-           {/*Update Student Information*/}
+              {/*Update Student Information*/}
               <Grid.Col md={4} id="left-column">   
-            <UpdateInfoStyle id="UpdateInfoStyle">
-          <UpdateInfo student={this.state.student} />
-          </UpdateInfoStyle >       
-          </Grid.Col> 
-       
-          <Grid.Col md={4} id="middle-column"> 
+               <UpdateInfoStyle id="UpdateInfoStyle">
+                 <AddStudent student={this.state.student} />
+               </UpdateInfoStyle >       
+             </Grid.Col> 
+             <Grid.Col md={4} id="middle-column"> 
           
-            {/*Students Currently Clocked in*/}  
-
+            {/*Students Activity for the day*/}  
             <TodaysActivityStyle id="CurrentStudentsStyle">      
-            <TodaysActivity />
-           </TodaysActivityStyle>  
+              <TodaysActivity />
+            </TodaysActivityStyle>  
 
             {/*<CurrentStudentsStyle id="CurrentStudentsStyle">      
             <CurrentStudents />
            </CurrentStudentsStyle>  */} 
+           
            {/*Students that Belong to Each Department*/}       
           <StuNames id="StuNamesStyle">
             <h2>Active Students:</h2>
@@ -84,33 +80,25 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
                 )}
           </StuNames>
            
-           {/*Remove Student Button*/}     
-            
-            {/*Remove Student Button*/}       
-            <RemoveStudent student={this.state.NetID} />           
-            <PrintTime />     
-           </Grid.Col>  {/* End Grid Col 4 */}   
+           {/*Remove Student Button*/}       
+           <RemoveStudent student={this.state.NetID} />
+             
+           {/*Print Student Time Button*/}            
+           <PrintTime />
+                
+          </Grid.Col>       
 
           {/*Hours and Information for Each Student*/}
-
           <Grid.Col md={3} id="right-column">        
-          <ViewHoursStyle id="ViewHoursStyle"> 
-          <h2>Student Information</h2>          
-          <ViewHours ws = {this.state.WorkStudy} dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
-          </ViewHoursStyle>  
+            <ViewHoursStyle id="ViewHoursStyle"> 
+             <h2>Student Information</h2>          
+             <ViewHours ws = {this.state.WorkStudy} dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
+            </ViewHoursStyle>  
           </Grid.Col>   
-
-          
-                
-   
           </Grid.Row>
          </Grid.Col>  
          </Grid.Row>  
         </Grid.Container>
-        
-
-        {/*<Link to = "/Logout">Click to logout</Link>*/}
-
         </WrapMe>
     );
   }
