@@ -1,3 +1,12 @@
+/*
+ *
+ * This component uses a form to add a new student to,
+ * or updates a student in the database
+ * based off their NetID being in the database
+ * 
+ * 
+ * */
+
 import React from 'react';
 import H3, {DateButton} from './styles';
 import {bindActionCreators} from 'redux';

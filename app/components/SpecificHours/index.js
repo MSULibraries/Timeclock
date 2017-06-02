@@ -1,3 +1,10 @@
+/*
+ *
+ * This component renders data for the supervisor inquiring
+ * about a SPECIFIC day the student worked on
+ * 
+ * */
+
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import {bindActionCreators} from 'redux';
@@ -15,12 +22,7 @@ import { createStructuredSelector } from 'reselect';
 class Supervisor extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
       super(props);
-
       this.getDate = this.getDate.bind(this);
-  }
-  
-  componentWillMount(){
-
   }
 
   getDate(e){
@@ -28,25 +30,20 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
    let day = e.target.value.substring(8,10);
    let year = e.target.value.substring(0,4);
    let fullDate = month + "/" + day + "/" + year;
-   this.props.onChangeUser('RETRIVE-SPECIFIC-HOURS', this.props.student, this.props.dept, fullDate.replace(/^0+/, ''));
-   
+   this.props.onChangeUser('RETRIVE-SPECIFIC-HOURS', this.props.student, this.props.dept, fullDate.replace(/^0+/, ''));  
   }
 
   render() {
     return (
-      <div>
         <h4> Select Specific Day: &nbsp;
          <input style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} type="date" onChange = {this.getDate} />
          <div>
          {this.props.specificHours.map( (current,index) =>
            <h4 key = {index}>{current.TimeStamp}</h4>
              )}
-          </div>
+         </div>
         </h4> 
-         
-        </div>
-    );
-  }
+    );}
 }
 
 //Redux method to allow the props to have access to the Redux global store

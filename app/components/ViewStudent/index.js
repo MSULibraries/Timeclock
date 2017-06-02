@@ -1,14 +1,17 @@
+/*
+ *
+ * View the students on your timeclock in a list w/ radio buttons
+ *
+ * */ 
 import React from 'react';
 import Student from '../Student';
 
 export default class ViewStudent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
       super(props);
-      //this.x = this.x.bind(this);
-      //this.state = {x: '' };
       this.state = {students: { } };
   }
-  
+  //Loops through and renders the student names based off the list recieved in props. 
   render() {
     return (
       <div style = {{marginLeft: '30%' }}>
