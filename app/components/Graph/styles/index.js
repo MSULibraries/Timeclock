@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const WrapMe = styled.div`
   float:right;
-  width:37.5em;
+  width:33.5em;
   margin-right:1em;
   margin-bottom:1.5em;
   padding: 0em 2.5em 1em 2.5em;

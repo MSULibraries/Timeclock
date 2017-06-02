@@ -7,12 +7,13 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import WrapMe, {
-  StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle } from './styles';
+  StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle,TodaysActivityStyle } from './styles';
 import ViewHours from '../ViewHours';
 import AddStudent from '../AddStudent';
 import RemoveStudent from '../RemoveStudent';
 import PrintTime from '../PrintTime';
 import CurrentStudents from '../CurrentStudents';
+import TodaysActivity from '../TodaysActivity';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import * as Grid from 'react-grid-system';
@@ -52,29 +53,38 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
         <Grid.Row>
          <Grid.Col md={12}>
           <Grid.Row>
+            <Grid.Col md={12}>
+              <Grid.Row>
+
+           {/*Update Student Information*/}
+              <Grid.Col md={4} id="left-column">   
+            <UpdateInfoStyle id="UpdateInfoStyle">
+          <UpdateInfo student={this.state.student} />
+          </UpdateInfoStyle >       
+          </Grid.Col> 
+       
+          <Grid.Col md={4} id="middle-column"> 
           
-            {/*Update Student Information*/}
-            <Grid.Col md={4}>   
-             <UpdateInfoStyle id="UpdateInfoStyle">
-              <AddStudent student={this.state.student} />
-               </UpdateInfoStyle >       
-              </Grid.Col>
-               
             {/*Students Currently Clocked in*/}  
-            <Grid.Col md={4}>   
-              <CurrentStudentsStyle id="CurrentStudentsStyle">      
-                <CurrentStudents />
-              </CurrentStudentsStyle>   
-              
-            {/*Students that Belong to Each Department*/}       
-            <StuNames id="StuNamesStyle">
-              <h2>Active Students:</h2>
-              {this.props.student.map((current, index) =>
-              <div key={index} >   
-              <h3> <input type="radio" name="student" onClick = { () => this.open(current.ID, current.HoursWorked, current.HoursRemain, current.NetID, current.WS) } /> {current.FirstName} {current.LastName} </h3>
-              </div>
-              )}
-            </StuNames>
+
+            <TodaysActivityStyle id="CurrentStudentsStyle">      
+            <TodaysActivity />
+           </TodaysActivityStyle>  
+
+            {/*<CurrentStudentsStyle id="CurrentStudentsStyle">      
+            <CurrentStudents />
+           </CurrentStudentsStyle>  */} 
+           {/*Students that Belong to Each Department*/}       
+          <StuNames id="StuNamesStyle">
+            <h2>Active Students:</h2>
+           {this.props.student.map((current, index) =>
+            <div key={index} >   
+           <h3> <input type="radio" name="student" onClick = { () => this.open(current.ID, current.HoursWorked, current.HoursRemain, current.NetID, current.WS) } /> {current.FirstName} {current.LastName} </h3>
+            </div>
+                )}
+          </StuNames>
+           
+           {/*Remove Student Button*/}     
             
             {/*Remove Student Button*/}       
             <RemoveStudent student={this.state.NetID} />           
@@ -82,18 +92,28 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
            </Grid.Col>  {/* End Grid Col 4 */}   
 
           {/*Hours and Information for Each Student*/}
-          <Grid.Col md={4}>       
-           <ViewHoursStyle id="ViewHoursStyle"> 
-            <h2>Student Information</h2>          
-            <ViewHours ws = {this.state.WorkStudy} dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
-           </ViewHoursStyle>  
-        </Grid.Col>  
-       </Grid.Row>
-      </Grid.Col>  
-     </Grid.Row>  
-    </Grid.Container>
-  </WrapMe>
- );}
+
+          <Grid.Col md={3} id="right-column">        
+          <ViewHoursStyle id="ViewHoursStyle"> 
+          <h2>Student Information</h2>          
+          <ViewHours ws = {this.state.WorkStudy} dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
+          </ViewHoursStyle>  
+          </Grid.Col>   
+
+          
+                
+   
+          </Grid.Row>
+         </Grid.Col>  
+         </Grid.Row>  
+        </Grid.Container>
+        
+
+        {/*<Link to = "/Logout">Click to logout</Link>*/}
+
+        </WrapMe>
+    );
+  }
 }
 
 //Redux method to allow the props to have access to the Redux global store

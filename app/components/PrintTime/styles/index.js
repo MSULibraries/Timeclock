@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const PrintTime = styled.div`
-    margin-left:1.875em;   
+    margin-left:6em;   
     width: 18.75em;
     height: auto;
     display: block;

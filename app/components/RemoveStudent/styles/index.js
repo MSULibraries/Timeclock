@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const RemoveStudentStyle = styled.div`
-    margin-left:5em;
+    margin-left:9em;
     margin-bottom:1.25em;
     margin-top:1.25em;
     width: 12.5em;

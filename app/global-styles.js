@@ -39,10 +39,19 @@ injectGlobal`
 #container {
   margin-left:0 !important;
   margin-right:0 !important;
-  max-width: 67% !important;
+  max-width: 70% !important;
  
 }
+#left-column{
+    width:30% !important;
+}
+#middle-column{
+    width:40% !important;
+}
 
+.fixedDataTableColumnResizerLineLayout_mouseArea{
+    height:0px !important;
+}
 
 
 
