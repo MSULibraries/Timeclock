@@ -36,17 +36,6 @@ class CurrentStudents extends React.PureComponent { // eslint-disable-line react
     <h2>Today's Activity</h2>
     <Table style={{textAlign:'left'}} columns={columns} data={data} />
    </div>
-      /*<div>
-      
-      {this.props.studentsOnClock.map((current, index) =>
-     
-        {<h3 key = {index}> {current.FirstName} {current.LastName}: 11:06 AM </h3> } 
-  
-        
-           
-      )
-    }  
-    </div>*/
     );
   }
 }
