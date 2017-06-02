@@ -1,9 +1,13 @@
+/*
+ *
+ * This graph is for the DEPARTMENTAL/SEMESTER budgets
+ * that's loaded for a SUPERVISOR
+ * 
+ * */
+
 import React from 'react';
-import { Link } from 'react-router';
-import { FormattedMessage } from 'react-intl';
 import chart from 'chart.js';
-import WrapMe, { BudgetInfo } from './styles';
-import { PieChart } from './styles';
+import WrapMe, { BudgetInfo, PieChart } from './styles';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 //Import Actions for dispatch
@@ -12,8 +16,10 @@ import { BudgetAction } from './actions' ;
 import { getUser, getSupervisorBudgets, getDepartmentDNS } from '../../containers/App/selectors.js';
 //Import method from Reselect library to map properties to selector methods
 import { createStructuredSelector } from 'reselect';
-var budget = "Overall";
 
+//This variable is used to bootstrap the chart with the initial overall budget 
+//of the requesting admin's Primarydepartment
+var budget = "Overall";
 
 class Graph extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
@@ -23,7 +29,7 @@ class Graph extends React.PureComponent { // eslint-disable-line react/prefer-st
       this.deptUpdated = this.deptUpdated.bind(this);
       this.state = {budgetStarted: 0, budgetUsed: 0, department: this.props.user.Primary, budget: budget};
   }
-  plot(data){
+plot(data){
         var ctx = this.refs.graph;
       var res = this.props.budget[0];
 var data = {
@@ -73,32 +79,33 @@ this.setState({budgetStarted: res[budget + "BudgetStarting"] , budgetUsed: res[b
   render() {
 
     return (
-        <WrapMe id="BudgetInfo"> 
-       
-                            
-        <BudgetInfo> 
-         <h2>Departmental Budget Overview</h2>        
-       <h3>Semester: <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px', marginRight:'10px'}} onChange = {this.getBudget}>
-          <option value = "Overall">Overall</option>
-          <option value = "Fall">Fall</option>
-          <option value = "Spring">Spring</option>
-          <option value = "Summer">Summer</option>
-        </select></h3>
-        <h3>Department:<select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = { this.deptUpdated }>
-          {this.props.deptDNS.map( (current, index) =>
-                <option key = {index} value = {current.Department}>{current.Department}</option>
-              )}
-        </select></h3>
-        <h3>Total Budget: ${this.state.budgetStarted}</h3>
-        <h3>Budget Used: ${this.state.budgetUsed} </h3>
-        <h3>Budget Remaining: ${this.state.budgetStarted - this.state.budgetUsed} </h3>
-      </BudgetInfo>   
-         <PieChart> 
-           <div style = {{ width: '100%'}}>
+        <WrapMe id="BudgetInfo">                     
+         <BudgetInfo> 
+          <h2>Departmental Budget Overview</h2>        
+          <h3>Semester: &nbsp;
+            <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px', marginRight:'10px'}} onChange = {this.getBudget}>
+                <option value = "Overall">Overall</option>
+                <option value = "Fall">Fall</option>
+                <option value = "Spring">Spring</option>
+                <option value = "Summer">Summer</option>
+            </select>
+          </h3>
+          <h3>Department: &nbsp;
+            <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = { this.deptUpdated }>
+            {this.props.deptDNS.map( (current, index) =>
+                    <option key = {index} value = {current.Department}>{current.Department}</option>
+                )}
+            </select>
+          </h3>
+          <h3>Total Budget: ${this.state.budgetStarted}</h3>
+          <h3>Budget Used: ${this.state.budgetUsed} </h3>
+          <h3>Budget Remaining: ${this.state.budgetStarted - this.state.budgetUsed} </h3>
+        </BudgetInfo>   
+        <PieChart> 
+          <div style = {{ width: '100%'}}>
             <canvas ref="graph" width="100" height="100"></canvas>
-            </div>          
-            </PieChart>
-             
+          </div>          
+        </PieChart>    
       </WrapMe>      
     );
   }

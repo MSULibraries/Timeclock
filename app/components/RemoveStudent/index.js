@@ -1,3 +1,9 @@
+/*
+ *
+ * This component deactivates a student out of the timeclock. Once deactivated
+ * their data is still accessible via the database
+ * 
+ * */
 import React from 'react';
 import RemoveStudentStyle from './styles';
 import {bindActionCreators} from 'redux';

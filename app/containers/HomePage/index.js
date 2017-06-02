@@ -1,8 +1,14 @@
-
+/*
+ This File is used to display the login screen, with the login, logout, and dashboard buttons. Is the main screen of the app
+*/
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+
+/************
+Import Style components
+************/
 import Wrapper from '../../components/wrapper';
 import LoginButton from '../../components/loginButton';
 
@@ -10,22 +16,25 @@ import LoginButton from '../../components/loginButton';
 import { LogAction } from './actions';
 
 //Import selectors for use in getting minimal state from Redux global store
-import { getUser } from '../App/selectors.js';
-import { getRes } from '../App/selectors.js';
-import { getStatusOnUser } from '../App/selectors.js';
+import { getUser, getRes, getStatusOnUser } from '../App/selectors.js';
 
 //Import method from Reselect library to map properties to selector methods
 import { createStructuredSelector } from 'reselect';
-var DSF = "00-00-00-00-00-00";
 
+//Represents the Dean's Special Fund Mac-Addr
+var DSF = "00-00-00-00-00-00";
 
  class Home extends React.PureComponent {
     constructor(props) {
     super(props);
-    this.state = {mac: '', user:'', dept: ''};
+    this.state = { user:'', dept: ''};
     this.success = this.success.bind(this);
+    this.updateDept = this.updateDept.bind(this);
   }
-  
+   
+   //Verifies the JWT (token) before the component (login screen) is loaded. 
+   //If the token is valid, the user is allowed into the timeclock
+   //If the token is invalid, the user is logged out of CAS and returned to the main screen
    componentWillMount(){
     var url = window.location.search;
     url = url.replace("?", '');
@@ -46,65 +55,64 @@ var DSF = "00-00-00-00-00-00";
           window.location = "./logout";
          // console.log(error);
         });
-         
-      fetch('/ap')
-        .then((result) => {
-          return result.json();
-        })
-        .then((response) => {
-           this.props.onChangeUser( 'SET-MAC', this.state.user, response )
-           this.props.userStatus.DSF ==  response ? this.setState({ mac: DSF }) : this.setState({ mac: response }) ;
-        })
-        .catch(function(error){
-          console.log(error);
-        });
     }
     else{
       this.setState({user: null});
       //window.location = './logout';
-    }   
-       
+    }       
   } 
+  
+  //Updates the department based off the user's selection from the dropdown box.
+  //If the Dean Special Fund flag is true, and set to the same as the department
+  //That student is then logged in under Dean Special Fund AND the department
+  updateDept(event){
+        this.props.onChangeUser( 'SET-MAC', this.state.user, event.target.value );
+        this.props.userStatus.DSF ==  event.target.value ? this.setState({ dept: DSF }) : this.setState({ dept: event.target.value });
+  }
+  
+  //On successful clock-in or out, the student is logged out of CAS after 2 seconds (2000 Miliseconds)
   success(){
-    //setTimeout( () => window.location = './logout', 2000 )
-    
+    setTimeout( () => window.location = './logout', 2000 )    
   }
   
   render() {
     return (   
       <Wrapper style={{ marginTop: '20em' }}>
-      <h1>MSU Library <br /> Time Clock </h1>  
-        {this.props.userStatus.Role != "student"  && this.state.user!= null ? <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > 
-          Dashboard
-        </LoginButton> : '' }
-        {(this.props.userStatus.Role == "student") ?<div> <select onChange = { (event) => this.setState({dept: event.target.value })}>
-           <option value = "22" >Select Your Department</option>
-           <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department1}</option>
-          {this.props.userStatus.Department2 != '' ?  <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department2}</option> : '' }
-          {this.props.userStatus.Department3 != '' ?  <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department3}</option> : ''}
-          {this.props.userStatus.Department4 != '' ? <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department4}</option> : ''}
-          </select> <br /><br /></div>: '' }
+        <h1>MSU Library <br /> Time Clock </h1>  
+        {this.props.userStatus.Role != "student"  && this.state.user!= null ? 
+          <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > Dashboard </LoginButton> 
+          : '' }
+          
+        {(this.props.userStatus.Role == "student") ?
+          <div> 
+            <select onChange = { this.updateDept }>
+              <option value = "22" >Select Your Department</option>
+              <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department1}</option>
+              {this.props.userStatus.Department2 != '' ?  <option value = "4C-72-B9-55-CD-1111" >{this.props.userStatus.Department2}</option> : '' }
+              {this.props.userStatus.Department3 != '' ?  <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department3}</option> : ''}
+              {this.props.userStatus.Department4 != '' ? <option value = "4C-72-B9-55-CD-C3" >{this.props.userStatus.Department4}</option> : ''}
+           </select> <br /><br />
+          </div>
+          : '' }
         
-        {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.Role == "student") ? <LoginButton disabled={ !this.state.dept } onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGIN', this.state.user, this.state.dept ) } > 
-          Clock In
-        </LoginButton> : '' }
+        {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.Role == "student") ? 
+          <LoginButton disabled={ !this.state.dept } onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGIN', this.state.user, this.state.dept ) } > Clock In </LoginButton> 
+         : '' }
         
-        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ? <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, this.state.dept ) } > 
-          Clock Out
-        </LoginButton> : '' }
-        <br />
-        {this.state.user!= null ?< LoginButton onClick = {  () => window.location = "/logout" } > 
-          Logout
-        </LoginButton> : < LoginButton onClick = {  () => window.location = "/cas" } > 
-          Login
-        </LoginButton> }
+        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ? 
+         <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, this.state.dept ) } > Clock Out </LoginButton> 
+         : '' } <br />
+        
+        {this.state.user!= null ?
+          < LoginButton onClick = {  () => window.location = "/logout" } >Logout</LoginButton> 
+        : < LoginButton onClick = {  () => window.location = "/cas" } > Login </LoginButton> 
+        }
         { this.props.response ? this.success() : '' }
         { this.props.response ? <h2>Clocked in. Redirecting… </h2> : '' }
-   </Wrapper>     
+    </Wrapper>     
     );
   }
 }
-
 
 //Redux method to allow the props to have access to the Redux global store
 //With the least minimal state representation possible through Reselect library

@@ -3,11 +3,14 @@ coverage
 build
 node_modules
 stats.json
-iisnode/index.html
+iisnode
+notes
+excelFiles
 
 
 # Cruft
 .DS_Store
 npm-debug.log
 .idea
-iisnode/
+iisnode
+excelFiles

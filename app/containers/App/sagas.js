@@ -1,17 +1,20 @@
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
+//Javascript date object
 var d = new Date();
 var n = d.toString();
 var month = d.getMonth();
 var shortDate = d.toLocaleDateString();
+
+//Gets the milisecond time 
 var msTime = d.getTime();
 
-//Worker Saga
-{/*
-  CHANGE QUERY BASED OFF OF LOGIN OR LOGOUT, SEND THE QUERY IN THE POST METHOD AS A OBJECT CONTAINING THE QUERY. IF QUERY SUCCESSFUL, RETURN TRUE, 
-  AND ALERT USER OF SUCCESS. IF NOT, RETURN FALSE, AND ALERT USER OF FAILURE. MAY CAN USE OBJECT TO KEEP IT ONLY AT
-  ONE DB ROUTE, BY PASSING OFF SOME PARAMETERS
- */}
+/*
+ *
+ * WORKER SAGAS 
+ * 
+ **/ 
+
 export function* loginUserAsync(action){
   try{ 
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
@@ -189,7 +192,7 @@ export function* retriveStudentHoursToReviewAsync(action){
 }
 export function* printStudentPayrollAsync(action){
   try{
-      const response = yield call(fetch, '/ex', { method: 'POST', body: JSON.stringify(action.time),headers: new Headers({ 'Content-Type': 'application/json; charset=utf-8'}) });
+      const response = yield call(fetch, '/printTime', { method: 'POST', body: JSON.stringify(action.time),headers: new Headers({ 'Content-Type': 'application/json; charset=utf-8'}) });
       yield put({type: 'TIMESHEET-READY', timesheetData: action.time[0].NetID  });      
 }
    catch(error){
@@ -228,57 +231,94 @@ export function* deleteStudentAsync(action){
 }
 
 
-//Watcher saga
+/*
+ *
+ * WATCHER SAGAS 
+ * 
+ * */
+
+//Is executed when a user is requesting to be clocked into the timeclock
 export function* loginUser(){
   yield takeEvery('USER-REQUEST-LOGIN',loginUserAsync);
 }
 
+//Is executed when a user is requesting to be clocked out of the timeclock
 export function* logoutUser(){
   yield takeEvery('USER-REQUEST-LOGOUT',logoutUserAsync);
 }
 
+//Is executed when a user is attempting to access the timeclock, making sure
+//they are allowed to be on the timeclock app
 export function* checkUser(){
   yield takeEvery('CHECK-USER',checkUserAsync);
 }
 
+//Is executed if a user is found within the database, meaning they are allowed to 
+//be on the timeclock app
 export function* transactionUser(){
   yield takeEvery('USER-FOUND',transactionAsync);
 }
 
+//Executed to populate the dashboard of a supervisor
 export function* dashboardPopulate(){
   yield takeEvery('POPULATE-DASHBOARD',dashboardAsync);
 }
 
+//Executed to retrive the active students associated with the students of the 
+//logged in supervisor
 export function* adminSupervisorStudentsPopulate(){
   yield takeEvery('RETRIVE-STUDENTS',AdminSupervisorStudentsAsync);
 }
+
+//Executed to retrive the budget(s) of the logged in supervisor
+//Can be multiple budgets if the supervisor is admin of multiple departments
 export function* getSupervisorBudget(){
   yield takeEvery('LOAD-SUPERVISOR-BUDGET',getSupervisorBudgetAsync);
 }
+
+//Loads the current students clocked into the system of the logged in supervisor
 export function* retriveCurrentLoggedInStudents(){
   yield takeEvery('CURRENT-STUDENTS-ON-CLOCK',CurrentStudentsOnClockAsync);
 }
+
+//Loads the hours of the student worked on the current date of the system
 export function* retriveCurrentHoursInToday(){
   yield takeEvery('RETRIVE-HOURS-TODAY',retriveCurrentHoursInTodayAsync);
 }
+
+//Loads the hours which the student has clocked out of the current system date
 export function* retriveCurrentHoursOutToday(){
   yield takeEvery('LOAD-CLOCKOUT-HOURS',retriveCurrentHoursOutTodayAsync);
 }
+
+//Retrives the specific hours of a student within the timeclock requested by a supervisor 
 export function* retriveSpecificHours(){
   yield takeEvery('RETRIVE-SPECIFIC-HOURS',retriveSpecificHoursAsync);
 }
+
+//Retrives the hours which a student has worked in the designated time period for review
+//by a supervisor
 export function* retriveStudentHoursToReview(){
   yield takeEvery('RETRIVE-STUDENT-TIME-TO-REVIEW',retriveStudentHoursToReviewAsync);
 }
+
+//Print the timesheet of the requested time period 
 export function* printStudentPayroll(){
   yield takeEvery('PRINT-TIME',printStudentPayrollAsync);
 }
+
+//Checks the status of a student in the timeclock to see if they're active or not
 export function* checkStudentStatus(){
   yield takeEvery('CHECK-STUDENT-STATUS',checkStudentStatusAsync);
 }
+
+//Submits a student for entry or update  in the database
 export function* submitStudent(){
   yield takeEvery('SUBMIT-STUDENT',submitStudentAsync);
 }
+
+//Deactivates a student in the timeclock, preventing them
+//from clocking back into the timeclock 
 export function* deleteStudent(){
   yield takeEvery('DELETE-STUDENT',deleteStudentAsync);
 }

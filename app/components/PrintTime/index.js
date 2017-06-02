@@ -1,3 +1,8 @@
+/*
+ *
+ * This component prints the time for the supervisor or requesting student
+ * 
+ * */
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -22,7 +27,7 @@ class Print extends React.PureComponent { // eslint-disable-line react/prefer-st
     return (
       <LoginButton id="PrintTimeStyle">
         {/*} <h3 onClick ={ () => this.props.PrintTimeAction('PRINT-TIME',this.props.ReviewHours) }>Confirm Time</h3>*/}
-      <h3 target = "_blank" href = {  "/Capture?id="+this.props.Time+".xlsx"} download>Download Time</h3>
+        <h3 target = "_blank" href = {  "/Capture?id="+this.props.Time+".xlsx"} download>Download Time</h3>
       </LoginButton>
     );
      

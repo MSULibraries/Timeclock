@@ -1,9 +1,15 @@
+/*
+ *
+ * This component is rendered when a supervisor logs in. 
+ * It is used to render their dashboard with the appropiate attributes
+ * 
+ * */
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import WrapMe, {
   StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle,TodaysActivityStyle } from './styles';
 import ViewHours from '../ViewHours';
-import UpdateInfo from '../UpdateInfo';
+import AddStudent from '../AddStudent';
 import RemoveStudent from '../RemoveStudent';
 import PrintTime from '../PrintTime';
 import CurrentStudents from '../CurrentStudents';
@@ -43,8 +49,9 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
   render() {
     return (
       <WrapMe id="wrapper">
-        
-        <Grid.Container id="container">
+       <Grid.Container id="container">
+        <Grid.Row>
+         <Grid.Col md={12}>
           <Grid.Row>
             <Grid.Col md={12}>
               <Grid.Row>
@@ -55,8 +62,7 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
           <UpdateInfo student={this.state.student} />
           </UpdateInfoStyle >       
           </Grid.Col> 
-
-         
+       
           <Grid.Col md={4} id="middle-column"> 
           
             {/*Students Currently Clocked in*/}  
@@ -80,12 +86,13 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
            
            {/*Remove Student Button*/}     
             
-          <RemoveStudent student={this.state.NetID} />           
-          <PrintTime />
-                
-          </Grid.Col>       
+            {/*Remove Student Button*/}       
+            <RemoveStudent student={this.state.NetID} />           
+            <PrintTime />     
+           </Grid.Col>  {/* End Grid Col 4 */}   
 
           {/*Hours and Information for Each Student*/}
+
           <Grid.Col md={3} id="right-column">        
           <ViewHoursStyle id="ViewHoursStyle"> 
           <h2>Student Information</h2>          

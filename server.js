@@ -11,7 +11,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var MemoryStore = require('session-memory-store')(session);
 const argv = require('minimist')(process.argv.slice(2));
-const setup = require('./server/middlewares/frontendMiddleware');
+const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
@@ -68,12 +68,7 @@ var casClient = new ConnectCas({
     }
 });
 
-app.use('/test', jsonParser, (req,res) =>{
-  console.log(req);
-   res.json(req.body);
-})
-
-app.use('/ex', jsonParser, (req,res) =>{
+app.use('/printTime', jsonParser, (req,res) =>{
   var exportToExcel = require('export-to-excel');
    var filePath = req.body[0].NetID;
 var sampleData = [
@@ -211,12 +206,6 @@ app.use('/logout', (req,res) =>{
 // NOTICE: If you want to enable single sign logout, you must use casClient middleware before bodyParser. 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-app.use('/ap', (req,res) => {
-  getMac(req,res)
-});
 
  
  app.use('/db', textParser, (req,res) =>{		
