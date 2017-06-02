@@ -33,7 +33,7 @@ class ReviewTimeClass extends React.PureComponent { // eslint-disable-line react
     return (
       <ReviewHours>
       <h4>Date Range: &nbsp;
-      <select onChange = {this.selectTime}>
+      <select style={ {background: 'white', border:'1px solid #ccc', borderRadius:'3px'}} onChange = {this.selectTime}>
       <option  value = "">
           Select a Date Range
         </option>
