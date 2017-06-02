@@ -1,6 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router';
+/*
+ *
+ * This is the dashboard for when a student logs in 
+ * 
+ * */
 
+import React from 'react';
 
 export default class Dashboard extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {

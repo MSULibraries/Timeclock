@@ -1,9 +1,15 @@
+/*
+ *
+ * This component is rendered when a supervisor logs in. 
+ * It is used to render their dashboard with the appropiate attributes
+ * 
+ * */
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import WrapMe, {
   StuNames, ViewHoursStyle, UpdateInfoStyle, CurrentStudentsStyle } from './styles';
 import ViewHours from '../ViewHours';
-import UpdateInfo from '../UpdateInfo';
+import AddStudent from '../AddStudent';
 import RemoveStudent from '../RemoveStudent';
 import PrintTime from '../PrintTime';
 import CurrentStudents from '../CurrentStudents';
@@ -42,65 +48,52 @@ class Supervisor extends React.PureComponent { // eslint-disable-line react/pref
   render() {
     return (
       <WrapMe id="wrapper">
-        
-        <Grid.Container id="container">
+       <Grid.Container id="container">
+        <Grid.Row>
+         <Grid.Col md={12}>
           <Grid.Row>
-            <Grid.Col md={12}>
-              <Grid.Row>
-
-           {/*Update Student Information*/}
-              <Grid.Col md={4}>   
-            <UpdateInfoStyle id="UpdateInfoStyle">
-          <UpdateInfo student={this.state.student} />
-          </UpdateInfoStyle >       
-          </Grid.Col> 
-
-         
-          <Grid.Col md={4}> 
           
-            {/*Students Currently Clocked in*/}      
-           <CurrentStudentsStyle id="CurrentStudentsStyle">      
-            <CurrentStudents />
-           </CurrentStudentsStyle>   
-           {/*Students that Belong to Each Department*/}       
-          <StuNames id="StuNamesStyle">
-            <h2>Active Students:</h2>
-           {this.props.student.map((current, index) =>
-            <div key={index} >   
-           <h3> <input type="radio" name="student" onClick = { () => this.open(current.ID, current.HoursWorked, current.HoursRemain, current.NetID, current.WS) } /> {current.FirstName} {current.LastName} </h3>
-            </div>
-                )}
-          </StuNames>
-           
-           {/*Remove Student Button*/}     
+            {/*Update Student Information*/}
+            <Grid.Col md={4}>   
+             <UpdateInfoStyle id="UpdateInfoStyle">
+              <AddStudent student={this.state.student} />
+               </UpdateInfoStyle >       
+              </Grid.Col>
+               
+            {/*Students Currently Clocked in*/}  
+            <Grid.Col md={4}>   
+              <CurrentStudentsStyle id="CurrentStudentsStyle">      
+                <CurrentStudents />
+              </CurrentStudentsStyle>   
+              
+            {/*Students that Belong to Each Department*/}       
+            <StuNames id="StuNamesStyle">
+              <h2>Active Students:</h2>
+              {this.props.student.map((current, index) =>
+              <div key={index} >   
+              <h3> <input type="radio" name="student" onClick = { () => this.open(current.ID, current.HoursWorked, current.HoursRemain, current.NetID, current.WS) } /> {current.FirstName} {current.LastName} </h3>
+              </div>
+              )}
+            </StuNames>
             
-          <RemoveStudent student={this.state.NetID} />           
-          <PrintTime />
-                
-          </Grid.Col>       
+            {/*Remove Student Button*/}       
+            <RemoveStudent student={this.state.NetID} />           
+            <PrintTime />     
+           </Grid.Col>  {/* End Grid Col 4 */}   
 
           {/*Hours and Information for Each Student*/}
           <Grid.Col md={4}>       
-          <ViewHoursStyle id="ViewHoursStyle"> 
-          <h2>Student Information</h2>          
-          <ViewHours ws = {this.state.WorkStudy} dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
-          </ViewHoursStyle>  
-          </Grid.Col>   
-
-          
-                
-   
-          </Grid.Row>
-         </Grid.Col>  
-         </Grid.Row>  
-        </Grid.Container>
-        
-
-        {/*<Link to = "/Logout">Click to logout</Link>*/}
-
-        </WrapMe>
-    );
-  }
+           <ViewHoursStyle id="ViewHoursStyle"> 
+            <h2>Student Information</h2>          
+            <ViewHours ws = {this.state.WorkStudy} dept = {this.props.user.Department} student={this.state.NetID} hoursUsed={this.state.hoursUsed} hoursRemain={this.state.hoursRemain} /> 
+           </ViewHoursStyle>  
+        </Grid.Col>  
+       </Grid.Row>
+      </Grid.Col>  
+     </Grid.Row>  
+    </Grid.Container>
+  </WrapMe>
+ );}
 }
 
 //Redux method to allow the props to have access to the Redux global store

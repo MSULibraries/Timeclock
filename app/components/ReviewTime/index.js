@@ -1,3 +1,10 @@
+/*
+ *
+ * This component renders data for the student's time period
+ * to be computed for printing onto the timesheet
+ * 
+ * */
+
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -25,16 +32,12 @@ class ReviewTimeClass extends React.PureComponent { // eslint-disable-line react
    this.setState({flag: true});
  }
  
- componentWillUnmount(){
-   console.log('unmounted');
- }
-
   render() {
     return (
       <ReviewHours>
-      <h4>Date Range: &nbsp;
-      <select onChange = {this.selectTime}>
-      <option  value = "">
+       <h4>Date Range: &nbsp;
+        <select onChange = {this.selectTime}>
+          <option  value = "">
           Select a Date Range
         </option>
         <option  value = "'5/16/2017' AND '5/26/2017'">
@@ -43,7 +46,7 @@ class ReviewTimeClass extends React.PureComponent { // eslint-disable-line react
         <option  value = "'6/03/2017' AND '6/15/2017'">
           6/3/2017 - 6/15/2017
         </option>
-      </select>
+       </select>
          <ul>
          {this.props.ReviewHours != null ? this.props.ReviewHours.map( (current, index) =>   
            <h4 key = {index}> {current.Date} : {current.HoursWorked} </h4>

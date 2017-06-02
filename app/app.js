@@ -23,9 +23,6 @@ import App from 'containers/App';
 // Import selector for `syncHistoryWithStore`
 import { makeSelectLocationState } from 'containers/App/selectors';
 
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
-
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./favicon.ico';
@@ -35,8 +32,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess';
 
 import configureStore from './store';
 
-// Import i18n messages
-import { translationMessages } from './i18n';
+
 
 // Import CSS reset and Global Styles
 import './global-styles';
@@ -67,7 +63,6 @@ const rootRoute = {
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
         <Router
           history={history}
           routes={rootRoute}
@@ -77,20 +72,12 @@ const render = (messages) => {
             applyRouterMiddleware(useScroll())
           }
         />
-      </LanguageProvider>
     </Provider>,
     document.getElementById('app')
   );
 };
 
-// Hot reloadable translation json files
-if (module.hot) {
-  // modules.hot.accept does not accept dynamic dependencies,
-  // have to be constants at compile-time
-  module.hot.accept('./i18n', () => {
-    render(translationMessages);
-  });
-}
+
 
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
@@ -100,12 +87,12 @@ if (!window.Intl) {
     .then(() => Promise.all([
       import('intl/locale-data/jsonp/en.js'),
     ]))
-    .then(() => render(translationMessages))
+    .then(() => render())
     .catch((err) => {
       throw err;
     });
 } else {
-  render(translationMessages);
+  render();
 }
 
 // Install ServiceWorker and AppCache in the end since

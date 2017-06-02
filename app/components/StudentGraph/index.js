@@ -1,13 +1,12 @@
+/*
+ *
+ * This component is for the STUDENT WORK-STUDY GRAPH  
+ * which is rendered if the student is associated with Work-Study
+ * 
+ * */
+
 import React from 'react';
-import { Link } from 'react-router';
-import { FormattedMessage } from 'react-intl';
 import chart from 'chart.js';
-import HoursToday from '../HoursToday';
-import SpecificHours from '../SpecificHours';
-import ReviewTime from '../ReviewTime';
-import DateButton from './styles';
-
-
 
 export default class StudentGraph extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
      constructor(props) {
@@ -16,7 +15,7 @@ export default class StudentGraph extends React.PureComponent { // eslint-disabl
   }
   plot(){
    var ctx = this.refs.graph2;
-var data = {
+   var data = {
     labels: [
         "Budget Used",
         "Budget Remaining"
@@ -33,11 +32,11 @@ var data = {
                 "#36A2EB"
             ]
         }]
-}; 
-var myChart = new Chart(ctx, {
+  }; //End the data variable 
+ var myChart = new Chart(ctx, {
     type: 'pie',
     data: data
-});
+   });
  }
  
  componentDidUpdate(){
@@ -46,11 +45,9 @@ var myChart = new Chart(ctx, {
  
     
   render() {
-
     return (
           <div style = {{ width: '100%'}}>
             {this.props.ws!="1" ? <canvas ref="graph2" width="100" height="100"></canvas> : '' }
           </div>  
-    );
-  }
-}
+        );}
+ }
