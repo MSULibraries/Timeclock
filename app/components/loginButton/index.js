@@ -4,7 +4,7 @@ const LoginButton = styled.button`
     clear: both;
     width: 100%;
     display: block;
-    background: green;
+    background: yellow;
     border-color: #0087be;
     color: white;
     border-style: solid;
