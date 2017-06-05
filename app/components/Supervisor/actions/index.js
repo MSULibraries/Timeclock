@@ -7,7 +7,7 @@ if (action == 'RETRIVE-STUDENTS'){
     user: userName,
     status: 'Admin',
 		dept: dept,
-    query: "SELECT * FROM Users WHERE Status= 'Student' AND Department = '" + dept + "'"
+    query: "SELECT * FROM Users WHERE EmployeeType= 'student' AND ( Department1=" + "'"+dept+"' OR  Department2=" + "'"+dept+"' OR Department3=" + "'"+dept+"' OR Department4=" + "'"+dept+"')"
 	}
 }
 };

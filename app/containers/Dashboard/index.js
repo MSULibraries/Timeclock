@@ -61,10 +61,9 @@ componentWillMount() {
     return (
       <div>
         <h1 style = {{ marginLeft: '15px' }}>Hello {this.props.user.FirstName} {this.props.user.LastName}, today's date is { date.toLocaleDateString() } </h1>
-        { (this.props.user.Status == 'Admin' || this.props.user.Status == 'SU') ? <Graph />  : '' }
-        { this.props.user.Status == 'Student' ?  <StudentHours /> : ''}
-        { (this.props.user.Status == 'Admin' || this.props.user.Status == 'SU') ? <Supervisor /> : ''}
-        <Boiler />
+        { (this.props.user.EmployeeType == 'admin' || this.props.user.EmployeeType == 'SU') ? <Graph />  : '' }
+        { this.props.user.EmployeeType == 'student' ?  <StudentHours /> : ''}
+        { (this.props.user.EmployeeType == 'admin' || this.props.user.EmployeeType == 'SU') ? <Supervisor /> : ''}
         <Link to = "/Logout">Click to logout</Link> 
       </div>
     );  
