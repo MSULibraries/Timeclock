@@ -83,7 +83,7 @@ var DSF = "00-00-00-00-00-00";
           <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > Dashboard </LoginButton> 
           : '' }
           
-        {(this.props.userStatus.Role == "student") ?
+        {(this.props.userStatus.EmployeeType == "student") ?
           <div> 
             <select onChange = { this.updateDept }>
               <option value = "22" >Select Your Department</option>
@@ -95,11 +95,11 @@ var DSF = "00-00-00-00-00-00";
           </div>
           : '' }
         
-        {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.Role == "student") ? 
+        {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.EmployeeType == "student") ? 
           <LoginButton disabled={ !this.state.dept } onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGIN', this.state.user, this.state.dept ) } > Clock In </LoginButton> 
          : '' }
         
-        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ? 
+        {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.EmployeeType == "student") ? 
          <LoginButton onClick = { () => this.props.onChangeUser( 'USER-REQUEST-LOGOUT', this.state.user, this.state.dept ) } > Clock Out </LoginButton> 
          : '' } <br />
         
