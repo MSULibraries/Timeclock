@@ -30,7 +30,7 @@ class Graph extends React.PureComponent { // eslint-disable-line react/prefer-st
       this.state = {budgetStarted: 0, budgetUsed: 0, department: this.props.user.Primary, budget: budget};
   }
 plot(data){
-        var ctx = this.refs.graph;
+        var ctx = this.refs.graph;   
       var res = this.props.budget[0];
 var data = {
     labels: [

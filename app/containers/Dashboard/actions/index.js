@@ -19,7 +19,7 @@ else if (action == 'POPULATE-DASHBOARD'){
     return{
 		type: "POPULATE-DASHBOARD",
     user: userName,
-    query: "SELECT * FROM students WHERE NetID='" +userName+ "'"
+    query: "SELECT * FROM Users WHERE NetID='" +userName+ "'"
 	}
 }
 else if (action == 'DASHBOARD-DATA'){

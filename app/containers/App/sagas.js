@@ -34,7 +34,7 @@ export function* logoutUserAsync(action){
        const res = yield response.json();
        let clockQuery = "INSERT INTO student_hours_elapsed (NetID, TimeStamp, ClockOut, ShortDate, msTime, Dept) VALUES ( " + "'" + action.user + "'," + "'" + n + "', '1', '" +shortDate+"', '" + msTime + "','" +action.dept+"')"; 
        res.status == true ? yield put({type: 'USER-FOUND', user: action.user, query: clockQuery }) : yield put({type: 'USER-NOT-APPROVED', user: action.user })
-       let updateTimeQuery = "SELECT msTimeIn, msTimeOut, DepartmentIn FROM student_hours WHERE NetID ='"+action.user+"'";
+       let updateTimeQuery = "SELECT msTimeIn, msTimeOut, DepartmentIn FROM Users WHERE NetID ='"+action.user+"'";
        const TimeDataResponse = yield call(fetch, '/db', { method: 'POST', body: updateTimeQuery } )
        const TimeRes = yield TimeDataResponse.json();
        const timeCalc = ( (TimeRes.data[0].msTimeOut - TimeRes.data[0].msTimeIn ) /3600000) * 60;
@@ -92,7 +92,7 @@ export function* AdminSupervisorStudentsAsync(action){
        const response = yield call(fetch, '/db', { method: 'POST', body: action.query } );
        const res = yield response.json();
        res.status == true ? yield put({type: 'STUDENTS-LOADED', students: res.data }) : window.location = "./logout"
-       yield put({type: 'CURRENT-STUDENTS-ON-CLOCK',  query: "SELECT FirstName, LastName FROM student_hours WHERE UserLoggedIn=TRUE  AND  ( Department1=" + "'"+action.dept+"' OR  Department2=" + "'"+action.dept+"' OR Department3=" + "'"+action.dept+"')" })
+       yield put({type: 'CURRENT-STUDENTS-ON-CLOCK',  query: "SELECT FirstName, LastName FROM Users WHERE UserLoggedIn=TRUE  AND  ( Department1=" + "'"+action.dept+"' OR  Department2=" + "'"+action.dept+"' OR Department3=" + "'"+action.dept+"')" })
    }
    catch(error){
      console.log(error);
