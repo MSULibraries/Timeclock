@@ -5,7 +5,7 @@ if (action == 'DELETE-STUDENT'){
     return{
 		type: "DELETE-STUDENT",
     user: userName,
-    query: "UPDATE student_hours SET Status = 0  WHERE NetID='"+userName+"'"
+    query: "UPDATE Users SET Status = 0  WHERE NetID='"+userName+"'"
 	}
 }
 };

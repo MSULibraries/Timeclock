@@ -8,7 +8,7 @@ if (action == 'USER-REQUEST-LOGIN'){
 		type: "USER-REQUEST-LOGIN",
     user: userName,
 		dept: department,
-		query: "UPDATE student_hours SET UserLoggedIn=TRUE, DepartmentIn='"+department+"', msTimeIn='"+msTime+"', ClockIn ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'" +  " AND  ( DSF!='0' OR Department1=" + "'"+department+"' OR  Department2=" + "'"+department+"' OR Department3=" + "'"+department+"')"
+		query: "UPDATE Users SET UserLoggedIn=TRUE, DepartmentIn='"+department+"', msTimeIn='"+msTime+"', ClockIn ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'" +  " AND  ( DSF!='0' OR Department1=" + "'"+department+"' OR  Department2=" + "'"+department+"' OR Department3=" + "'"+department+"')"
 	}
 }
 else if (action == 'USER-REQUEST-LOGOUT'){
@@ -16,7 +16,7 @@ else if (action == 'USER-REQUEST-LOGOUT'){
 		type: "USER-REQUEST-LOGOUT",
 		user: userName,
 		dept: department,
-		query:  "UPDATE student_hours SET UserLoggedIn=FALSE, msTimeOut='"+msTime+"',ClockOut ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'"
+		query:  "UPDATE Users SET UserLoggedIn=FALSE, msTimeOut='"+msTime+"',ClockOut ="+"'"+n+"'"+"WHERE NetID ="+ "'"+userName+"'"
 	}
 }
 else if (action == 'USER-FOUND'){
@@ -27,7 +27,7 @@ else if (action == 'USER-FOUND'){
 else if (action == 'CHECK-USER'){
     return{
 		type: "CHECK-USER",
-		query:  "SELECT * FROM student_hours WHERE NetID ="+ "'"+userName+"' AND status = 1"
+		query:  "SELECT * FROM Users WHERE NetID ="+ "'"+userName+"' AND status = 1"
 	}
 }
 else if (action == 'USER-NOT-APPROVED'){
