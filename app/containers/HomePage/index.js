@@ -79,7 +79,7 @@ var DSF = "00-00-00-00-00-00";
     return (   
       <Wrapper style={{ marginTop: '20em' }}>
         <h1>MSU Library <br /> Time Clock </h1>  
-        {this.props.userStatus.Role != "student"  && this.state.user!= null ? 
+        {this.props.userStatus.EmployeeType != "student"  && this.state.user!= null ? 
           <LoginButton onClick = { () => window.location = "/dashboard?"+this.state.token } > Dashboard </LoginButton> 
           : '' }
           
