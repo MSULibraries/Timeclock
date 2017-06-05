@@ -26,8 +26,9 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
     this.update = this.update.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkWorkStudy = this.checkWorkStudy.bind(this);
     //this.state = {x: '' }; 
-    this.state = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false };
+    this.state = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: 0, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
   }
 
   update(e) {
@@ -36,6 +37,22 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
   check() {
     this.props.FormAction('CHECK-STUDENT-STATUS', this.state);
   }
+
+  checkWorkStudy(e) {
+    const workStudy = document.getElementById("WS");
+
+    if (workStudy.checked) {
+      this.setState({
+        WS: 1
+      });
+    }
+    else {
+      this.setState({
+        WS: 0
+      });
+    }
+  }
+
   handleChange(event) {
     const target = event.target;
     const value = target.value;
@@ -55,17 +72,18 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
       <div>
         <h2>Add/Edit Student</h2>
         <form onSubmit={this.handleSubmit}>
-          <H3>Net ID: <input type="text" name="NetID" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} /> </H3><br />
+          <H3>Net ID: <input type="text" name="NetID" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
           <H3>MSU 9-Digit: <input type="text" name="NINEdigit" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} onFocus={this.check} /> </H3><br />
-          <H3>First Name: <input type="text" name="firstName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} /> </H3><br />
-          <H3>Last Name: <input type="text" name="lastName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} /> </H3><br />
-          <H3>Phone: <input type="text" name="phoneNumber" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} /> </H3><br />
-          <H3>Address: <input type="text" name="Address" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} /> </H3><br />
-          <H3>Employee Type: <select style={{ width: '8em' }} onChange={this.handleChange} id="SelectOption">
+          <H3>First Name: <input type="text" name="firstName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
+          <H3>Last Name: <input type="text" name="lastName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
+          <H3>Phone: <input type="text" name="Phone" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
+          <H3>Address: <input type="text" name="Addr" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
+
+          <H3>Employee Type: <select style={{ width: '8em' }} onChange={this.handleChange} id="SelectOption" name="employeeType" >
             <option value="UG" >Undergrad &nbsp;</option>
             <option value="GR" >Grad</option>
           </select></H3> <br />
-          <H3>Sex: <select onChange={this.handleChange} id="SelectOption">
+          <H3>Sex: <select onChange={this.handleChange} id="SelectOption" name="sex">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
@@ -79,6 +97,10 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
             <option value="Oth">Other</option>
           </select>
           </H3><br />
+          <H3>
+            Work Study
+           <input id="WS" type="checkbox" onChange={this.checkWorkStudy} />
+          </H3>
 
           <H3>Dept1: <select id="SelectOption" name="dept1" onChange={this.handleChange}>
             <option value="AA">Select Department</option>
