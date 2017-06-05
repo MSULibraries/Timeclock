@@ -82,6 +82,11 @@ const getDepartmentDNS = () => createSelector(
    userSelector,
    (state) => state.get('departmentDNS')
 );
+const getDepartments = () => createSelector(
+   userSelector,
+   (state) => state.get('LibData')
+);
+
 export {
   getBoiler,
   makeSelectLocationState,
