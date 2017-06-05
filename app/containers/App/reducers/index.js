@@ -77,6 +77,9 @@ function userReducer(state = initialState, action ){
       case 'DEPARTMENTS-FOUND':
        return state
        .set('departmentDNS', action.userDept);
+      case 'LIBRARY-DEPARTMENTS-LOADED':
+       return state
+       .set('LibData', action.departments);
      default:
       return state
   }

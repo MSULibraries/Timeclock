@@ -229,6 +229,16 @@ export function* deleteStudentAsync(action){
       console.log(error);
    }
 }
+export function* allDepartmentsAsync(action){
+  try{
+      const response = yield call(fetch, '/db', { method: 'POST', body: action.query });
+      const res =yield  response.json();
+      res.status == true ? yield put({type: 'LIBRARY-DEPARTMENTS-LOADED', departments: res.data  }) : null    
+}
+   catch(error){
+      console.log(error);
+   }
+}
 
 
 /*
@@ -321,6 +331,10 @@ export function* submitStudent(){
 //from clocking back into the timeclock 
 export function* deleteStudent(){
   yield takeEvery('DELETE-STUDENT',deleteStudentAsync);
+}
+
+export function* LoadAllDepartments(){
+  yield takeEvery('ALL-DEPARTMENTS',AllDepartmentsAsync);
 }
 //Starts all sagas - Entry Point
 export default function* rootSaga(){

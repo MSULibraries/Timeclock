@@ -46,6 +46,7 @@ componentWillMount() {
         })
         .then((response) => {
           this.props.onChangeUser( 'POPULATE-DASHBOARD', response.user );
+          this.props.onChangeUser( 'ALL-DEPARTMENTS' );
           this.setState({ flag: true }) ;
         })
         .catch(function(error){

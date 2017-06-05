@@ -22,6 +22,13 @@ else if (action == 'POPULATE-DASHBOARD'){
     query: "SELECT * FROM users WHERE NetID='" +userName+ "'"
 	}
 }
+else if (action == 'ALL-DEPARTMENTS'){
+    return{
+		type: "ALL-DEPARTMENTS",
+    user: userName,
+    query: "SELECT * FROM department_lookup"
+	}
+}
 else if (action == 'DASHBOARD-DATA'){
     return{
 		type: "DASHBOARD-DATA",
