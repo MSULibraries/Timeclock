@@ -7,7 +7,8 @@ export function ogAction(action, userName, dept) {
       user: userName,
       status: 'Admin',
       dept: dept,
-      query: "SELECT * FROM users WHERE Role= 'student' AND ( Department1=" + "'" + dept + "' OR  Department2=" + "'" + dept + "' OR Department3=" + "'" + dept + "' OR Department4=" + "'" + dept + "')"
+      //Selects all students who are active workers from various deptartments
+      query: "SELECT * FROM users WHERE Role= 'student' AND Status = 1 AND ( Department1=" + "'" + dept + "' OR  Department2=" + "'" + dept + "' OR Department3=" + "'" + dept + "' OR Department4=" + "'" + dept + "')"
     }
   }
 };
