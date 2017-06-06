@@ -26,9 +26,9 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
     this.update = this.update.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.checkWorkStudy = this.checkWorkStudy.bind(this);
+    this.toggleWS = this.toggleWS.bind(this);
     //this.state = {x: '' }; 
-    this.state = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: 0, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
+    this.state = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: false, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
   }
 
   update(e) {
@@ -38,20 +38,7 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
     this.props.FormAction('CHECK-STUDENT-STATUS', this.state);
   }
 
-  checkWorkStudy(e) {
-    const workStudy = document.getElementById("WS");
-
-    if (workStudy.checked) {
-      this.setState({
-        WS: 1
-      });
-    }
-    else {
-      this.setState({
-        WS: 0
-      });
-    }
-  }
+  toggleWS() {this.setState({ WS: !this.state.WS });}
 
   handleChange(event) {
     const target = event.target;
@@ -99,7 +86,7 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
           </H3><br />
           <H3>
             Work Study
-           <input id="WS" type="checkbox" onChange={this.checkWorkStudy} />
+           <input id="WS" type="checkbox" onChange={this.toggleWS} />
           </H3>
 
           <H3>Dept1: <select id="SelectOption" name="dept1" onChange={this.handleChange}>
