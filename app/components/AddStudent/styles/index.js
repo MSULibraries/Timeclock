@@ -6,7 +6,7 @@ const H3 = styled.h3`
   margin: 0;
   `;
 
-  const DateButton = styled.div`
+const DateButton = styled.div`
     width:20em;
     margin-top:0.625em;
     display: block;

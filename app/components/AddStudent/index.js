@@ -98,37 +98,37 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
           </select>
           </H3><br />
           <H3>
-            Work Study
-           <input id="WS" type="checkbox" onChange={this.checkWorkStudy} />
-          </H3>
+            Work Study &nbsp;
+          <input id="WS" type="checkbox" onChange={this.checkWorkStudy} />
+          </H3><br />
 
           <H3>Dept1: <select id="SelectOption" name="dept1" onChange={this.handleChange}>
             <option value="**">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
-          </select>
+          </select> <input type="radio" name="yes" value="dsf" /> DSF<br />
           </H3><br />
           <H3>Dept2: <select id="SelectOption" name="dept2" onChange={this.handleChange}>
             <option value="**">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
-          </select>
+          </select> <input type="radio" name="yes" value="dsf" /> DSF<br />
           </H3><br />
           <H3>Dept3: <select id="SelectOption" name="dept3" onChange={this.handleChange}>
             <option value="**">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
-          </select>
+          </select> <input type="radio" name="yes" value="dsf" /> DSF<br />
           </H3><br />
           <H3>Dept4: <select id="SelectOption" name="dept4" onChange={this.handleChange}>
             <option value="**">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
-          </select>
+          </select> <input type="radio" name="yes" value="dsf" /> DSF<br />
           </H3><br />
 
           <DateButton>
