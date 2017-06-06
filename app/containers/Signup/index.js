@@ -67,15 +67,11 @@ class HomePageSecond extends React.PureComponent { // eslint-disable-line react/
   render() {
     return (
       <div>
-        <Grid.Container id="container">
-          <Grid.Row>
-            <Grid.Col md={3} offset={{ md: 6 }}>
-              <RegisterStyle style={{ marginTop: '10em' }}>
-                <Register />
-              </RegisterStyle>
-            </Grid.Col>
-          </Grid.Row>
-        </Grid.Container>
+
+        <RegisterStyle>
+          <Register />
+        </RegisterStyle>
+
       </div>
     )
   }
