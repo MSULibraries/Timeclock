@@ -107,16 +107,18 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
           <H3>Address: <input required type="text" name="Addr" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
 
           <H3>Employee Type: <select required style={{ width: '8em' }} onChange={this.handleChange} id="SelectOption" name="employeeType" >
+            <option value="" >Select a Type</option>
             <option value="UG" >Undergrad &nbsp;</option>
             <option value="GR" >Grad</option>
           </select></H3> <br />
           <H3>Sex: <select required onChange={this.handleChange} id="SelectOption" name="sex">
+            <option value="" >Select Sex</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
           </H3><br />
           <H3>Race: <select required id="SelectOption" name="race" onChange={this.handleChange}>
-            <option value="AA">Select Race</option>
+            <option value="">Select Race</option>
             <option value="AA">African American</option>
             <option value="Cauc">Caucsian</option>
             <option value="Asn">Asian</option>
@@ -130,7 +132,7 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
           </H3>
 
           <H3>Dept1: <select required id="SelectOption" name="dept1" onChange={this.handleChange}>
-            <option value="**">Select Department</option>
+            <option value="">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
