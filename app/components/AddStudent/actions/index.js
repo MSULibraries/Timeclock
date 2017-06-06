@@ -10,7 +10,6 @@ export function FormAction(action, state) {
     }
   }
   else if (action == 'SUBMIT-STUDENT') {
-    console.log("INSERT INTO Users (NetID, 9Digit, FirstName, LastName, EmployeeType, Phone, Addr, Sex, Race, Department1, Department2, Department3, Department4, WS ) VALUES('" + state.NetID + "','" + state.NINEdigit + "','" + state.firstName + "','" + state.lastName + "','" + state.employeeType + "','" + state.Phone + "','" + state.Addr + "','" + state.sex + "','" + state.race + "','" + state.dept1 + "','" + state.dept2 + "','" + state.dept3 + "','" + state.dept4 + "','" + state.WS + "') ");
     if (state.status === "true") {
       return {
         type: "SUBMIT-STUDENT",

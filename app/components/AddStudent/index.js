@@ -26,9 +26,9 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
     this.update = this.update.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.checkWorkStudy = this.checkWorkStudy.bind(this);
+    this.toggleWS = this.toggleWS.bind(this);
     //this.state = {x: '' }; 
-    this.state = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: 0, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
+    this.state = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: false, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
   }
 
   update(e) {
@@ -38,20 +38,7 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
     this.props.FormAction('CHECK-STUDENT-STATUS', this.state);
   }
 
-  checkWorkStudy(e) {
-    const workStudy = document.getElementById("WS");
-
-    if (workStudy.checked) {
-      this.setState({
-        WS: 1
-      });
-    }
-    else {
-      this.setState({
-        WS: 0
-      });
-    }
-  }
+  toggleWS() { this.setState({ WS: !this.state.WS }); }
 
   handleChange(event) {
     const target = event.target;
@@ -65,30 +52,70 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
     alert('Your Student was successfully submitted ');
     event.preventDefault();
     this.props.FormAction('SUBMIT-STUDENT', this.state);
+
+    //Clears out form inputs after someone has submitted
+    document.getElementById("addStudentForm").reset();
   }
 
   render() {
     return (
       <div>
         <h2>Add/Edit Student</h2>
-        <form onSubmit={this.handleSubmit}>
-          <H3>Net ID: <input type="text" name="NetID" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
-          <H3>MSU 9-Digit: <input type="text" name="NINEdigit" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} onFocus={this.check} /> </H3><br />
-          <H3>First Name: <input type="text" name="firstName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
-          <H3>Last Name: <input type="text" name="lastName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
-          <H3>Phone: <input type="text" name="Phone" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
-          <H3>Address: <input type="text" name="Addr" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
+        <form id="addStudentForm" onSubmit={this.handleSubmit}>
+          <H3>
+            Net ID:
+            <input required type="text" name="NetID"
+              style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }}
+              onChange={this.handleChange}
+              pattern="[a-zA-Z]{1,3}\d{1,4}"
+              title="Student's MSU NetID | 1-3 characters followed by 1-4 digits"
+            />
+          </H3><br />
+          <H3>
+            MSU 9-Digit:
+            <input required type="text" name="NINEdigit"
+              style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }}
+              onChange={this.handleChange} onFocus={this.check}
+              pattern="\d{9}"
+              title="Students MSU ID Number | consists of 9 digits" />
+          </H3><br />
+          <H3>
+            First Name:
+            <input required type="text" name="firstName"
+              style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }}
+              onChange={this.handleChange}
+              pattern="[a-zA-Z]{1,}"
+              title="Student's First Name"
+            />
+          </H3><br />
+          <H3>Last Name:
+            <input required type="text" name="lastName"
+              style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }}
+              onChange={this.handleChange}
+              pattern="[a-zA-Z]{1,}"
+              title="Student's Last Name"
+            /> </H3><br />
+          <H3>Phone:
+            <input required
+              type="tel" name="Phone"
+              style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }}
+              onChange={this.handleChange}
+              pattern="^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$"
+              title="Telephone number: ex 555-555-5555"
+              placeholder="555-555-5555" />
+          </H3><br />
+          <H3>Address: <input required type="text" name="Addr" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
 
-          <H3>Employee Type: <select style={{ width: '8em' }} onChange={this.handleChange} id="SelectOption" name="employeeType" >
+          <H3>Employee Type: <select required style={{ width: '8em' }} onChange={this.handleChange} id="SelectOption" name="employeeType" >
             <option value="UG" >Undergrad &nbsp;</option>
             <option value="GR" >Grad</option>
           </select></H3> <br />
-          <H3>Sex: <select onChange={this.handleChange} id="SelectOption" name="sex">
+          <H3>Sex: <select required onChange={this.handleChange} id="SelectOption" name="sex">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
           </H3><br />
-          <H3>Race: <select id="SelectOption" name="race" onChange={this.handleChange}>
+          <H3>Race: <select required id="SelectOption" name="race" onChange={this.handleChange}>
             <option value="AA">Select Race</option>
             <option value="AA">African American</option>
             <option value="Cauc">Caucsian</option>
@@ -99,10 +126,10 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
           </H3><br />
           <H3>
             Work Study
-           <input id="WS" type="checkbox" onChange={this.checkWorkStudy} />
+           <input id="WS" type="checkbox" onChange={this.toggleWS} />
           </H3>
 
-          <H3>Dept1: <select id="SelectOption" name="dept1" onChange={this.handleChange}>
+          <H3>Dept1: <select required id="SelectOption" name="dept1" onChange={this.handleChange}>
             <option value="**">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
