@@ -46,6 +46,23 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
+    }, 
+          {
+      path: '/Signup',
+      name: 'Signup',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/Signup'),
+        ]); //async stuff
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component]) => {
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
     },      
      
      {
