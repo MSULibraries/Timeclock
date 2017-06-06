@@ -65,7 +65,7 @@ class HomePageSecond extends React.PureComponent { // eslint-disable-line react/
           {(this.props.user.Role == 'admin' || this.props.user.Role == 'SU') ? <Graph /> : ''}
           {this.props.user.Role == 'student' ? <StudentHours /> : ''}
           {(this.props.user.Role == 'admin' || this.props.user.Role == 'SU') ? <Supervisor /> : ''}
-          <Link to="/logout">Click to logout</Link>
+          <a href="/logout">Click to logout</a>
         </div>
       );
     }
