@@ -14,7 +14,9 @@ export function FormAction(action, state) {
       return {
         type: "SUBMIT-STUDENT",
         NetID: state.NetID,
-        query: "INSERT INTO Users (NetID, 9Digit, FirstName, LastName, EmployeeType, Phone, Addr, Sex, Race, Department1, Department2, Department3, Department4, WS ) VALUES('" + state.NetID + "','" + state.NINEdigit + "','" + state.firstName + "','" + state.lastName + "','" + state.employeeType + "','" + state.Phone + "','" + state.Addr + "','" + state.sex + "','" + state.race + "','" + state.dept1 + "','" + state.dept2 + "','" + state.dept3 + "','" + state.dept4 + "','" + state.WS + "') "
+        query: `INSERT INTO Users (NetID, 9Digit, FirstName, LastName, EmployeeType, Phone, Addr, Sex, Race, Department1, Department2, Department3, Department4, WS, HoursRemain ) VALUES` +
+        "('" + state.NetID + "','" + state.NINEdigit + "','" + state.firstName + "','" + state.lastName + "','" + state.employeeType + "','" + state.Phone + "','" + state.Addr + "','" +
+        state.sex + "','" + state.race + "','" + state.dept1 + "','" + state.dept2 + "','" + state.dept3 + "','" + state.dept4 + "','" + state.WS + "','" + state.HoursRemain + "') "
       }
     }
     else {

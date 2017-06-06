@@ -19,6 +19,9 @@ import { getStudentStatus, getDepartments } from '../../containers/App/selectors
 import { createStructuredSelector } from 'reselect';
 
 class AddStudent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  defaultState = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: false, HoursRemain: 0, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
+
   constructor(props) {
     super(props);
     //this.x = this.x.bind(this);
@@ -28,7 +31,7 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleWS = this.toggleWS.bind(this);
     //this.state = {x: '' }; 
-    this.state = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: false, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
+    this.state = this.defaultState;
   }
 
   update(e) {
@@ -52,9 +55,16 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
     alert('Your Student was successfully submitted ');
     event.preventDefault();
     this.props.FormAction('SUBMIT-STUDENT', this.state);
+    this.resetForm();
+  }
 
+  resetForm() {
     //Clears out form inputs after someone has submitted
     document.getElementById("addStudentForm").reset();
+
+    //Resetting Form State
+    this.setState(this.defaultState);
+
   }
 
   render() {
@@ -130,6 +140,17 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
             Work Study
            <input id="WS" type="checkbox" onChange={this.toggleWS} />
           </H3>
+          {this.state.WS &&
+            <div>
+              <br />
+              <H3>
+                Amount:
+              <input id="WS" name="HoursRemain" type="number" step="any" min="1"
+                  onChange={this.handleChange}
+                  style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} />
+              </H3><br />
+            </div>
+          }
           <H3>Dept1: <select required id="SelectOption" name="dept1" onChange={this.handleChange}>
             <option value="">Select Department</option>
             {this.props.Department.map((current, index) =>
