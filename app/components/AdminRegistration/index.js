@@ -47,9 +47,11 @@ class AdminRegistration extends React.PureComponent { // eslint-disable-line rea
     });
   }
   handleSubmit(event) {
-    alert('You have successfully registered ');
+    alert('You have successfully registered, this page will close in the next 6 seconds ');
     event.preventDefault();
     this.props.FormAction('SUBMIT-ADMIN', this.state);
+    setTimeout(() => window.location = './', 6000)
+
   }
 
   render() {

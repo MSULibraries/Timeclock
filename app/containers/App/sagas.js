@@ -222,15 +222,12 @@ export function* submitStudentAsync(action) {
 export function* submitAdminAsync(action) {
   try {
     var i = 0;
-    console.log(action.NetID);
     var deptAdminsQuery = "INSERT INTO department_admins (Department, Admin) VALUES "
     while(action.departments[i] != ""){
       deptAdminsQuery += "('" + action.departments[i] + "','"+ action.NetID +"'),"
       i++;
     }
     deptAdminsQuery = deptAdminsQuery.slice(0, -1);
-    console.log(deptAdminsQuery);
-    console.log(action.query);
     const response = yield call(fetch, '/db', { method: 'POST', body: action.query });
     const res = yield response.json();
     res.status == true ? yield put({ type: 'ADMIN-DATABASE-ENTRY', adminStatus: true }) : yield put({ type: 'STUDENT-DATABASE-ENTRY', adminStatus: false });
@@ -252,7 +249,6 @@ export function* deleteStudentAsync(action) {
 }
 export function* AllDepartmentsAsync(action) {
   try {
-    console.log('ran');
     const response = yield call(fetch, '/db', { method: 'POST', body: action.query });
     const res = yield response.json();
     res.status == true ? yield put({ type: 'LIBRARY-DEPARTMENTS-LOADED', departments: res.data }) : null
