@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 //Import Actions for dispatch
 import { FormAction } from './actions';
 //Import selectors for use in getting minimal state from Redux global store
-import { getStudentStatus } from '../../containers/App/selectors.js';
+import { getStudentStatus, getDepartments } from '../../containers/App/selectors.js';
 //Import method from Reselect library to map properties to selector methods
 import { createStructuredSelector } from 'reselect';
 
@@ -103,36 +103,31 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
           </H3>
 
           <H3>Dept1: <select id="SelectOption" name="dept1" onChange={this.handleChange}>
-            <option value="AA">Select Department</option>
-            <option value="4C-72-B9-55-CD-C3">Systems</option>
-            <option value="Asn">Asian</option>
-            <option value="Hisp">Hispanic</option>
-            <option value="Oth">Other</option>
+            <option value="**">Select Department</option>
+            {this.props.Department.map((current, index) =>
+              <option key={current.Department}>{current.Department}</option>
+            )}
           </select>
           </H3><br />
           <H3>Dept2: <select id="SelectOption" name="dept2" onChange={this.handleChange}>
-            <option value="AA">Select Department</option>
-            <option value="Cauc">Caucsian</option>
-            <option value="Asn">Asian</option>
-            <option value="Hisp">Hispanic</option>
-            <option value="Oth">Other</option>
+            <option value="**">Select Department</option>
+            {this.props.Department.map((current, index) =>
+              <option key={current.Department}>{current.Department}</option>
+            )}
           </select>
           </H3><br />
           <H3>Dept3: <select id="SelectOption" name="dept3" onChange={this.handleChange}>
-            <option value="AA">Select Department</option>
-            <option value="Cauc">Caucsian</option>
-            <option value="Asn">Asian</option>
-            <option value="Hisp">Hispanic</option>
-            <option value="Oth">Other</option>
+            <option value="**">Select Department</option>
+            {this.props.Department.map((current, index) =>
+              <option key={current.Department}>{current.Department}</option>
+            )}
           </select>
           </H3><br />
           <H3>Dept4: <select id="SelectOption" name="dept4" onChange={this.handleChange}>
-            <option value="AA">Select Department</option>
-            <option value="AA">African American</option>
-            <option value="Cauc">Caucsian</option>
-            <option value="Asn">Asian</option>
-            <option value="Hisp">Hispanic</option>
-            <option value="Oth">Other</option>
+            <option value="**">Select Department</option>
+            {this.props.Department.map((current, index) =>
+              <option key={current.Department}>{current.Department}</option>
+            )}
           </select>
           </H3><br />
 
@@ -148,7 +143,8 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
 //Redux method to allow the props to have access to the Redux global store
 //With the least minimal state representation possible through Reselect library
 const mapStateToProps = createStructuredSelector({
-  StudentStatus: getStudentStatus()
+  StudentStatus: getStudentStatus(),
+  Department: getDepartments()
 });
 
 //Redux method to bind the actions created in the component to a dispatch

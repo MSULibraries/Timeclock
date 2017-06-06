@@ -24,7 +24,7 @@ import { getUser, getRes, getStatusOnUser } from '../App/selectors.js';
 import { createStructuredSelector } from 'reselect';
 
 //Represents the Dean's Special Fund Mac-Addr
-var DSF = "00-00-00-00-00-00";
+var DSF = "DSF";
 
 class Home extends React.PureComponent {
   constructor(props) {

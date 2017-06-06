@@ -18,73 +18,73 @@ const makeSelectLocationState = () => {
 
 //Selects current state of user
 const getBoiler = () => createSelector(
-   userSelector,
-   (state) => state.get('boilerStatus')
+  userSelector,
+  (state) => state.get('boilerStatus')
 );
 const userSelector = state => state.get('user');
 
 //Creates the selector and updates based off the current state from userSelector
 const getUser = () => createSelector(
-   userSelector,
-   (state) => state.get('user')
+  userSelector,
+  (state) => state.get('user')
 );
 
 const getRes = () => createSelector(
-   userSelector,
-   (state) => state.get('userStatus')
+  userSelector,
+  (state) => state.get('userStatus')
 );
 
 const getStatusOnUser = () => createSelector(
-   userSelector,
-   (state) => state.get('userOnPage')
+  userSelector,
+  (state) => state.get('userOnPage')
 );
 const getStudents = () => createSelector(
-   userSelector,
-   (state) => state.get('students')
+  userSelector,
+  (state) => state.get('students')
 );
 const getMAC = () => createSelector(
-   userSelector,
-   (state) => state.get('mac')
+  userSelector,
+  (state) => state.get('mac')
 );
 const getSupervisorBudgets = () => createSelector(
-   userSelector,
-   (state) => state.get('supervisorBudgets')
+  userSelector,
+  (state) => state.get('supervisorBudgets')
 );
 const getStudentsOnClock = () => createSelector(
-   userSelector,
-   (state) => state.get('studentsOnClock')
+  userSelector,
+  (state) => state.get('studentsOnClock')
 );
 const getStudentHoursInToday = () => createSelector(
-   userSelector,
-   (state) => state.get('studentHoursInToday')
+  userSelector,
+  (state) => state.get('studentHoursInToday')
 );
 const getStudentHoursOutToday = () => createSelector(
-   userSelector,
-   (state) => state.get('studentHoursOutToday')
+  userSelector,
+  (state) => state.get('studentHoursOutToday')
 );
 const getSpecificHours = () => createSelector(
-   userSelector,
-   (state) => state.get('studentHoursToday')
+  userSelector,
+  (state) => state.get('studentHoursToday')
 );
 const getStudentReviewHours = () => createSelector(
-   userSelector,
-   (state) => state.get('studentReviewHours')
+  userSelector,
+  (state) => state.get('studentReviewHours')
 );
 const getStudentTimesheet = () => createSelector(
-   userSelector,
-   (state) => state.get('sheetDownload')
+  userSelector,
+  (state) => state.get('sheetDownload')
 );
 const getStudentStatus = () => createSelector(
-   userSelector,
-   (state) => state.get('studentStatus')
+  userSelector,
+  (state) => state.get('studentStatus')
 );
 const getDepartmentDNS = () => createSelector(
-   userSelector,
-   (state) => state.get('departmentDNS')
+  userSelector,
+  (state) => state.get('departmentDNS')
 );
 const getDepartments = () => createSelector(
-   userSelector,
-   (state) => state.get('LibData')
+  userSelector,
+  (state) => state.get('LibData')
 );
 
 export {
@@ -103,5 +103,6 @@ export {
   getStudentReviewHours,
   getStudentTimesheet,
   getStudentStatus,
-  getDepartmentDNS
+  getDepartmentDNS,
+  getDepartments
 };
