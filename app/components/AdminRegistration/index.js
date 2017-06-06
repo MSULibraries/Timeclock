@@ -30,7 +30,7 @@ class AdminRegistration extends React.PureComponent { // eslint-disable-line rea
     this.state = { NetID: 'js1599', NINEdigit: '', firstName: '', lastName: '', dept1: '', dept2: '', dept3: '', dept4: '' };
   }
   componentWillMount() {
-    //this.props.LoadDepts('ALL-DEPARTMENTS');
+    this.props.LoadDepts('ALL-DEPARTMENTS');
   }
   update(e) {
     this.setState({ NetID: e.target.value });
