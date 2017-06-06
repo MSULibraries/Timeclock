@@ -31,7 +31,7 @@ injectGlobal`
 #SelectOption
   { 
     color:gray;
-    width:75%;
+    width:55%;
     background: white;
     border: 1px solid #ccc; 
     border-radius: 3px; 
@@ -43,7 +43,7 @@ injectGlobal`
  
 }
 #left-column{
-    width:30% !important;
+    width:34% !important;
 }
 #middle-column{
     width:40% !important;

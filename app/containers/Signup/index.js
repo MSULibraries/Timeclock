@@ -15,6 +15,13 @@ import Boiler from '../../components/Boiler';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+/************
+Import style for Registeration
+************/
+import { RegisterStyle } from '../../components/AdminRegistration/styles';
+import * as Grid from 'react-grid-system';
+
 //Import Actions for dispatch
 import { LogAction } from './actions';
 
@@ -58,11 +65,19 @@ class HomePageSecond extends React.PureComponent { // eslint-disable-line react/
   //If the user is autheticated AND the data is ready, load the dashboard
   //If not, then display the Loading screen
   render() {
-     return(
-       <div>
-          <Register />
+    return (
+      <div>
+        <Grid.Container id="container">
+          <Grid.Row>
+            <Grid.Col md={3} offset={{ md: 6 }}>
+              <RegisterStyle style={{ marginTop: '10em' }}>
+                <Register />
+              </RegisterStyle>
+            </Grid.Col>
+          </Grid.Row>
+        </Grid.Container>
       </div>
-     )
+    )
   }
 }
 
