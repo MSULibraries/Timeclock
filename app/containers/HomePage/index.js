@@ -54,8 +54,8 @@ class Home extends React.PureComponent {
                     this.setState({ user: response.user });
                 })
                 .catch(function (error) {
-                    window.location = "./logout";
-                    // console.log(error);
+                    //window.location = "./logout";
+                    console.log(error);
                 });
         }
         else {
