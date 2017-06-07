@@ -194,7 +194,7 @@ app.use("/login",(req,res) => {
 });
 
 app.use('/verify',textParser,function(req, res) {
-    var decoded = jwt.verify(req.body, 'Justin-Is-The-Food-Devil', {maxAge: '60'});
+    var decoded = jwt.verify(req.body, 'Justin-Is-The-Food-Devil', {maxAge: '60000'});
     res.json(decoded);
 });
  
