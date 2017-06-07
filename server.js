@@ -182,21 +182,22 @@ app.use("/Capture", (req,res) =>{
   var link = req.query.id
   res.download("excelFiles/"+link);
 })
-app.use("/login",(req,res) => {
-  request('https://cas.its.msstate.edu/cas/serviceValidate?service=http://timeclock.library.msstate.edu/login&ticket='+req.param('ticket'), function (error, response, body) {
+app.use("/login", (req, res) => {
+  request('https://cas.its.msstate.edu/cas/serviceValidate?service=http://timeclock.library.msstate.edu/login&ticket=' + req.param('ticket'), function (error, response, body) {
     var user = response.body;
     var userIndex1 = user.search("<cas:user>") + 10;
     var userIndex2 = user.search("</cas:user>");
     var currentUser = user.slice(userIndex1, userIndex2);
-    var token = jwt.sign({ user: currentUser }, 'Justin-Is-The-Food-Devil'); // Token expires in 3m
-    res.redirect('/?'+token);
-  }) 
+    var token = jwt.sign({ user: currentUser }, 'Justin-Is-The-Food-Devil', { expiresIn: 60 }); // Token expires in 1m
+    res.redirect('/?' + token);
+  })
 });
 
-app.use('/verify',textParser,function(req, res) {
-    var decoded = jwt.verify(req.body, 'Justin-Is-The-Food-Devil');
-    res.json(decoded);
+app.use('/verify', textParser, function (req, res) {
+  var decoded = jwt.verify(req.body, 'Justin-Is-The-Food-Devil', { maxAge: 60000 });
+  res.json(decoded);
 });
+
  
 app.use("/cas",casClient.core());
 app.use('/logout', (req,res) =>{
