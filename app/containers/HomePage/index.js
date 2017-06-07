@@ -53,7 +53,7 @@ class Home extends React.PureComponent {
                     this.props.onChangeUser('CHECK-USER', response.user);
                     this.setState({ user: response.user });
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     window.location = "./logout";
                     // console.log(error);
                 });
@@ -80,45 +80,40 @@ class Home extends React.PureComponent {
     render() {
         return (
             <Wrapper>
-                <Grid.Container id="container">
-                    <Grid.Row>
-                        <Grid.Col md={12} offset={{ md: 7 }}>
-                            <LoginBox>
-                                <h1>MSU Library <br /> Time Clock </h1>
-                                {this.props.userStatus.Role != "student" && this.state.user != null ?
-                                    <LoginButton onClick={() => window.location = "/dashboard?" + this.state.token} > Dashboard </LoginButton>
-                                    : ''}
+                <LoginBox>
+                    <h1>MSU Library <br /> Time Clock </h1>
+                    {this.props.userStatus.Role != "student" && this.state.user != null ?
+                        <LoginButton onClick={() => window.location = "/dashboard?" + this.state.token} > Dashboard </LoginButton>
+                        : ''}
 
-                                {(this.props.userStatus.Role == "student" && this.props.userStatus.UserLoggedIn != 1) ?
-                                    <div>
-                                        <select onChange={this.updateDept}>
-                                            <option value="22" >Select Your Department</option>
-                                            <option value={this.props.userStatus.Department1} >{this.props.userStatus.Department1}</option>
-                                            {this.props.userStatus.Department2 != '' ? <option value={this.props.userStatus.Department2} >{this.props.userStatus.Department2}</option> : ''}
-                                            {this.props.userStatus.Department3 != '' ? <option value={this.props.userStatus.Department3} >{this.props.userStatus.Department3}</option> : ''}
-                                            {this.props.userStatus.Department4 != '' ? <option value={this.props.userStatus.Department4} >{this.props.userStatus.Department4}</option> : ''}
-                                        </select> <br /><br />
-                                    </div>
-                                    : ''}
+                    {(this.props.userStatus.Role == "student" && this.props.userStatus.UserLoggedIn != 1) ?
+                        <div>
+                            <select onChange={this.updateDept}>
+                                <option value="22" >Select Your Department</option>
+                                <option value={this.props.userStatus.Department1} >{this.props.userStatus.Department1}</option>
+                                {this.props.userStatus.Department2 != '' ? <option value={this.props.userStatus.Department2} >{this.props.userStatus.Department2}</option> : ''}
+                                {this.props.userStatus.Department3 != '' ? <option value={this.props.userStatus.Department3} >{this.props.userStatus.Department3}</option> : ''}
+                                {this.props.userStatus.Department4 != '' ? <option value={this.props.userStatus.Department4} >{this.props.userStatus.Department4}</option> : ''}
+                            </select> <br /><br />
+                        </div>
+                        : ''}
 
-                                {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.Role == "student") ?
-                                    <LoginButton disabled={!this.state.dept} onClick={() => this.props.onChangeUser('USER-REQUEST-LOGIN', this.state.user, this.state.dept)} > Clock In </LoginButton>
-                                    : ''}
+                    {(this.props.userStatus.UserLoggedIn == 0 && this.props.userStatus.Role == "student") ?
+                        <LoginButton disabled={!this.state.dept} onClick={() => this.props.onChangeUser('USER-REQUEST-LOGIN', this.state.user, this.state.dept)} > Clock In </LoginButton>
+                        : ''}
 
-                                {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ?
-                                    <LoginButton onClick={() => this.props.onChangeUser('USER-REQUEST-LOGOUT', this.state.user, this.state.dept)} > Clock Out </LoginButton>
-                                    : ''} <br />
+                    {(this.props.userStatus.UserLoggedIn == 1 && this.props.userStatus.Role == "student") ?
+                        <LoginButton onClick={() => this.props.onChangeUser('USER-REQUEST-LOGOUT', this.state.user, this.state.dept)} > Clock Out </LoginButton>
+                        : ''} <br />
 
-                                {this.state.user != null ?
-                                    < LogOutButton onClick={() => window.location = "/logout"} >Logout</LogOutButton>
-                                    : < LoginButton onClick={() => window.location = "/cas"} > Login </LoginButton>
-                                }
-                                {this.props.response ? this.success() : ''}
-                                {this.props.response ? <h2>Clocked in. Redirecting… </h2> : ''}
-                            </LoginBox>
-                        </Grid.Col>
-                    </Grid.Row>
-                </Grid.Container>
+                    {this.state.user != null ?
+                        < LogOutButton onClick={() => window.location = "/logout"} >Logout</LogOutButton>
+                        : < LoginButton onClick={() => window.location = "/cas"} > Login </LoginButton>
+                    }
+                    {this.props.response ? this.success() : ''}
+                    {this.props.response ? <h2>Clocked in. Redirecting… </h2> : ''}
+                </LoginBox>
+
             </Wrapper>
         );
     }

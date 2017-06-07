@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const LoginBox = styled.div`
   width:23em;
   text-align:center;
-  margin-top:20em;
   padding-top:0.3125em;
   padding-bottom:0.3125em;
   margin-bottom:1.25em;
