@@ -50,7 +50,7 @@ class HomePageSecond extends React.PureComponent { // eslint-disable-line react/
         this.setState({ flag: true });
       })
       .catch(function (error) {
-        //window.location = "./logout";
+         window.location = "./logout";
         // console.log(error);
       });
   }

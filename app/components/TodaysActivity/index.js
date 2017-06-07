@@ -35,7 +35,7 @@ class CurrentStudents extends React.PureComponent { // eslint-disable-line react
   render() {
     return (
       <div style={{textAlign:'left'}}>
-        <h2>Today's Activity</h2>   
+        <h2>Today's Activity - UNDER DEVELOPMENT</h2>   
         <Table columns={columns} data={data} />
      </div>
     );

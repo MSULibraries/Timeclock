@@ -1,14 +1,14 @@
 /**
  *
- * App.react.js
  *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a necessity for you then you can refactor it and remove
- * the linting exception.
+ * This app was made in loving memory of my mother Juliet Lucy Samuels
+ * whom I lost during the development of this app. She will forever
+ * be my inspiraton to strive to reach higher places each and every day. - Justin E. Samuels, June 7, 2017
+ * 
+ * 
+ * 
+ * 
+ *  Heart-beat of the timeclock
  */
 
 import React from 'react';
