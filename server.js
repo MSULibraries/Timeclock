@@ -32,7 +32,7 @@ const getMac = (req,res) => {
 
 app.use(cookieParser());
 app.use(session({
-  name: 'CASsession',
+  name: 'NSESSIONID',
   secret: 'Let$TryTh!$again',
   store: new MemoryStore()  // or other session store 
 }));
@@ -188,13 +188,13 @@ app.use("/login",(req,res) => {
     var userIndex1 = user.search("<cas:user>") + 10;
     var userIndex2 = user.search("</cas:user>");
     var currentUser = user.slice(userIndex1, userIndex2);
-    var token = jwt.sign({ user: currentUser }, 'Justin-Is-The-Food-Devil'); // Token expires in 1m
+    var token = jwt.sign({ user: currentUser }, 'Justin-Is-The-Food-Devil', { expiresIn: '60' }); // Token expires in 3m
     res.redirect('/?'+token);
   }) 
 });
 
 app.use('/verify',textParser,function(req, res) {
-    var decoded = jwt.verify(req.body, 'Justin-Is-The-Food-Devil');
+    var decoded = jwt.verify(req.body, 'Justin-Is-The-Food-Devil', {maxAge: '60000'});
     res.json(decoded);
 });
  
