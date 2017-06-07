@@ -74,7 +74,7 @@ class Home extends React.PureComponent {
 
     //On successful clock-in or out, the student is logged out of CAS after 2 seconds (2000 Miliseconds)
     success() {
-        //setTimeout(() => window.location = './logout', 2000)
+        setTimeout(() => window.location = './logout', 2000)
     }
 
     render() {
@@ -111,7 +111,7 @@ class Home extends React.PureComponent {
                         : < LoginButton onClick={() => window.location = "/cas"} > Login </LoginButton>
                     }
                     {this.props.response ? this.success() : ''}
-                    {this.props.response ? <h2>Clocked in. Redirecting… </h2> : ''}
+                    {this.props.response ? <h2>Request Accepted.... Redirecting… </h2> : ''}
                 </LoginBox>
 
             </Wrapper>
