@@ -34,18 +34,37 @@ export function* logoutUserAsync(action) {
     const res = yield response.json();
     let clockQuery = "INSERT INTO student_hours_elapsed (NetID, TimeStamp, ClockOut, ShortDate, msTime, Dept) VALUES ( " + "'" + action.user + "'," + "'" + n + "', '1', '" + shortDate + "', '" + msTime + "','" + action.dept + "')";
     res.status == true ? yield put({ type: 'USER-FOUND', user: action.user, query: clockQuery }) : yield put({ type: 'USER-NOT-APPROVED', user: action.user })
-    let updateTimeQuery = "SELECT msTimeIn, msTimeOut, DepartmentIn FROM users WHERE NetID ='" + action.user + "'";
+    let updateTimeQuery = "SELECT msTimeIn, msTimeOut, DepartmentIn, WS FROM users WHERE NetID ='" + action.user + "'";
     const TimeDataResponse = yield call(fetch, '/db', { method: 'POST', body: updateTimeQuery })
     const TimeRes = yield TimeDataResponse.json();
-    const timeCalc = ((TimeRes.data[0].msTimeOut - TimeRes.data[0].msTimeIn) / 3600000) * 60;
-    const payRate = 7.25;
-    const moniesOwed = ((timeCalc / 60) * payRate).toFixed(2);
+    var timeCalc = ((TimeRes.data[0].msTimeOut - TimeRes.data[0].msTimeIn) / 3600000) * 60;
+    var owlTimeHours = d.getHours();
+    var owlTimeMin = d.getMinutes();
+    var owlTimeCalc;
+    var owlTimeCalcFinal;
+    var moniesOwed = 0;
+    var owlFlag = false;
+    if (owlTimeHours < 7) {
+      var owlTimeHoursConvert = owlTimeHours * 3600000;
+      var owlTimeMinutesConvert = owlTimeMin * 60000;
+      var owlTimeHoursAndMinutesConvert = owlTimeHoursConvert + owlTimeMinutesConvert;
+      var timeCalcOwl = owlTimeHoursAndMinutesConvert;
+      owlTimeCalcFinal = (timeCalcOwl / 3600000) * 60;
+      var owlPayRate = TimeRes.data[0].WS == "0" ? 8.25 : 3.18;
+      moniesOwed = (owlTimeCalcFinal / 60) * owlPayRate;
+      owlFlag = true;
+    }
+    var payRate = TimeRes.data[0].WS == "0" ? 7.25 : 2.18;
+    timeCalc = owlFlag ? timeCalc - owlTimeCalcFinal : timeCalc;
+    moniesOwed = moniesOwed + ((timeCalc / 60) * payRate);
     const departmentLookupQuery = "SELECT Department from department_lookup WHERE Department='" + TimeRes.data[0].DepartmentIn + "'";
     const departmentLookup = yield call(fetch, '/db', { method: 'POST', body: departmentLookupQuery })
     const departmentLookupRes = yield departmentLookup.json();
     const timeOfYear = month <= 3 ? 'Spring' : (month > 3 && month <= 6) ? 'Summer' : 'Fall';
     const updateBudgetQuery = "UPDATE department_budgets SET OverallBudgetUsed = OverallBudgetUsed + " + moniesOwed + ",OverallBudgetRemaining = OverallBudgetRemaining - " + moniesOwed + "," + timeOfYear + "BudgetUsed = " + moniesOwed + "," + timeOfYear + "BudgetRemaining = " + timeOfYear + "BudgetRemaining - " + moniesOwed + " WHERE Department ='" + departmentLookupRes.data[0].Department + "'";
     const budgetQuery = yield call(fetch, '/db', { method: 'POST', body: updateBudgetQuery })
+    const studentHoursQuery = "UPDATE users SET HoursWorked = HoursWorked + " + moniesOwed + ", HoursRemain = HoursRemain - " + moniesOwed + " WHERE NetID='" + action.user + "'"
+    const StudentHoursFetch = yield call(fetch, '/db', { method: 'POST', body: studentHoursQuery })
   }
   catch (error) {
     yield put({ type: 'USER-404', status: 'Not Found', user: res[0].NetID })
@@ -223,8 +242,8 @@ export function* submitAdminAsync(action) {
   try {
     var i = 0;
     var deptAdminsQuery = "INSERT INTO department_admins (Department, Admin) VALUES "
-    while(action.departments[i] != ""){
-      deptAdminsQuery += "('" + action.departments[i] + "','"+ action.NetID +"'),"
+    while (action.departments[i] != "") {
+      deptAdminsQuery += "('" + action.departments[i] + "','" + action.NetID + "'),"
       i++;
     }
     deptAdminsQuery = deptAdminsQuery.slice(0, -1);
