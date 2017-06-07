@@ -209,7 +209,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
  
  app.use('/db', textParser, (req,res) =>{		
-  var connection = mysql.createConnection({host:'130.18.123.31', user: 'root', password: 'Let$TryTh!$again', database: 'timeclock'});		 		
+  var connection = mysql.createConnection({host:'130.18.123.31', user: 'web_dev', password: '123456', database: 'timeclock'});		 		
   connection.query(req.body, function (err, results) {
    console.log(results);
    console.log(err);		 
