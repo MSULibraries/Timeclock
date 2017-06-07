@@ -64,21 +64,21 @@ class AdminRegistration extends React.PureComponent { // eslint-disable-line rea
           <H3>First Name: <input type="text" name="firstName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
           <H3>Last Name: <input type="text" name="lastName" style={{ background: 'white', border: '1px solid #ccc', borderRadius: '3px' }} onChange={this.handleChange} /> </H3><br />
           <H3>Primary Department: <select id="SelectOption" name="dept1" onChange={this.handleChange}>
-            <option value="**">Select Department</option>
+            <option value="">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
           </select>
           </H3><br />
           <H3>Secondary Department: <select id="SelectOption" name="dept2" onChange={this.handleChange}>
-            <option value="**">Select Department</option>
+            <option value="">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
           </select>
           </H3><br />
           <H3>Tertiary Department: <select id="SelectOption" name="dept3" onChange={this.handleChange}>
-            <option value="**">Select Department</option>
+            <option value="">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}

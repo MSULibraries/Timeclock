@@ -20,7 +20,7 @@ import { createStructuredSelector } from 'reselect';
 
 class AddStudent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
-  defaultState = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: false, HoursRemain: 0, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
+  defaultState = { NetID: '', NINEdigit: '', firstName: '', lastName: '', employeeType: '', WS: false, DSF: "0", HoursRemain: 0, sex: '', race: '', dept1: '', dept2: '', dept3: '', dept4: '', status: false, Phone: '', Addr: '' };
 
   constructor(props) {
     super(props);
@@ -79,7 +79,7 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
               onChange={this.handleChange}
               pattern="[a-zA-Z]{1,3}\d{1,4}"
               title="Student's MSU NetID | 1-3 characters followed by 1-4 digits"
-            />
+              />
           </H3><br />
           <H3>
             MSU 9-Digit:
@@ -96,7 +96,7 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
               onChange={this.handleChange}
               pattern="[a-zA-Z]{1,}"
               title="Student's First Name"
-            />
+              />
           </H3><br />
           <H3>Last Name:
             <input required type="text" name="lastName"
@@ -104,7 +104,7 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
               onChange={this.handleChange}
               pattern="[a-zA-Z]{1,}"
               title="Student's Last Name"
-            /> </H3><br />
+              /> </H3><br />
           <H3>Phone:
             <input required
               type="tel" name="Phone"
@@ -156,28 +156,28 @@ class AddStudent extends React.PureComponent { // eslint-disable-line react/pref
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
-          </select> <input type="radio" name="yes" value="dsf" /> DSF<br />
+          </select> <input type="radio" name="yes" onClick={() => { this.setState({ DSF: this.state.dept1 }) } } /> DSF<br />
           </H3><br />
           <H3>Dept2: <select id="SelectOption" name="dept2" onChange={this.handleChange}>
             <option value="**">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
-          </select> <input type="radio" name="yes" value="dsf" /> DSF<br />
+          </select> <input type="radio" name="yes" onClick={() => { this.setState({ DSF: this.state.dept2 }) } } /> DSF<br />
           </H3><br />
           <H3>Dept3: <select id="SelectOption" name="dept3" onChange={this.handleChange}>
             <option value="**">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
-          </select> <input type="radio" name="yes" value="dsf" /> DSF<br />
+          </select> <input type="radio" name="yes" onClick={() => { this.setState({ DSF: this.state.dept3 }) } } /> DSF<br />
           </H3><br />
           <H3>Dept4: <select id="SelectOption" name="dept4" onChange={this.handleChange}>
             <option value="**">Select Department</option>
             {this.props.Department.map((current, index) =>
               <option key={current.Department}>{current.Department}</option>
             )}
-          </select> <input type="radio" name="yes" value="dsf" /> DSF<br />
+          </select> <input type="radio" name="yes" onClick={() => { this.setState({ DSF: this.state.dept4 }) } } /> DSF<br />
           </H3><br />
 
           <DateButton>
